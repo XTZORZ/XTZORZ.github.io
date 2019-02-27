@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="OI退役想去搞物理竞赛的我还是太弱了初中物理的光学竞赛问题，基于反射角=入射角，我们可以拿张草稿纸手膜小样例最终推出答案。  对于$N=M$的情况：  不妨设N=M=1，先手膜一组$2*3$的数据（绿线是经折射的线，蓝点为反射点）： 这里用了反射角=入射角的原理，关于射线的折射点反复对称就得到这张图。 可以注意到第三行我标了两个蓝点，这是因为我标错了这两个点关于法线对称，因此可以等价看待。 然后我">
+<meta name="keywords" content="模拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洛谷P5088 【矩形】">
+<meta property="og:url" content="http://yoursite.com/2019/02/09/洛谷P5088-【矩形】/index.html">
+<meta property="og:site_name" content="天泽龟的小龟壳">
+<meta property="og:description" content="OI退役想去搞物理竞赛的我还是太弱了初中物理的光学竞赛问题，基于反射角=入射角，我们可以拿张草稿纸手膜小样例最终推出答案。  对于$N=M$的情况：  不妨设N=M=1，先手膜一组$2*3$的数据（绿线是经折射的线，蓝点为反射点）： 这里用了反射角=入射角的原理，关于射线的折射点反复对称就得到这张图。 可以注意到第三行我标了两个蓝点，这是因为我标错了这两个点关于法线对称，因此可以等价看待。 然后我">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/45868.png">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/45859.png">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/45870.png">
+<meta property="og:updated_time" content="2019-02-09T12:32:23.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="洛谷P5088 【矩形】">
+<meta name="twitter:description" content="OI退役想去搞物理竞赛的我还是太弱了初中物理的光学竞赛问题，基于反射角=入射角，我们可以拿张草稿纸手膜小样例最终推出答案。  对于$N=M$的情况：  不妨设N=M=1，先手膜一组$2*3$的数据（绿线是经折射的线，蓝点为反射点）： 这里用了反射角=入射角的原理，关于射线的折射点反复对称就得到这张图。 可以注意到第三行我标了两个蓝点，这是因为我标错了这两个点关于法线对称，因此可以等价看待。 然后我">
+<meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/45868.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/09/洛谷P5088-【矩形】/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>洛谷P5088 【矩形】 | 天泽龟的小龟壳</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天泽龟的小龟壳</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">天泽龟的龟 是龟裂的龟(jūn)哦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/09/洛谷P5088-【矩形】/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TURLE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.luogu.org/upload/usericon/15984.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天泽龟的小龟壳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">洛谷P5088 【矩形】
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-09 17:36:18 / 修改时间：20:32:23" itemprop="dateCreated datePublished" datetime="2019-02-09T17:36:18+08:00">2019-02-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/洛谷/" itemprop="url" rel="index"><span itemprop="name">洛谷</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="OI退役想去搞物理竞赛的我还是太弱了"><a href="#OI退役想去搞物理竞赛的我还是太弱了" class="headerlink" title="OI退役想去搞物理竞赛的我还是太弱了"></a><del>OI退役想去搞物理竞赛的我还是太弱了</del></h2><p>初中物理的光学竞赛问题，基于反射角=入射角，我们可以拿张草稿纸手膜小样例最终推出答案。</p>
+<ul>
+<li><h2 id="对于-N-M-的情况："><a href="#对于-N-M-的情况：" class="headerlink" title="对于$N=M$的情况："></a>对于$N=M$的情况：</h2></li>
+</ul>
+<h3 id="不妨设N-M-1，先手膜一组-2-3-的数据（绿线是经折射的线，蓝点为反射点）："><a href="#不妨设N-M-1，先手膜一组-2-3-的数据（绿线是经折射的线，蓝点为反射点）：" class="headerlink" title="不妨设N=M=1，先手膜一组$2*3$的数据（绿线是经折射的线，蓝点为反射点）："></a>不妨设N=M=1，先手膜一组$2*3$的数据（绿线是经折射的线，蓝点为反射点）：</h3><p><img src="https://cdn.luogu.org/upload/pic/45868.png" alt=""></p>
+<p>这里用了<strong>反射角=入射角</strong>的原理，关于射线的折射点反复对称就得到这张图。</p>
+<p>可以注意到第三行我标了两个蓝点，这是因为<del>我标错了</del>这两个点关于法线对称，因此可以等价看待。</p>
+<p>然后我们就可以注意到一个有趣的事实，我们设$AB$是从入射点不考虑折射，直接引出的且起始点为网格点的最短线段，可以发现3个蓝点均在$AB$上！</p>
+<h4 id="于是我们可以大胆得出结论：对于任意AB为对角线形成的最小矩形，与其他网格点所形成的交点即为反射的次数。"><a href="#于是我们可以大胆得出结论：对于任意AB为对角线形成的最小矩形，与其他网格点所形成的交点即为反射的次数。" class="headerlink" title="于是我们可以大胆得出结论：对于任意AB为对角线形成的最小矩形，与其他网格点所形成的交点即为反射的次数。"></a>于是我们可以<del>大胆</del>得出结论：对于任意AB为对角线形成的最小矩形，与其他网格点所形成的交点即为反射的次数。</h4><h4 id="若矩形大小为-a-b-，每行会有一个交点，每列也会有一个交点，减去B所在的点的贡献，答案即为-a-b-2-，10分到手"><a href="#若矩形大小为-a-b-，每行会有一个交点，每列也会有一个交点，减去B所在的点的贡献，答案即为-a-b-2-，10分到手" class="headerlink" title="若矩形大小为$a,b$，每行会有一个交点，每列也会有一个交点，减去B所在的点的贡献，答案即为$a+b-2$，10分到手"></a>若矩形大小为$a,b$，每行会有一个交点，每列也会有一个交点，减去B所在的点的贡献，答案即为$a+b-2$，10分到手</h4><ul>
+<li><h2 id="对于-A-B"><a href="#对于-A-B" class="headerlink" title="对于$A=B$"></a>对于$A=B$</h2></li>
+</ul>
+<h3 id="等价于是-tan-ζ-1-的情况，不妨设-A-B-1-，我们先手膜一个-3-5-的表格（很丑）："><a href="#等价于是-tan-ζ-1-的情况，不妨设-A-B-1-，我们先手膜一个-3-5-的表格（很丑）：" class="headerlink" title="等价于是$tan ζ =1$的情况，不妨设$A=B=1$，我们先手膜一个$3*5$的表格（很丑）："></a>等价于是$tan ζ =1$的情况，不妨设$A=B=1$，我们先手膜一个$3*5$的表格（很丑）：<img src="https://cdn.luogu.org/upload/pic/45859.png" alt=""></h3><h3 id="经观察我们发现：经上下边界反射的点数-列数；经左右边界反射的点数-行数"><a href="#经观察我们发现：经上下边界反射的点数-列数；经左右边界反射的点数-行数" class="headerlink" title="经观察我们发现：经上下边界反射的点数=列数；经左右边界反射的点数=行数"></a><del>经观察</del>我们发现：经上下边界反射的点数=列数；经左右边界反射的点数=行数</h3><h3 id="咋证明呢？我好像不太会啊。"><a href="#咋证明呢？我好像不太会啊。" class="headerlink" title="咋证明呢？我好像不太会啊。"></a><del>咋证明呢？我好像不太会啊。</del></h3><p><del>（一本正经的胡说八道）</del>其实我们可以用映射的思想，因为我们求的均是长宽比值，所以具体大小是不影响答案的，我们可以感性的将这个大矩形压缩成一个单位1的正方形，如图：<img src="https://cdn.luogu.org/upload/pic/45870.png" alt=""></p>
+<p><del>你看这个小正方形和那个大矩形是不是很像！？</del></p>
+<h4 id="此时原本-tanζ-1-的线应是被我们压缩成了-tan-ζ-A-B-3-5-，相当于我们就可以直接引用第一种情况的结论得出答案辣！第二个10分的结论就是-n-m-2"><a href="#此时原本-tanζ-1-的线应是被我们压缩成了-tan-ζ-A-B-3-5-，相当于我们就可以直接引用第一种情况的结论得出答案辣！第二个10分的结论就是-n-m-2" class="headerlink" title="此时原本$tanζ=1$的线应是被我们压缩成了$tan  ζ=A/B=3/5$，相当于我们就可以直接引用第一种情况的结论得出答案辣！第二个10分的结论就是$n+m-2$"></a>此时原本$tanζ=1$的线应是被我们压缩成了$tan  ζ=A/B=3/5$，相当于我们就可以直接引用第一种情况的结论得出答案辣！第二个10分的结论就是$n+m-2$</h4><ul>
+<li><h1 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h1></li>
+</ul>
+<h3 id="想到了映射还有什么问题没解决了吗？？"><a href="#想到了映射还有什么问题没解决了吗？？" class="headerlink" title="想到了映射还有什么问题没解决了吗？？"></a><del>想到了映射还有什么问题没解决了吗？？</del></h3><p>我们只要把任意数据都替换成$N=M$的情况，直接套结论就可以啦！</p>
+<p>对于水平方向的$N,a$同时除以N，竖直方向的$M,b$同时除以M，可以证明与原来的数据是等价的。</p>
+<p>此时修改过后的$N=M=1$，那么对于a1与b1先使他们互质，再直接套第一种情况的结论就行啦！</p>
+<p>最后还有记得特判a=0,b=0的情况。。死活卡在95就是这个原因。</p>
+<p>最后，上丑陋的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">ll n,m,a,b;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (!b)?a:gcd(b,a%b); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	a*=m; b*=n; <span class="comment">//与a/n,b/m等价，而且这样可以保证a,b为整数</span></span><br><span class="line">	ll d=gcd(a,b); </span><br><span class="line">	<span class="keyword">if</span> (a==<span class="number">0</span>||b==<span class="number">0</span>) &#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>; <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	a/=d; b/=d;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;b+a<span class="number">-2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大冬天待在空调房，可能脑子不是很好使，如有错误指出_(:з」∠)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模拟/" rel="tag"># 模拟</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/09/洛谷U50556-【翘课】/" rel="next" title="洛谷U50556 【翘课】">
+                <i class="fa fa-chevron-left"></i> 洛谷U50556 【翘课】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/09/国家集训队-旅游/" rel="prev" title="[国家集训队]旅游">
+                [国家集训队]旅游 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://cdn.luogu.org/upload/usericon/15984.png" alt="TURLE">
+            
+              <p class="site-author-name" itemprop="name">TURLE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.luogu.org/space/show?uid=15984" title="洛谷 &rarr; https://www.luogu.org/space/show?uid=15984" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>洛谷</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://user.qzone.qq.com/1597440560" title="QQZone &rarr; https://user.qzone.qq.com/1597440560" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>QQZone</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+		
+	
+		<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+		<div class="widget-wrap">
+			<h3 class="widget-title">Tag Cloud</h3>
+			<div id="myCanvasContainer" class="widget tagcloud">
+				<canvas width="250" height="250" id="resCanvas" style="width=100%">
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+				</canvas>
+			</div>
+		</div>
+	
+	
+	
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TURLE</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>

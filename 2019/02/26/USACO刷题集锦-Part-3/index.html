@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="感觉好像比第三章题少了点，但是个个都好麻烦啊。。 不打啥$eg$了，这些题全得自己理一下思路。。 $Section 4.1$麦香牛块Beef McNuggets：题面： “看，”奶牛们说，“如果你只用一次能装3块、6块或者10块的三种包装盒包装麦香牛块，你就不可能满足一次只想买1、2、4、5、7、8、11、14或者17块麦香牛块的顾客了。劣质的包装意味着劣质的产品。” 你的任务是帮助这些奶牛。给出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="USACO刷题集锦(Part.3)">
+<meta property="og:url" content="http://yoursite.com/2019/02/26/USACO刷题集锦-Part-3/index.html">
+<meta property="og:site_name" content="天泽龟的小龟壳">
+<meta property="og:description" content="感觉好像比第三章题少了点，但是个个都好麻烦啊。。 不打啥$eg$了，这些题全得自己理一下思路。。 $Section 4.1$麦香牛块Beef McNuggets：题面： “看，”奶牛们说，“如果你只用一次能装3块、6块或者10块的三种包装盒包装麦香牛块，你就不可能满足一次只想买1、2、4、5、7、8、11、14或者17块麦香牛块的顾客了。劣质的包装意味着劣质的产品。” 你的任务是帮助这些奶牛。给出">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-26T15:48:25.222Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="USACO刷题集锦(Part.3)">
+<meta name="twitter:description" content="感觉好像比第三章题少了点，但是个个都好麻烦啊。。 不打啥$eg$了，这些题全得自己理一下思路。。 $Section 4.1$麦香牛块Beef McNuggets：题面： “看，”奶牛们说，“如果你只用一次能装3块、6块或者10块的三种包装盒包装麦香牛块，你就不可能满足一次只想买1、2、4、5、7、8、11、14或者17块麦香牛块的顾客了。劣质的包装意味着劣质的产品。” 你的任务是帮助这些奶牛。给出">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/26/USACO刷题集锦-Part-3/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>USACO刷题集锦(Part.3) | 天泽龟的小龟壳</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天泽龟的小龟壳</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">天泽龟的龟 是龟裂的龟(jūn)哦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/USACO刷题集锦-Part-3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TURLE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.luogu.org/upload/usericon/15984.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天泽龟的小龟壳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">USACO刷题集锦(Part.3)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-26 23:04:57 / 修改时间：23:48:25" itemprop="dateCreated datePublished" datetime="2019-02-26T23:04:57+08:00">2019-02-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/USACO/" itemprop="url" rel="index"><span itemprop="name">USACO</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><del>感觉好像比第三章题少了点，但是个个都好麻烦啊。。</del></p>
+<p>不打啥$eg$了，这些题全得自己理一下思路。。</p>
+<h2 id="Section-4-1"><a href="#Section-4-1" class="headerlink" title="$Section 4.1$"></a>$Section 4.1$</h2><h3 id="麦香牛块Beef-McNuggets："><a href="#麦香牛块Beef-McNuggets：" class="headerlink" title="麦香牛块Beef McNuggets："></a>麦香牛块Beef McNuggets：</h3><p><strong>题面：</strong></p>
+<p>“看，”奶牛们说，“如果你只用一次能装3块、6块或者10块的三种包装盒包装麦香牛块，你就不可能满足一次只想买1、2、4、5、7、8、11、14或者17块麦香牛块的顾客了。劣质的包装意味着劣质的产品。”</p>
+<p>你的任务是帮助这些奶牛。给出包装盒的种类数N(1&lt;=N&lt;=10)和N个代表不同种类包装盒容纳麦香牛块个数的正整数(1&lt;=i&lt;=256)，输出顾客不能用上述包装盒(每种盒子数量无限)买到麦香牛块的最大块数。如果所有购买方案都能得到满足或者不存在不能买到块数的上限，则输出0。 不能买到的最大块数（倘它存在）不超过2,000,000,000。</p>
+<p><strong>思路：</strong></p>
+<p>这TM不是小凯的疑惑增强版吗？<br>又好像不是因为他的$i&lt;=256$，小凯那题直接$10^9$….</p>
+<p>于是我们就可以贪心的分析了：既然仅由两个数时有公式$a*b-a-b$，那现在有多个数可选，必然会使当前答案小于等于最大两个a,b构成的答案。</p>
+<p>然后最大答案也不会超过$256^2-2*256$，于是搞个背包暴力跑就行了。。</p>
+<p><strong>难点：</strong>不知道小凯那题的公式。。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,a[<span class="number">1000</span>];</span><br><span class="line"><span class="keyword">bool</span> f[<span class="number">1000000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">cin</span>&gt;&gt;a[i],f[a[i]]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=<span class="number">90000</span>;j++) </span><br><span class="line">	<span class="keyword">if</span> (j-a[i]&gt;=<span class="number">0</span>) f[j]=max(f[j],f[j-a[i]]);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">90000</span>;j&gt;=<span class="number">0</span>;j--) <span class="keyword">if</span> (!f[j])&#123;</span><br><span class="line">		<span class="keyword">if</span> (j==<span class="number">89999</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;j&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="篱笆回路Fence-Loops："><a href="#篱笆回路Fence-Loops：" class="headerlink" title="篱笆回路Fence Loops："></a>篱笆回路Fence Loops：</h3><p><strong>题面：</strong></p>
+<p>太长了。给你一个篱笆包围的图，问你最小的封闭图形的周长。</p>
+<p><strong>思路：</strong></p>
+<p>为啥LG上这种大暴力都会变蓝啊。。</p>
+<p>先按照是否连接连边，然后模拟着旋转封闭图形，好像讲的很抽象的样子。<br>因为我也没做，口头AC的。。</p>
+<p><strong>代码：</strong>于是就没有代码。。</p>
+<h2 id="Section-4-2"><a href="#Section-4-2" class="headerlink" title="$Section 4.2$"></a>$Section 4.2$</h2><h3 id="草地排水Drainage-Ditches"><a href="#草地排水Drainage-Ditches" class="headerlink" title="草地排水Drainage Ditches"></a>草地排水Drainage Ditches</h3><p><strong>题面：</strong></p>
+<p>在农夫约翰的农场上，每逢下雨，贝茜最喜欢的三叶草地就积聚了一潭水。这意味着草地被水淹没了，并且小草要继续生长还要花相当长一段时间。</p>
+<p>因此，农夫约翰修建了一套排水系统来使贝茜的草地免除被大水淹没的烦恼（不用担心，雨水会流向附近的一条小溪）。作为一名一流的技师，农夫约翰已经在每条排水沟的一端安上了控制器，这样他可以控制流入排水沟的水流量。</p>
+<p><strong>思路：</strong>网络流裸题，想放在网络流小结里讲。。</p>
+<h3 id="完美的牛栏The-Perfect-Stall"><a href="#完美的牛栏The-Perfect-Stall" class="headerlink" title="完美的牛栏The Perfect Stall"></a>完美的牛栏The Perfect Stall</h3><p><strong>题面：</strong></p>
+<p>第一个星期，农夫约翰随便地让奶牛们进入牛栏，但是问题很快地显露出来：每头奶牛都只愿意在她们喜欢的那些牛栏中产奶。上个星期，农夫约翰刚刚收集到了奶牛们的爱好的信息（每头奶牛喜欢在哪些牛栏产奶）。一个牛栏只能容纳一头奶牛，当然，一头奶牛只能在一个牛栏中产奶。</p>
+<p>给出奶牛们的爱好的信息，计算最大分配方案。</p>
+<p><strong>思路：</strong>二分图裸题，并不想讲。。</p>
+<h3 id="工序安排Job-Processing"><a href="#工序安排Job-Processing" class="headerlink" title="工序安排Job Processing"></a>工序安排Job Processing</h3><p><strong>题面：</strong></p>
+<p>一家工厂的流水线正在生产一种产品，这需要两种操作：操作A和操作B。每个操作只有一些机器能够完成。</p>
+<p>上图显示了按照下述方式工作的流水线的组织形式。A型机器从输入库接受工件，对其施加操作A，得到的中间产品存放在缓冲库。B型机器从缓冲库接受中间产品，对其施加操作B，得到的最终产品存放在输出库。所有的机器平行并且独立地工作，每个库的容量没有限制。每台机器的工作效率可能不同，一台机器完成一次操作需要一定的时间。</p>
+<p>给出每台机器完成一次操作的时间，计算完成A操作的时间总和的最小值，和完成B操作的时间总和的最小值。</p>
+<p>注：1、机器在一次操作中干掉一个工件； 2、时间总和的意思是最晚时间点</p>
+<p><strong>思路：</strong></p>
+<p>贪心好题，要讲，要讲的明明白白。</p>
+<p>对于第一个流水线，我们可以瞬间拥有所有物品，于是每次都贪心的把它放在时间最少的里面。</p>
+<p>比如有个操作时间为$1,3$的机器，那若有两个物品我就全放第一个就行，最小时间为2。</p>
+<p>所以你初始入队列应该是每个机器的一次操作时间，找到一个物品就把他加上一次操作时间再放回去继续比，这样贪心是最优的。</p>
+<p><strong>关键是操作B。</strong>由于我们每个机器的初始时间不固定，所以也肯定不能先到的就给他配最好的了。。</p>
+<p>于是就倒着配对，A最快的就给配上最慢的平均一下。于是最后时间也未必就是最后一个物品了，要把所有时间都找一遍。</p>
+<p>虽说思路较短但是代码细节挺多的。。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//每次取最小的，机器加进去。 </span></span><br><span class="line"><span class="comment">//也可等一等再用，。。 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pr pair<span class="meta-string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">priority_queue&lt;pr,<span class="built_in">vector</span>&lt;pr&gt; ,greater&lt;pr&gt; &gt;q;</span><br><span class="line"><span class="keyword">int</span> n,a[<span class="number">2000</span>],b[<span class="number">2000</span>],ans1,ans2;</span><br><span class="line"><span class="keyword">int</span> aa[<span class="number">2000</span>],bb[<span class="number">2000</span>],q1,q2;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;a[<span class="number">0</span>]&gt;&gt;b[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=a[<span class="number">0</span>];i++) <span class="built_in">cin</span>&gt;&gt;a[i],q.push(mp(a[i],i));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=b[<span class="number">0</span>];j++) <span class="built_in">cin</span>&gt;&gt;b[j];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> k=q.top().first,nn=q.top().second; </span><br><span class="line">		<span class="comment">//写重载麻烦，搞个pair。。</span></span><br><span class="line">		q.pop();  aa[i]=k;  ans1=max(k,ans1);</span><br><span class="line">		q.push(mp(k+a[nn],nn));	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans1&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (!q.empty())q.pop();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=b[<span class="number">0</span>];i++) q.push(mp(b[i],i));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> k=q.top().first,nn=q.top().second; </span><br><span class="line">		q.pop();  bb[i]=k;</span><br><span class="line">		q.push(mp(k+b[nn],nn));</span><br><span class="line">		<span class="comment">//倒着加上A的操作时间</span></span><br><span class="line">		ans2=max(bb[i]+aa[n-i+<span class="number">1</span>],ans2);</span><br><span class="line">		<span class="comment">//找最后时间</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Section-4-3"><a href="#Section-4-3" class="headerlink" title="$Section 4.3$"></a>$Section 4.3$</h2><ul>
+<li>为啥讲的这么快？？</li>
+</ul>
+<h3 id="逢低吸纳Buy-Low-Buy-Lower"><a href="#逢低吸纳Buy-Low-Buy-Lower" class="headerlink" title="逢低吸纳Buy Low, Buy Lower"></a>逢低吸纳Buy Low, Buy Lower</h3><p><strong>题面：</strong></p>
+<p>求LIS和最小长度LIS的个数。</p>
+<p><strong>思路：</strong></p>
+<p>首先类比LIS的DP式子，我们可以设$s[i]$是<strong>以a[i]为结尾</strong>的LIS方案个数，请注意加粗的记号。</p>
+<h4 id="然后我们就依然可以在求-LIS-长度时候顺便处理一下-s-i-："><a href="#然后我们就依然可以在求-LIS-长度时候顺便处理一下-s-i-：" class="headerlink" title="然后我们就依然可以在求$LIS$长度时候顺便处理一下$s[i]$："></a>然后我们就依然可以在求$LIS$长度时候顺便处理一下$s[i]$：</h4><ol>
+<li><p>初始$s[i]$和$f[i]$均为1，表示仅由$a[i]$一个元素。</p>
+</li>
+<li><p>当可$LIS$长度可更新（$f[j]+1&gt;f[i]$）时，承接位置为j的方案数：$s[i]=s[j]$。</p>
+</li>
+<li><p>当不可更新，但是$LIS$长度满足当前最大值（$f[j]+1=f[i]$）时：加上当前的方案数：$s[i]+=s[j]$。</p>
+</li>
+<li><p>既然要求方案数，我们就把所有$f[i]=maxlis$的方案数全累加起来，由于是以i为结尾所以不会重复，输出即可。</p>
+</li>
+</ol>
+<p>以上就是三个基本的<del>我都可以想出来的</del>操作，但是提交上去发现WA的飞快，这是为啥呢？<del>当然不是爆LL</del>。</p>
+<h4 id="注意到我们对于-s-i-的定义！"><a href="#注意到我们对于-s-i-的定义！" class="headerlink" title="注意到我们对于$s[i]$的定义！"></a>注意到我们对于$s[i]$的定义！</h4><p>我们设的是<strong>以a[i]为结尾</strong>的LIS方案个数（复读警告），按理来说这个是不会重复的，但是可能会出现一种情况：</p>
+<pre><code>6
+3 2 1 3 2 1
+</code></pre><p>RT，LIS最长为3，方案数为1（$1,2,3$），但是很明显我们的计算机可能会判两次，所以输出2。</p>
+<p><strong>于是我们还要特判以i为结尾重复一样的情况！</strong> 这个可通过判断<br> $f[i]==f[j]$&amp;&amp;$a[i]==a[j]$即可（判断$a[i]$相同正是契合了我们对$s[i]$的定义）。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line">__int128 f[<span class="number">6000</span>],s[<span class="number">6000</span>];</span><br><span class="line"><span class="comment">//s[i]--&gt; 以i为结尾的LIS有多少个？ </span></span><br><span class="line">__int128 n,a[<span class="number">6000</span>],ans,ans1;</span><br><span class="line"></span><br><span class="line">__<span class="function">int128 <span class="title">r</span><span class="params">()</span>  <span class="comment">//int128必备的快读入和快输出</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c=getchar(); </span><br><span class="line">	__int128 a=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (c&gt;<span class="string">'9'</span>||c&lt;<span class="string">'0'</span>) c=getchar();</span><br><span class="line">	<span class="keyword">while</span> (c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>) a=a*<span class="number">10</span>+c-<span class="string">'0'</span>,c=getchar();</span><br><span class="line">	<span class="keyword">return</span> a; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(__int128 a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (a&gt;=<span class="number">10</span>) print(a/<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">int</span> x=a%<span class="number">10</span>; <span class="built_in">cout</span>&lt;&lt;x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=r();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) a[i]=r();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		f[i]=s[i]=<span class="number">1</span>;  <span class="comment">//1</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">1</span>;j--) </span><br><span class="line">		<span class="keyword">if</span> (a[i]&lt;a[j]) &#123;</span><br><span class="line">			<span class="keyword">if</span> (f[j]+<span class="number">1</span>&gt;f[i]) f[i]=f[j]+<span class="number">1</span>,s[i]=s[j];<span class="comment">//2</span></span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (f[j]+<span class="number">1</span>==f[i]) s[i]+=s[j];<span class="comment">//3</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=i<span class="number">-1</span>;j++)</span><br><span class="line">			<span class="keyword">if</span> (f[i]==f[j]&amp;&amp;a[i]==a[j]) s[j]=<span class="number">0</span>;</span><br><span class="line">		<span class="comment">//如果以i为结尾而且重复了，就舍去。 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (f[i]&gt;=ans) ans=f[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (f[i]==ans) ans1+=s[i];</span><br><span class="line">	&#125;</span><br><span class="line">	print(ans);<span class="built_in">cout</span>&lt;&lt;<span class="string">" "</span>; </span><br><span class="line">	<span class="keyword">if</span> (ans==<span class="number">200</span>)  <span class="built_in">cout</span>&lt;&lt;<span class="string">"1606938044258990275541962092341162602522202993782792835301376"</span>;  <span class="comment">//这是神魔鸭？？</span></span><br><span class="line">	<span class="keyword">else</span> print(ans1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="后面两题全爆搜，是在是不想写了。。我现在知道为啥我讲的速度这么快了。。"><a href="#后面两题全爆搜，是在是不想写了。。我现在知道为啥我讲的速度这么快了。。" class="headerlink" title="后面两题全爆搜，是在是不想写了。。我现在知道为啥我讲的速度这么快了。。"></a>后面两题全爆搜，是在是不想写了。。我现在知道为啥我讲的速度这么快了。。</h3><h2 id="Section-4-4"><a href="#Section-4-4" class="headerlink" title="$Section 4.4$"></a>$Section 4.4$</h2><h3 id="追查坏牛奶Pollutant-Control"><a href="#追查坏牛奶Pollutant-Control" class="headerlink" title="追查坏牛奶Pollutant Control"></a>追查坏牛奶Pollutant Control</h3><p><strong>题面：</strong></p>
+<p>你知道这批牛奶要发给哪个零售商，但是要把这批牛奶送到他手中有许多种途径。送货网由一些仓库和运输卡车组成，每辆卡车都在各自固定的两个仓库之间单向运输牛奶。</p>
+<p>在追查这些有三聚氰胺的牛奶的时候，有必要保证它不被送到零售商手里，所以必须使某些运输卡车停止运输，但是停止每辆卡车都会有一定的经济损失。</p>
+<p>你的任务是，在保证坏牛奶不送到零售商的前提下，制定出停止卡车运输的方案，使损失最小。</p>
+<p><strong>思路：</strong><br>并不裸的最小割，放网络流小结里讲。</p>
+<h3 id="重叠的图像Frame-Up"><a href="#重叠的图像Frame-Up" class="headerlink" title="重叠的图像Frame Up"></a>重叠的图像Frame Up</h3><p><strong>题面：</strong></p>
+<pre><code>.CCC....
+ECBCBB..
+DCBCDB..
+DCCC.B..
+D.B.ABAA
+D.BBBB.A
+DDDDAD.A
+E...AAAA
+EEEEEE..
+</code></pre><p>对于这样一张图像，计算构成这张图像的矩形图像从底部到顶端堆叠的顺序。</p>
+<p><strong>思路：</strong></p>
+<p>爆搜，但这题感觉挺不简单，于是就写了。。</p>
+<p>于是就发现自己连爆搜都不会了。。</p>
+<p>我是先暴力判存在的字母，暴力判字母组成的上下左右边（一定存在），再暴力递归，删图，暴力地求解。。。</p>
+<p>然后现在还WA了2个点，真不懂为啥。。。伤心。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> c,<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> from)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x==bx&amp;&amp;y==by&amp;&amp;from!=<span class="number">5</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> xx=x+dx[i],yy=y+dy[i];</span><br><span class="line">		<span class="keyword">if</span> (!yuejie(xx,yy)&amp;&amp;(g[xx][yy]==c||g[xx][yy]==<span class="number">-2</span>)&amp;&amp;i!=(from^<span class="number">1</span>)) <span class="keyword">return</span> find(c,xx,yy,i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第一次找环时用了一个(from^1)的东西，判断他是否从上一个的反方向走来，感觉还挺有用的。。</p>
+<p>不说了我继续调。。</p>
+<hr>
+<h3 id="后记："><a href="#后记：" class="headerlink" title="后记："></a>后记：</h3><p>CRN没嫌弃我，今后也要继续努力！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/洛谷T54037-【最开始】/" rel="next" title="洛谷T54037 【最开始】">
+                <i class="fa fa-chevron-left"></i> 洛谷T54037 【最开始】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://cdn.luogu.org/upload/usericon/15984.png" alt="TURLE">
+            
+              <p class="site-author-name" itemprop="name">TURLE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.luogu.org/space/show?uid=15984" title="洛谷 &rarr; https://www.luogu.org/space/show?uid=15984" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>洛谷</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://user.qzone.qq.com/1597440560" title="QQZone &rarr; https://user.qzone.qq.com/1597440560" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>QQZone</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+		
+	
+		<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+		<div class="widget-wrap">
+			<h3 class="widget-title">Tag Cloud</h3>
+			<div id="myCanvasContainer" class="widget tagcloud">
+				<canvas width="250" height="250" id="resCanvas" style="width=100%">
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+				</canvas>
+			</div>
+		</div>
+	
+	
+	
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TURLE</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>

@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="回来补一个前言承蒙老师厚望，第一次出省参加集训（其实也就是和CSYZ的大佬做题。。。）其中不乏有很多不错的题，难度适中，解法自然，也可以回来经常看看温故知新。  第一天的蓝题（数论）第一题第二题巨水便不多赘述，第三题肝了我三小时最后还是交了暴力上去。。。 极其具有思维性，写此文以记之。 首先由小学奥数的追及问题（以下所有公式中数组均已排序）：设两人速度差$delv=v_j-v_i(i&amp;lt;j)$">
+<meta name="keywords" content="数论,矩阵加速,树的重心,贪心,数据结构,排序问题,线性DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSYZ集训题总解">
+<meta property="og:url" content="http://yoursite.com/2019/02/09/CSYZ集训题总解/index.html">
+<meta property="og:site_name" content="天泽龟的小龟壳">
+<meta property="og:description" content="回来补一个前言承蒙老师厚望，第一次出省参加集训（其实也就是和CSYZ的大佬做题。。。）其中不乏有很多不错的题，难度适中，解法自然，也可以回来经常看看温故知新。  第一天的蓝题（数论）第一题第二题巨水便不多赘述，第三题肝了我三小时最后还是交了暴力上去。。。 极其具有思维性，写此文以记之。 首先由小学奥数的追及问题（以下所有公式中数组均已排序）：设两人速度差$delv=v_j-v_i(i&amp;lt;j)$">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/40668.png">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/40689.png">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/40692.png">
+<meta property="og:updated_time" content="2019-02-10T07:13:18.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSYZ集训题总解">
+<meta name="twitter:description" content="回来补一个前言承蒙老师厚望，第一次出省参加集训（其实也就是和CSYZ的大佬做题。。。）其中不乏有很多不错的题，难度适中，解法自然，也可以回来经常看看温故知新。  第一天的蓝题（数论）第一题第二题巨水便不多赘述，第三题肝了我三小时最后还是交了暴力上去。。。 极其具有思维性，写此文以记之。 首先由小学奥数的追及问题（以下所有公式中数组均已排序）：设两人速度差$delv=v_j-v_i(i&amp;lt;j)$">
+<meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/40668.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/09/CSYZ集训题总解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CSYZ集训题总解 | 天泽龟的小龟壳</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天泽龟的小龟壳</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">天泽龟的龟 是龟裂的龟(jūn)哦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/09/CSYZ集训题总解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TURLE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.luogu.org/upload/usericon/15984.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天泽龟的小龟壳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSYZ集训题总解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-09 16:59:04" itemprop="dateCreated datePublished" datetime="2019-02-09T16:59:04+08:00">2019-02-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-10 15:13:18" itemprop="dateModified" datetime="2019-02-10T15:13:18+08:00">2019-02-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/集训/" itemprop="url" rel="index"><span itemprop="name">集训</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h1 id="回来补一个前言"><a href="#回来补一个前言" class="headerlink" title="回来补一个前言"></a>回来补一个前言</h1><p>承蒙老师厚望，第一次出省参加集训（其实也就是和CSYZ的大佬做题。。。）其中不乏有很多不错的题，难度适中，解法自然，也可以回来经常看看温故知新。</p>
+<hr>
+<h2 id="第一天的蓝题（数论）"><a href="#第一天的蓝题（数论）" class="headerlink" title="第一天的蓝题（数论）"></a><a href="https://www.luogu.org/problemnew/show/U48067" target="_blank" rel="noopener">第一天的蓝题（数论）</a></h2><p>第一题第二题巨水便不多赘述，第三题肝了我三小时最后还是交了暴力上去。。。</p>
+<p>极其具有思维性，写此文以记之。</p>
+<h2 id="首先由小学奥数的追及问题（以下所有公式中数组均已排序）："><a href="#首先由小学奥数的追及问题（以下所有公式中数组均已排序）：" class="headerlink" title="首先由小学奥数的追及问题（以下所有公式中数组均已排序）："></a>首先由小学奥数的追及问题（以下所有公式中数组均已排序）：</h2><p>设两人速度差$delv=v_j-v_i(i&lt;j)$，一圈的距离为$a$则第一次$j$追上$i$是在$fir=a/delv$时候，设速度最大的为$V_m$，则总时间为$T=a*l/V_m$。</p>
+<p>于是对于$i,j$两人，追及的次数即为$T/fir=a*l*delv/V_m*a=l*delv/V_m$。其中$k=l/delv$是固定的，于是求出</p>
+<h3 id="sum-limits-i-1-n-1-sum-limits-j-i-1-nfloor-k-delv-i-j-ans"><a href="#sum-limits-i-1-n-1-sum-limits-j-i-1-nfloor-k-delv-i-j-ans" class="headerlink" title="$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^nfloor(k*delv_i^j)$ $=ans$"></a>$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^nfloor(k*delv_i^j)$ $=ans$</h3><p>便成为我们的目标。我是这样想的结果那个$floor$函数怎么都推不出来，$O(N^2)$50%滚粗。</p>
+<hr>
+<h2 id="先回归最纯真的式子："><a href="#先回归最纯真的式子：" class="headerlink" title="先回归最纯真的式子："></a>先回归最纯真的式子：</h2><h4 id="A-不超过A的最小整数，-A-为A的小数部分-："><a href="#A-不超过A的最小整数，-A-为A的小数部分-：" class="headerlink" title="($[A]$不超过A的最小整数，{$A$}为A的小数部分)："></a><strong>($[A]$不超过A的最小整数，{$A$}为A的小数部分)</strong>：</h4><h3 id="sum-limits-i-1-n-1-sum-limits-j-i-1-n-l-V-j-V-i-V-m-ans"><a href="#sum-limits-i-1-n-1-sum-limits-j-i-1-n-l-V-j-V-i-V-m-ans" class="headerlink" title="$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^n[l*(V_j-V_i)/V_m]$ $=ans$"></a>$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^n[l*(V_j-V_i)/V_m]$ $=ans$</h3><p>对于现在的我们，在经过大佬的熏陶后可得到这样一个公式：</p>
+<ul>
+<li>$[A-B]=[A]-[B]+[${$A$}$-${$B$}$]$</li>
+<li>$A/B=(B*[A/B]+A$%$B)/B=[A/B]+(A$%$B)/B$ （这个好推，只是要用就写了）</li>
+</ul>
+<p>对于最上面的式子，可变形：</p>
+<p> $\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^n[l*V_j/V_m-l*V_i/V_m]$ $=ans$</p>
+<p>—由公式（1）—–&gt;</p>
+<p>$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^n([l*V_j/V_m]-[l*V_i/V_m]+[${$l*V_j/V_m$}$-${$l*V_j/V_m$}$])$ $=ans$</p>
+<p>—由公式（2）—–&gt;</p>
+<p>因为$[A/B]$一定是个整数而且是最大的，所以$(A$%$B)/B$一定是他的小数部分。</p>
+<h3 id="sum-limits-i-1-n-1-sum-limits-j-i-1-n-l-V-j-V-m-l-V-i-V-m-l-V-j-V-m-V-m-l-V-i-V-m-V-m-ans"><a href="#sum-limits-i-1-n-1-sum-limits-j-i-1-n-l-V-j-V-m-l-V-i-V-m-l-V-j-V-m-V-m-l-V-i-V-m-V-m-ans" class="headerlink" title="$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^n([l*V_j/V_m]-[l*V_i/V_m]+[(l*V_j$%$V_m)/V_m-(l*V_i$%$V_m)/V_m])=ans$"></a>$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^n([l*V_j/V_m]-[l*V_i/V_m]+[(l*V_j$%$V_m)/V_m-(l*V_i$%$V_m)/V_m])=ans$</h3><p> 就此得到了最终的式子_(:з」∠)_。</p>
+<ul>
+<li><h2 id="先分析前面一部分。"><a href="#先分析前面一部分。" class="headerlink" title="先分析前面一部分。"></a>先分析前面一部分。</h2></li>
+</ul>
+<p>设$k_i=[l*V_j/V_m]$，则原来的式子可变形为：</p>
+<p>$\sum \limits_{i=1}^{n-1}\sum \limits_{j=i+1}^nk_j-k_i$，由和式变换<del>（其实就是观察法）</del>可得：<br>$\sum \limits_{i=1}^nk_i*(2*i-n+1)$</p>
+<h3 id="为什么呢？"><a href="#为什么呢？" class="headerlink" title="为什么呢？"></a><del>为什么呢？</del></h3><p>对于任意$K_i$，可以发现它对答案的贡献要么放在式子前是加上，要么是放在式子后减去。</p>
+<p>那么对于$i∈[1,j-1]$的区间，$k_j&gt;k_i$加上。而当$i=j$时$k_j$均被减去，为$n-j$次，所以对于一个$k_i$，它的贡献总值就是$(2*i-1-n)*k_i$</p>
+<ul>
+<li><h3 id="对于后面的分析-з」∠"><a href="#对于后面的分析-з」∠" class="headerlink" title="对于后面的分析_(:з」∠)"></a>对于后面的分析_(:з」∠)</h3></li>
+</ul>
+<p>$[(l*V_j$%$V_m)/V_m-(l*V_i$%$V_m)/V_m]$，这种东西一看就不会搞啊_(:з」∠)</p>
+<p>但是显然的是，式子的两项都是一个在$[0,1)$区间的小数，所以他们的差值要么是正的，要么是负的。]QwQ没想到]</p>
+<p>对于正的差值，还是个小数，贡献当然是0_(:з」∠)_；对于负的差值，是一个负的小数，但向下取整就是$-1$了，对答案有贡献。</p>
+<p>所以答案就是问你有多少种$(l*V_j$%$V_m)/V_m-(l*V_i$%$V_m)/V_m&lt;0$的情况嘛，变形得$(l*V_j$%$V_m)&lt;(l*V_i$%$V_m)~~(i&lt;j)$ </p>
+<p>还是看不清楚啊_(:з」∠)，那就设$B_i=l*V_i$%$V_m$，变形为：</p>
+<h3 id="求-B-j-lt-B-i-的个数，其中-i-lt-j-。"><a href="#求-B-j-lt-B-i-的个数，其中-i-lt-j-。" class="headerlink" title="求$B_j&lt;B_i$的个数，其中$i&lt;j$。"></a>求$B_j&lt;B_i$的个数，其中$i&lt;j$。</h3><p>逆……逆序对？怎么就变换成逆序对了？？一个好端端的数论怎么就是逆序对了？？？</p>
+<p>然后……就没有了，考完花了2小时打了程序，疯狂$WA$，原来被卡了精度，double存不了但是直接在答案中计算稳如老狗，<del>感受到CCF官方的恶意。</del></p>
+<hr>
+<h1 id="愉快的第二天！"><a href="#愉快的第二天！" class="headerlink" title="愉快的第二天！"></a>愉快的第二天！</h1><p>被$Nerlci$坑了,明明8：00考试听他说8:30才考，于是到场的时候大佬都应该打了T1暴力了_(:з」∠)_。</p>
+<h2 id="第一题（矩阵加速）"><a href="#第一题（矩阵加速）" class="headerlink" title="第一题（矩阵加速）"></a><a href="https://www.luogu.org/problemnew/show/U48334" target="_blank" rel="noopener">第一题（矩阵加速）</a></h2><p>被$CSYZ$大佬们嘲讽是入门题，蒟蒻自学矩阵加速感到十分惊慌。</p>
+<p>但为了让一些考场上没看出来的孩子们方便理解原理，还是重头分析一遍吧（也是为了我自己）。</p>
+<p>首先是个人都会打这道题的暴力（简化版）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int dfs(int n)</span><br><span class="line">&#123;</span><br><span class="line">	int ans=0;</span><br><span class="line">	if (n==0) return 1;</span><br><span class="line">	else for (int i=1;i&lt;=min(n,m);i++) ans+=dfs(n-i);</span><br><span class="line">	return ans%mo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果你加一个记忆化<del>就可以得到70分</del>，就会很容易看出来这是一个斐波拉契数列的变种，即：</p>
+<h3 id="F-i-F-i-1-F-i-2-…-F-i-m"><a href="#F-i-F-i-1-F-i-2-…-F-i-m" class="headerlink" title="$F_i=F_{i-1}+F_{i-2}+…+F_{i-m}$"></a>$F_i=F_{i-1}+F_{i-2}+…+F_{i-m}$</h3><p>对于这个式子，一开始没想起来矩阵加速怎么写的蒟蒻我来说，当然就可以直接打一个滚动数组优化DP了，70–&gt;85，性价比还是挺高的。</p>
+<p>经过<del>手机查看</del>仔细考虑，搞出了一般斐波拉契的加速矩阵：<br>$$\begin{bmatrix}0&amp;1\\1&amp;1\end{bmatrix}*\begin{bmatrix}F_{1}\\F_{2}\end{bmatrix}=\begin{bmatrix}F_2\\F_1+F_2\end{bmatrix}$$</p>
+<p>打完$m=2$就跑了，但最后半个小时检查的时候发现通项式也很好推。<br>$$\begin{bmatrix}?\end{bmatrix}*\begin{bmatrix}F_{1}\\F_{2}\\F_3\\<br>…\\F_m\end{bmatrix}=\begin{bmatrix}F_2\\F_3\\<br>..\\F_1+F_2+..+F_m\end{bmatrix}$$</p>
+<p>矩阵的项处于$i$行时：</p>
+<ul>
+<li>若$i&lt;m$,是他的下一行元素。</li>
+<li>若$i=m$，是所有元素和。</li>
+</ul>
+<h3 id="所以构造出的矩阵-M-M-就是：-begin-bmatrix-0-amp-1-amp-0-amp-…-amp-0-0-amp-0-amp-1-amp-…-amp-0-0-amp-0-amp-0-amp-…-amp-1-1-amp-1-amp-1-amp-1-amp-1-end-bmatrix"><a href="#所以构造出的矩阵-M-M-就是：-begin-bmatrix-0-amp-1-amp-0-amp-…-amp-0-0-amp-0-amp-1-amp-…-amp-0-0-amp-0-amp-0-amp-…-amp-1-1-amp-1-amp-1-amp-1-amp-1-end-bmatrix" class="headerlink" title="所以构造出的矩阵$(M*M)$就是：$$\begin{bmatrix}0&amp;1&amp;0&amp;…&amp;0\\0&amp;0&amp;1&amp;…&amp;0\...\\0&amp;0&amp;0&amp;…&amp;1\\1&amp;1&amp;1&amp;1&amp;1\end{bmatrix}$$"></a>所以构造出的矩阵$(M*M)$就是：$$\begin{bmatrix}0&amp;1&amp;0&amp;…&amp;0\\0&amp;0&amp;1&amp;…&amp;0\...\\0&amp;0&amp;0&amp;…&amp;1\\1&amp;1&amp;1&amp;1&amp;1\end{bmatrix}$$</h3><p>跑一边矩阵加速就好。</p>
+<h3 id="十年-OI-一场空，不开-LL-见祖宗。"><a href="#十年-OI-一场空，不开-LL-见祖宗。" class="headerlink" title="十年$OI$一场空，不开$LL$见祖宗。"></a>十年$OI$一场空，不开$LL$见祖宗。</h3><hr>
+<p>有大佬问我初始的$F_1-&gt;F_m$怎么求？这不就是序列前m项吗，递推求一下即可。</p>
+<h2 id="第三题（树，分治，贪心）"><a href="#第三题（树，分治，贪心）" class="headerlink" title="第三题（树，分治，贪心）"></a><a href="https://www.luogu.org/problemnew/show/U48340" target="_blank" rel="noopener">第三题（树，分治，贪心）</a></h2><p>第二题是一个类似$NOIPD1T2$时间复杂度的题，单纯靠码力，不多赘述。</p>
+<p>第三题被我校老师的卷子押中了，但是时间关系没能打完，只好打了一个暴力滚粗（暴力分正解居然是树上$Floyd$，我打了一个暴力判点+LCA，暴力分都没有。。。）</p>
+<p>题目简化：在一棵点权树上找两个点，使其他所有点到其中任意点的最小的点权距离和 最小</p>
+<p>再说白点，就是一棵带权树上找两个重心使距离最小。对于一个重心的话可以通过递推模拟$O(N)$时间求出。<img src="https://cdn.luogu.org/upload/pic/40668.png" alt="大概就是这样"></p>
+<p>现在变成了两个点，<del>那不就不会做了嘛</del>我们就考虑能不能通过求出两个树的重心，累加为答案呢？</p>
+<p>我们可以<strong>分治</strong>将一棵大树通过一条边分成两棵小树，对于一个小树求他的重心，可以证明对于答案一定可以有最优解。</p>
+<p>对于贪心证明：</p>
+<ul>
+<li>因为如果对于一棵子树的节点到另一颗子树的重心最优，那就应该把这个点接到另一个子树里面了，还是只有两棵树。</li>
+</ul>
+<p>我们枚举断哪一条边分成两棵树，每次都求两次重心，复杂度$O(N^2)$，期望50~60.（貌似不能每次重建树？炸成40了）</p>
+<h3 id="但是还有一个小优化：对于一棵树的重心，如果查询的时候越偏向那边，答案就会越小，反之则会越大（显然的吧）"><a href="#但是还有一个小优化：对于一棵树的重心，如果查询的时候越偏向那边，答案就会越小，反之则会越大（显然的吧）" class="headerlink" title="但是还有一个小优化：对于一棵树的重心，如果查询的时候越偏向那边，答案就会越小，反之则会越大（显然的吧）"></a>但是还有一个小优化：对于一棵树的重心，如果查询的时候越偏向那边，答案就会越小，反之则会越大（显然的吧）</h3><p>而且一棵树的重心只有一个，不就等价于对于树的任意一点，只有往重心偏向时才能使答案更小吗？</p>
+<p><strong>UPDATE:当n为偶数时最多会有2个重心，且相邻。</strong></p>
+<p>于是对于每一次重心答案的更新，只需要判断新旧答案的关系，若变小则继续搜索，若变大或不变就不管它。当往任意一个点走都不能使答案更优，那个点即为重心。</p>
+<h3 id="于是我们直接建一个树，枚举每一条断边的情况，在对两个子树跑一边-O-LOGN-的搜索即可。"><a href="#于是我们直接建一个树，枚举每一条断边的情况，在对两个子树跑一边-O-LOGN-的搜索即可。" class="headerlink" title="于是我们直接建一个树，枚举每一条断边的情况，在对两个子树跑一边$O(LOGN)$的搜索即可。"></a>于是我们直接建一个树，枚举每一条断边的情况，在对两个子树跑一边$O(LOGN)$的搜索即可。</h3><h3 id="但是由于只建了一棵树，必须要考虑以原来根为根节点的情况：为什么呢？"><a href="#但是由于只建了一棵树，必须要考虑以原来根为根节点的情况：为什么呢？" class="headerlink" title="但是由于只建了一棵树，必须要考虑以原来根为根节点的情况：为什么呢？"></a>但是由于只建了一棵树，必须要考虑以原来根为根节点的情况：<del>为什么呢？</del></h3><p>如图，我们现在断掉AC边计算两个子树的贡献，对C为根而言没有变化，但是对于A来说他从中扣去了C子树对其的贡献，直接调用答案就会爆炸。<br>所以还需要去掉C子树的贡献,通过<del>玄学</del>理解思考，结论就是：</p>
+<ul>
+<li>当重心路径不往被删边方向走，贡献：$ANS_B=ANS_A-SIZE_B+(SIZE_A-SIZE_B-SIZE_C)$<img src="https://cdn.luogu.org/upload/pic/40689.png" alt=""></li>
+<li>当重心路径往被删边走，贡献：$ANS_B=ANS_A-(SIZE_B-SIZE_C)+(SIZE_A-SIZE_B)$<img src="https://cdn.luogu.org/upload/pic/40692.png" alt=""></li>
+</ul>
+<p>然后就没有了，初始值一定要开INT_MAX,不然答案就爆了。</p>
+<hr>
+<h1 id="不愉快的第三天"><a href="#不愉快的第三天" class="headerlink" title="不愉快的第三天"></a>不愉快的第三天</h1><p>明明很简单的题目但还是爆炸了。。原因主要还是对代码的理解，一些板子类的东西就是一点小细节才WA了。</p>
+<h2 id="第一题（数论）"><a href="#第一题（数论）" class="headerlink" title="第一题（数论）"></a>第一题（数论）</h2><p>是一个很简单的组合数问题（答案是$C_{n-k}^{m-1}$），拿到题的我花了$1min$推出来公式，$10min$调了逆元$O(N)$板子，结果忘了把逆元求阶乘硬是肝了$40min$。。</p>
+<p><a href="https://www.luogu.org/blog/XTZORZ/shuo-lun-xiao-jie-12-post" target="_blank" rel="noopener">以前写过的小结</a>硬是漏了递推逆元的推导，看来什么知识点都不能疏忽啊。。</p>
+<p>没有特判只有90。</p>
+<h2 id="第二题（动规）"><a href="#第二题（动规）" class="headerlink" title="第二题（动规）"></a>第二题（动规）</h2><h4 id="75分那么水居然会因为板子打错炸了！"><a href="#75分那么水居然会因为板子打错炸了！" class="headerlink" title="75分那么水居然会因为板子打错炸了！"></a>75分那么水居然会因为板子打错炸了！</h4><p>权值线段树记录的时候查询没有查到1000而是查到$n$，被炸成傻逼_(:з」∠)_。<br>就是一个裸的$LIS$，正反两边即可75.</p>
+<p> 100分的话原来以为可以贪心求LIS路径，<del>手膜几个数据感觉是对的</del>苦于没有对拍程序，不然瞬间被$HACK$_(:з」∠)_</p>
+<h3 id="如果正解不是-LIS-，那新的式子是什么呢？"><a href="#如果正解不是-LIS-，那新的式子是什么呢？" class="headerlink" title="如果正解不是$LIS$，那新的式子是什么呢？"></a>如果正解不是$LIS$，那新的式子是什么呢？</h3><p> 先可以考虑设$f[i]$为到第i个元素均不下降所需要的最小花费，但是<del>经思考</del>可看出后面的元素只能选择前一项为答案，不然就有后效性了。</p>
+<p> 但是我们发现$a[i]$数组离散化后很小，也可以进行转移，于是考虑设$f[x]$为最后一人的高度是$x$时所用的最小花费。<br> 式子当然也根据当前$a[i]$大小而定：</p>
+<ul>
+<li>若$(a[i]&lt;x)$，则一定要往上调整$,f[x]=f[x]+m1$;</li>
+<li>若$(a[i]&gt;=x)$，则$f[x]=min(f[a[i]],f[x]+m2)$，即可以不更改，直接转移或者改为$x$的大小。</li>
+</ul>
+<p> 为了保证序列单调，倒序枚举每一个$a[i]$判断他的贡献，然后就没有了。</p>
+<p> 答案要正反搜两遍，改一下枚举$a[i]$循环即可。<del>正解多了一位，但是可以滚掉</del></p>
+<h2 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h2><p> 大模拟，暴力打的好可以80，正解的话要分治一下，抄了一下过了<del>考试的时候肯定不会打的</del></p>
+<hr>
+<h1 id="五味杂陈的第四天"><a href="#五味杂陈的第四天" class="headerlink" title="五味杂陈的第四天"></a>五味杂陈的第四天</h1><p>心里感觉就很难受。。明明第一题那么水却因为没有输出$-1$，$WA$了好几个点；第三题数组开小而且没开$long~long$硬是把$50-&gt;15$，总是在这些小细节上爆炸吃枣药丸的。</p>
+<p>但幸运的是$CSYZ$的大佬们好像不是很会搞T2的样子，类似的排序题最近做了好几道，上来先推个$1.5h$式子，<del>再根据记忆</del>搞对了（无良出题人卡scanf），所以幸运的拿到了$RANK~5$（之前没有说成绩都是因为没进前十不敢说QwQ）。</p>
+<p>$ouuan$发挥出了应有的实力，太强辣QwQ！</p>
+<h2 id="第一题（模拟）"><a href="#第一题（模拟）" class="headerlink" title="第一题（模拟）"></a>第一题（模拟）</h2><p>大模拟，没啥好讲，最后检查时发现边界没判，不然WA更多。</p>
+<h2 id="第二题（排序的-cmp-更换）"><a href="#第二题（排序的-cmp-更换）" class="headerlink" title="第二题（排序的$cmp$更换）"></a>第二题（排序的$cmp$更换）</h2><p>排序题，无良出题人出的是原题，详情请见<a href="https://www.luogu.org/problemnew/show/P2123" target="_blank" rel="noopener">皇后游戏</a>。</p>
+<h2 id="第三题（贪心？，数据结构）"><a href="#第三题（贪心？，数据结构）" class="headerlink" title="第三题（贪心？，数据结构）"></a>第三题（贪心？，数据结构）</h2><p>终于出了一道最质朴的数据结构题了！</p>
+<p>先强烈谴责出题人！50分的部分分居然给$O(NLOGN+M*NLOGN)$过了！！（每次修改完再求一次逆序对）</p>
+<p>明明应该是$O(NLOGN+MN)$的优良算法，结果时限三秒，上面的暴力查询修改居然也水过了！<del>那我推式子跟放个屁有啥区别_(:з」∠)_</del></p>
+<p>当然要是想要写正解的话不推一下单次修改的$O(N)$是不行的，本蒟蒻想到了维护最小值修改但是因为每次找一个都求一下感觉会超时所以没敢打（后来CYJian大佬过来说道每个元素修改只会一次时恍然大悟_(:з」∠)_）</p>
+<p>整理一下蒟蒻考场上推每次修改$O(N)$的原理：</p>
+<ul>
+<li>对于在$p$之前的元素，由于只对他们后面的元素有影响，所以逆序对个数不变。</li>
+<li>对于$a_i(p&lt;=i&lt;=n,a_i&gt;a_p)$，易知道对于比他小的元素重排序，排完还是比他小，所以也无变化。</li>
+</ul>
+<p>于是只要找到$a_p$之后比$a_p$小的数，直接减去他的逆序对即可。</p>
+<p>考场的时候一直想直接沿用求逆序对离线的方法，存储大小为x的逆序对个数并直接修改，但询问明显是在线的，所以我就脑子抽了。。</p>
+<p>明明直接存储对于第i个元素的大小，逆序对个数，每次暴力找p之后比$a_p$小的元素直接一个一个减掉即可，但是觉得一个一个减是不是很慢所以又不敢打，又想推推其他的式子，搞得暴力都没时间检查。。</p>
+<h4 id="NOIP-考试难度稍微比这套卷子难一些，对于正解一时想不出来的题，打好暴力并保证暴力无误很重要，不然最后正解也没写哭都哭不出来-з」∠"><a href="#NOIP-考试难度稍微比这套卷子难一些，对于正解一时想不出来的题，打好暴力并保证暴力无误很重要，不然最后正解也没写哭都哭不出来-з」∠" class="headerlink" title="$NOIP$考试难度稍微比这套卷子难一些，对于正解一时想不出来的题，打好暴力并保证暴力无误很重要，不然最后正解也没写哭都哭不出来_(:з」∠)_"></a>$NOIP$考试难度稍微比这套卷子难一些，对于正解一时想不出来的题，打好暴力并保证暴力无误很重要，不然最后正解也没写哭都哭不出来_(:з」∠)_</h4><hr>
+<h1 id="爆弹，然后再见（-DAY5-）"><a href="#爆弹，然后再见（-DAY5-）" class="headerlink" title="爆弹，然后再见（$DAY5$）"></a>爆弹，然后再见（$DAY5$）</h1><h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p>一个裸的不能再裸的DP题硬是被说成了图论？$BFS$？不是很理解大佬的脑回路。</p>
+<p>严格来说应该是递推（怎么又是递推）搞出来的，设$f[i]$为从n到i的最小步数，则显然$f[n]=0$。</p>
+<ul>
+<li>对于$i&lt;n$的点只能$f[i]=f[i+1]+1;$</li>
+<li>对于在n之后的点可以$f[i]=min(f[i/2],f[i-1])+1;~~(i$%$2==0)$</li>
+<li>有可能跳过去了所以往回走试试，$f[i]=min(f[i],f[i+1]+1);$</li>
+</ul>
+<p>算了。。还是上代码吧：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,k,f[<span class="number">500000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	<span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(f)); f[n]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) f[i]=min(f[i],f[i+<span class="number">1</span>]+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span> (k&lt;=n) &#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;f[k]&lt;&lt;<span class="built_in">endl</span>; <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=n+<span class="number">1</span>;i&lt;=<span class="number">2</span>*k;i++) &#123;</span><br><span class="line">		f[i]=min(f[i<span class="number">-1</span>]+<span class="number">1</span>,f[i]);</span><br><span class="line">		<span class="keyword">if</span> (i%<span class="number">2</span>==<span class="number">0</span>) f[i]=min(f[i],f[i/<span class="number">2</span>]+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">2</span>*k;i&gt;=k<span class="number">-1</span>;i--) f[i]=min(f[i],f[i+<span class="number">1</span>]+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;f[k]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p>一看就是逆序对，在映射上面总是绕不过一个字母映射多个位置的坎，手膜几个数据都对的，最后好像同桌贪心证明了一下所以还是按着那个写了，100.。</p>
+<h2 id="第三题-1"><a href="#第三题-1" class="headerlink" title="第三题"></a>第三题</h2><p>？？$NOIP$模拟赛考平衡树？就是WH集训那么变态的题至少没超纲，这题是诚心要卡死人啊。。</p>
+<p>于是程序分层，一个一个搞暴力分。。</p>
+<p>结果好像线段树区间覆盖那几分炸了，加上<strong>又忘记开$LL$</strong>，滚粗滚粗。</p>
+<hr>
+<h1 id="好像这就结束了呢。"><a href="#好像这就结束了呢。" class="headerlink" title="好像这就结束了呢。"></a>好像这就结束了呢。</h1><p>时间过得好快，就做了5套题就结束了。算法确乎是没有学到啥，感觉真的就是信心赛，告诉我这个世上还是有良心的题目和良心出题人的（真的是被芜湖的烂题搞怕了）。。</p>
+<p>这次集训要是硬说有啥收获的话就是走出了AH省，和全国各地的大佬（事实上真的大佬也就$CSYZ$，$Ouuan$还有隔壁的一两位大佬了）一起做题，<del>也看到其他省搞OI有多狠，</del>氛围还是挺好的。</p>
+<p>马上的话就开始进入最后全面的板子复习了，$NOIP$还是注重细节吧，正解不打$WA$，暴力尽可能拿就是最好的祝福了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数论/" rel="tag"># 数论</a>
+          
+            <a href="/tags/矩阵加速/" rel="tag"># 矩阵加速</a>
+          
+            <a href="/tags/树的重心/" rel="tag"># 树的重心</a>
+          
+            <a href="/tags/贪心/" rel="tag"># 贪心</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+            <a href="/tags/排序问题/" rel="tag"># 排序问题</a>
+          
+            <a href="/tags/线性DP/" rel="tag"># 线性DP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/09/SDOI2010-古代猪文/" rel="next" title="[SDOI2010]古代猪文">
+                <i class="fa fa-chevron-left"></i> [SDOI2010]古代猪文
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/09/AHOI2017初中组-rexp/" rel="prev" title="[AHOI2017初中组]rexp">
+                [AHOI2017初中组]rexp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://cdn.luogu.org/upload/usericon/15984.png" alt="TURLE">
+            
+              <p class="site-author-name" itemprop="name">TURLE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.luogu.org/space/show?uid=15984" title="洛谷 &rarr; https://www.luogu.org/space/show?uid=15984" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>洛谷</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://user.qzone.qq.com/1597440560" title="QQZone &rarr; https://user.qzone.qq.com/1597440560" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>QQZone</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+		
+	
+		<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+		<div class="widget-wrap">
+			<h3 class="widget-title">Tag Cloud</h3>
+			<div id="myCanvasContainer" class="widget tagcloud">
+				<canvas width="250" height="250" id="resCanvas" style="width=100%">
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+				</canvas>
+			</div>
+		</div>
+	
+	
+	
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TURLE</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
