@@ -93,14 +93,14 @@
 
 
   <meta name="description" content="P.S：（不知道怎么总结这些玩意儿，我就整体评价一下然后挑几道经典/重点题说说看） 第一章 都是些大水题，做着时候你总会以为有啥数学式子要你推，其实一个大暴力解决一切。 比较有意义的题是P1214，还有一些进制转换题+回文题。  $eg_1:P1214$题意：在这个问题中a是一个非负的整数，b是正整数。写一个程序来找出在双平方数集合(双平方数集合是所有能表示成p的平方 + q的平方的数的集合,其中">
-<meta name="keywords" content="模拟,并查集,最短路,背包问题,图论,记忆化搜索">
+<meta name="keywords" content="模拟,并查集,最短路,背包问题,记忆化搜索,图论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="USACO刷题集锦(Part.1)">
 <meta property="og:url" content="http://yoursite.com/2019/02/10/USACO刷题集锦/index.html">
 <meta property="og:site_name" content="天泽龟的小龟壳">
 <meta property="og:description" content="P.S：（不知道怎么总结这些玩意儿，我就整体评价一下然后挑几道经典/重点题说说看） 第一章 都是些大水题，做着时候你总会以为有啥数学式子要你推，其实一个大暴力解决一切。 比较有意义的题是P1214，还有一些进制转换题+回文题。  $eg_1:P1214$题意：在这个问题中a是一个非负的整数，b是正整数。写一个程序来找出在双平方数集合(双平方数集合是所有能表示成p的平方 + q的平方的数的集合,其中">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-22T16:37:51.679Z">
+<meta property="og:updated_time" content="2019-03-05T15:37:27.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="USACO刷题集锦(Part.1)">
 <meta name="twitter:description" content="P.S：（不知道怎么总结这些玩意儿，我就整体评价一下然后挑几道经典/重点题说说看） 第一章 都是些大水题，做着时候你总会以为有啥数学式子要你推，其实一个大暴力解决一切。 比较有意义的题是P1214，还有一些进制转换题+回文题。  $eg_1:P1214$题意：在这个问题中a是一个非负的整数，b是正整数。写一个程序来找出在双平方数集合(双平方数集合是所有能表示成p的平方 + q的平方的数的集合,其中">
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-23 00:37:51" itemprop="dateModified" datetime="2019-02-23T00:37:51+08:00">2019-02-23</time>
+                <time title="修改时间：2019-03-05 23:37:27" itemprop="dateModified" datetime="2019-03-05T23:37:27+08:00">2019-03-05</time>
               
             
           </span>
@@ -533,14 +533,6 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,ans,a[<span class="number">2000</span>],t[<span class="number">4</span>],p[<span class="number">2000</span>][<span class="number">4</span>]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">cin</span>&gt;&gt;a[i],t[a[i]]++; </span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t[<span class="number">1</span>];i++) p[<span class="number">1</span>][a[i]]++;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=t[<span class="number">1</span>]+<span class="number">1</span>;i&lt;=t[<span class="number">1</span>]+t[<span class="number">2</span>];i++) p[<span class="number">2</span>][a[i]]++;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=t[<span class="number">1</span>]+t[<span class="number">2</span>]+<span class="number">1</span>;i&lt;=n;i++) p[<span class="number">3</span>][a[i]]++;</span><br><span class="line">	<span class="keyword">int</span> k1=min(p[<span class="number">1</span>][<span class="number">2</span>],p[<span class="number">2</span>][<span class="number">1</span>]);  <span class="comment">//以下为三种简单错位情况</span></span><br><span class="line">	<span class="keyword">int</span> k2=min(p[<span class="number">2</span>][<span class="number">3</span>],p[<span class="number">3</span>][<span class="number">2</span>]);</span><br><span class="line">	<span class="keyword">int</span> k3=min(p[<span class="number">1</span>][<span class="number">3</span>],p[<span class="number">3</span>][<span class="number">1</span>]);</span><br><span class="line">	</span><br><span class="line">	ans=k1+k2+k3;</span><br><span class="line"></span><br><span class="line">	ans+=(max(p[<span class="number">1</span>][<span class="number">2</span>],p[<span class="number">2</span>][<span class="number">1</span>])-k1)*<span class="number">2</span>;  <span class="comment">//可证明剩下为2,3,1完全乱序的次数肯定相同。</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>MD第二章怎么就讲了那么多啊，接下来要不分个张杰吧。</p>
 <hr>
-<h2 id="后续："><a href="#后续：" class="headerlink" title="后续："></a>后续：</h2><p>几个月前就被老师安利去刷USACO，到现在才正式上路了。前几天去听了质心物理班，很多平时闷声发大财的同学也展现自己的实力，算算看自己应该是参加冬令营中最弱了那一批了。</p>
-<p>我并不是很感到惊讶，NOIP考完的我整个就处于颓废状态，不论是OI还是Pho进度推进都极其缓慢，在大佬看来就想那些搬米粒的蚂蚁那样不值一提。可为什么会导致这样呢？</p>
-<p>初中的时候，一个女生初三开学考没考好，哭着问我学习的窍门。我只和她说了一个话题：动力。你学习的动力决定了你的效率，进而决定了你的成绩。</p>
-<p>可是上高中后，我却失去了初中时的动力了，无论用什么新的能源来代替，却总感觉回不到之前初中的状态了。</p>
-<p>我不知道其他大佬的动力源是什么，我只知道他们在我迷茫的时候已经远远把我甩开了，就像他们碾死那一只只蚂蚁一样简单。</p>
-<p>回家的途中，看了WC2019，听了那两首新的OI原创歌曲，仿佛又抓住了什么，却又在指尖流走了。我不知道这会不会成为我高中的动力，我只知道，如果再逃避下去，我也不知道会怎样。</p>
-<p>对未来充满迷茫。</p>
-<p>寒假并没有几天，作业，OI，PHO都有满满的任务。我不知道明天的我会不会厚颜无耻地拿起手机玩着游戏，我能抓住了只有今天，从这5章USACO题库开始。</p>
 
       
     </div>
@@ -572,9 +564,9 @@
           
             <a href="/tags/背包问题/" rel="tag"># 背包问题</a>
           
-            <a href="/tags/图论/" rel="tag"># 图论</a>
-          
             <a href="/tags/记忆化搜索/" rel="tag"># 记忆化搜索</a>
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
           
         </div>
       
@@ -662,7 +654,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -748,7 +740,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -815,7 +809,7 @@
 			<h3 class="widget-title">Tag Cloud</h3>
 			<div id="myCanvasContainer" class="widget tagcloud">
 				<canvas width="250" height="250" id="resCanvas" style="width=100%">
-					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
 				</canvas>
 			</div>
 		</div>

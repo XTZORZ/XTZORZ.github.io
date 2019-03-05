@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="仿佛活在题解的阴影里。。。 平均蓝题对于刚拿tg1=的我仍有些吃力，虽然题解一点就通但这没有刷题的任何效果。。 以后还是要克制一下自己的思考时间，不能那道题就翻题解，点TAG，你们这个功能害人不浅啊！ $Section 5.1$[USACO5.1]圈奶牛Fencing the Cows题面： 求凸包。 思路： 板子，没思路。几年前的代码忘了，近期并不想看。。 代码： 并不想放代码。  [USACO">
+<meta name="keywords" content="字符串,线性DP,搜索,记忆化搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="USACO刷题集锦(Part.4)">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/USACO刷题集锦-Part-4/index.html">
+<meta property="og:site_name" content="天泽龟的小龟壳">
+<meta property="og:description" content="仿佛活在题解的阴影里。。。 平均蓝题对于刚拿tg1=的我仍有些吃力，虽然题解一点就通但这没有刷题的任何效果。。 以后还是要克制一下自己的思考时间，不能那道题就翻题解，点TAG，你们这个功能害人不浅啊！ $Section 5.1$[USACO5.1]圈奶牛Fencing the Cows题面： 求凸包。 思路： 板子，没思路。几年前的代码忘了，近期并不想看。。 代码： 并不想放代码。  [USACO">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-05T17:14:52.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="USACO刷题集锦(Part.4)">
+<meta name="twitter:description" content="仿佛活在题解的阴影里。。。 平均蓝题对于刚拿tg1=的我仍有些吃力，虽然题解一点就通但这没有刷题的任何效果。。 以后还是要克制一下自己的思考时间，不能那道题就翻题解，点TAG，你们这个功能害人不浅啊！ $Section 5.1$[USACO5.1]圈奶牛Fencing the Cows题面： 求凸包。 思路： 板子，没思路。几年前的代码忘了，近期并不想看。。 代码： 并不想放代码。  [USACO">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/USACO刷题集锦-Part-4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>USACO刷题集锦(Part.4) | 天泽龟的小龟壳</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天泽龟的小龟壳</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">天泽龟的龟 是龟裂的龟(jūn)哦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/USACO刷题集锦-Part-4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TURLE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.luogu.org/upload/usericon/15984.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天泽龟的小龟壳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">USACO刷题集锦(Part.4)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 23:23:33" itemprop="dateCreated datePublished" datetime="2019-03-05T23:23:33+08:00">2019-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-06 01:14:52" itemprop="dateModified" datetime="2019-03-06T01:14:52+08:00">2019-03-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/USACO/" itemprop="url" rel="index"><span itemprop="name">USACO</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p><del>仿佛活在题解的阴影里。。。</del></p>
+<p>平均蓝题对于刚拿tg1=的我仍有些吃力，虽然题解一点就通但这没有刷题的任何效果。。</p>
+<p>以后还是要克制一下自己的思考时间，不能那道题就翻题解，点TAG，<del>你们这个功能害人不浅啊！</del></p>
+<h2 id="Section-5-1"><a href="#Section-5-1" class="headerlink" title="$Section 5.1$"></a>$Section 5.1$</h2><h3 id="USACO5-1-圈奶牛Fencing-the-Cows"><a href="#USACO5-1-圈奶牛Fencing-the-Cows" class="headerlink" title="[USACO5.1]圈奶牛Fencing the Cows"></a>[USACO5.1]圈奶牛Fencing the Cows</h3><p><strong>题面：</strong> 求凸包。</p>
+<p><strong>思路：</strong> 板子，没思路。几年前的代码忘了，近期并不想看。。</p>
+<p><strong>代码：</strong> 并不想放代码。</p>
+<hr>
+<h3 id="USACO5-1-乐曲主题Musical-Themes"><a href="#USACO5-1-乐曲主题Musical-Themes" class="headerlink" title="[USACO5.1]乐曲主题Musical Themes"></a>[USACO5.1]乐曲主题Musical Themes</h3><p><strong>题面：</strong></p>
+<p>我们用N(1 &lt;= N &lt;=5000)个音符的序列来表示一首乐曲，每个音符都是1..88范围内的整数，每个数表示钢琴上的一个键。“主题”是整个音符序列的一个子串，它需要满足如下条件：</p>
+<p>⒈长度至少为5个音符</p>
+<p>⒉在乐曲中重复出现(可能经过转调，见下)</p>
+<p>⒊重复出现的同一主题不能有公共部分。</p>
+<p>“转调”的意思是主题序列中每个音符都被加上或减去了同一个整数值。 给定一段乐曲，计算其中最长主题的长度(即音符数)。</p>
+<p><strong>思路：</strong></p>
+<p>提到加上或减去同一个值，肯定先差分转换成找最长公共子串问题。然而之前并没有接触过公共子串,LCS倒是写过题解。。</p>
+<p>于是博客学了一下：</p>
+<p>我们设$f[i][j]$为第一个序列到第i个，第二个序列到第j个字符的最长公共子串。</p>
+<p>可以得到式子：</p>
+<p>$$f[i][j]=f[i-1][j-1]+1~~(a[i]==a[j])$$</p>
+<p>本来以为这样就OK了，结果WA了几个点<del>为什么呢？</del></p>
+<p>注意到题面中提到一句话： <strong>重复出现的同一主题不能有公共部分。</strong></p>
+<p>但我们这个式子并没有对其处理，然后一些神犇就想出了这样的解决方案：<strong>我们将f[i][j]初值定为$j-i+1$即两元素距离，若超过此距离后面那串的子串肯定与前面的有交集了。</strong></p>
+<p>然后就没了。。代码巨短我依然不会，DP白痴一个。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,a[<span class="number">10000</span>],c[<span class="number">10000</span>],f[<span class="number">6000</span>][<span class="number">6000</span>],ans;</span><br><span class="line"><span class="comment">//g[i][j]--&gt; the list to i and to j,the max length</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) c[i]=a[i]-a[i<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">	<span class="keyword">if</span> (c[i]==c[j])&#123;</span><br><span class="line">		f[i][j]=min(j-i<span class="number">-1</span>,f[i<span class="number">-1</span>][j<span class="number">-1</span>]+<span class="number">1</span>);;<span class="comment">//这个值在怎么大也不能重复</span></span><br><span class="line">		ans=max(ans,f[i][j]); </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (ans&gt;=<span class="number">4</span>) <span class="built_in">cout</span>&lt;&lt;ans+<span class="number">1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="USACO5-1-夜空繁星Starry-Night"><a href="#USACO5-1-夜空繁星Starry-Night" class="headerlink" title="[USACO5.1]夜空繁星Starry Night"></a>[USACO5.1]夜空繁星Starry Night</h3><p><strong>题面：</strong></p>
+<p>一个星座(cluster)是一群连通的星组成的非空连通星系。一个星座不能是另一个更大星座的一部分， 星座可以相似。如果两个星座有相同的形状，而且包括相同数目的星体，那么不管其方向性如何，就算相似。一般而言，星座可能的方向有八个。</p>
+<p>夜空可以表示为一份天体图(sky map)，它是一个由字符0和1组成的二维矩阵，字符1表示所在的位置有一颗星；相似的星座必须用相同的字母标识，不同的星座表示为不同的字母。标识一个星座，就是将其中各星体对应的字符1替换为相应的小写字母，按字典序排序。</p>
+<p><strong>思路：</strong></p>
+<p>还是爆搜，只不过题面很有趣于是写了写，发现真不会。。</p>
+<p>主要是这个旋转太烦了？想起第一章好像专门有一道题处理这个旋转，单单几个操作就60行了。。</p>
+<p>于是题解里又有神仙了：<strong>当两个图形任意一点到各自其他点的距离和均相等，则两图形相同。</strong>还说这是啥小学奥数。。</p>
+<p>然后就没了，找单独星座用了洪水填充，都是常规操作了。。</p>
+<p><strong>代码：</strong>太长了没有。</p>
+<hr>
+<h2 id="Section-5-2"><a href="#Section-5-2" class="headerlink" title="$Section 5.2$"></a>$Section 5.2$</h2><h3 id="USACO5-2-蜗牛的旅行Snail-Trails"><a href="#USACO5-2-蜗牛的旅行Snail-Trails" class="headerlink" title="[USACO5.2]蜗牛的旅行Snail Trails"></a>[USACO5.2]蜗牛的旅行Snail Trails</h3><p><strong>题面：</strong></p>
+<p>萨丽总是垂直（向上或者向下）或水平（向左或者向右）地走。她可以从出发地（总是记作A1 ）向下或者向右走。一旦萨丽选定了一个方向，她就会一直走下去。如果她遇到棋盘边缘或者路障，她就停下来，并且转过90 度。她不可能离开棋盘，或者走进路障当中。并且，萨丽从不跨过她已经经过的格子。当她再也不能走的时候，她就停止散步。问最长路径。</p>
+<p><strong>思路：</strong></p>
+<p><del>对单独成章的题目产生恐慌。</del></p>
+<p>这暴力思路这么清晰，脑子怎么老是犯怵？还是看题解看多了导致自己对代码中的细节没有掌握到位。。</p>
+<p><strong>直接想法就是每次撞墙时枚举四个方向深搜，直到碰到自己走过的路。走过的路可以开一个地图存，同时再开一个栈来存路径（方便你撤销步数）。</strong></p>
+<p>然后就是一些乱七八糟的小细节：</p>
+<ol>
+<li>存图的时候后面数字会超过10，所以要读入一个字符一个整型。。</li>
+<li>深搜的时候要判断当前是不是没有移动，直接continue防止死循。</li>
+<li>一条路走死可能由于撞墙（或边界）或是走过的路，但往下深搜的时候只能是由于第一种情况。</li>
+</ol>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> v[<span class="number">200</span>][<span class="number">200</span>],g[<span class="number">200</span>][<span class="number">200</span>];</span><br><span class="line"><span class="keyword">int</span> ans,n,m;</span><br><span class="line"><span class="built_in">stack</span>&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt; q;</span><br><span class="line"><span class="keyword">int</span> dx[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>,<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> dy[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="keyword">char</span> c; <span class="keyword">int</span> vv;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">out</span><span class="params">(<span class="keyword">int</span> xx,<span class="keyword">int</span> yy)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x=q.top().first,y=q.top().second;</span><br><span class="line">    <span class="keyword">while</span> (!q.empty()&amp;&amp;x!=xx||y!=yy)<span class="comment">//坐标均不满足！！</span></span><br><span class="line">    &#123;</span><br><span class="line">        q.pop();  v[x][y]=<span class="number">0</span>;</span><br><span class="line">        x=q.top().first,y=q.top().second;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//弹出 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">yuejie</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (x&lt;=n&amp;&amp;x&gt;<span class="number">0</span>&amp;&amp;y&lt;=n&amp;&amp;y&gt;<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> bx,<span class="keyword">int</span> by,<span class="keyword">int</span> sm,<span class="keyword">int</span> dep)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> now=sm; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> d=<span class="number">0</span>;d&lt;<span class="number">4</span>;d++)  <span class="comment">//four direction</span></span><br><span class="line">    &#123;	</span><br><span class="line">        <span class="keyword">int</span> x=bx+dx[d],y=by+dy[d]; </span><br><span class="line">   		<span class="keyword">while</span> (!g[x][y]&amp;&amp;!v[x][y]&amp;&amp;yuejie(x,y))&#123;</span><br><span class="line">                q.push(make_pair(x,y)); v[x][y]=<span class="number">1</span>; now++;</span><br><span class="line">            	x=x+dx[d],y=y+dy[d];</span><br><span class="line">        &#125;</span><br><span class="line">        x=x-dx[d],y=y-dy[d]; <span class="keyword">if</span> (x==bx&amp;&amp;y==by)<span class="keyword">continue</span>; <span class="comment">//防死循 </span></span><br><span class="line">		ans=max(ans,now); </span><br><span class="line">		<span class="keyword">if</span> (!v[x+dx[d]][y+dy[d]]) dfs(x,y,now,dep+<span class="number">1</span>);  <span class="comment">//不因为走过而停止 </span></span><br><span class="line">		now=sm;  out(bx,by); <span class="comment">//还原 </span></span><br><span class="line">		</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;c&gt;&gt;vv;</span><br><span class="line">        g[vv][c-<span class="string">'A'</span>+<span class="number">1</span>]=<span class="number">1</span>;<span class="comment">//"A11"意会 ,方向 </span></span><br><span class="line">    &#125;</span><br><span class="line">    q.push(make_pair(<span class="number">1</span>,<span class="number">1</span>));  v[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>; dfs(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>); </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Section-5-3"><a href="#Section-5-3" class="headerlink" title="$Section 5.3$"></a>$Section 5.3$</h2><h4 id="三道题太恶心就没写，校园网这题-学tarjan时写了，所以就跳了"><a href="#三道题太恶心就没写，校园网这题-学tarjan时写了，所以就跳了" class="headerlink" title="三道题太恶心就没写，校园网这题 学tarjan时写了，所以就跳了"></a><del>三道题太恶心就没写，校园网这题 学tarjan时写了，所以就跳了</del></h4><h2 id="Section-5-4"><a href="#Section-5-4" class="headerlink" title="$Section 5.4$"></a>$Section 5.4$</h2><h3 id="USACO5-4-奶牛的电信Telecowmunication"><a href="#USACO5-4-奶牛的电信Telecowmunication" class="headerlink" title="[USACO5.4]奶牛的电信Telecowmunication"></a>[USACO5.4]奶牛的电信Telecowmunication</h3><p><strong>题面：</strong> 求一个无项图的最小割。</p>
+<p><strong>思路：</strong> 。。放网络流小结里面讲吧</p>
+<h3 id="USACO5-4-周游加拿大Canada-Tour"><a href="#USACO5-4-周游加拿大Canada-Tour" class="headerlink" title="[USACO5.4]周游加拿大Canada Tour"></a>[USACO5.4]周游加拿大Canada Tour</h3><p><strong>题面：</strong></p>
+<p>旅行在这家航空公司开放的最西边的城市开始，然后一直自西向东旅行，直到你到达最东边的城市，再由东向西返回，直到你回到开始的城市。除了旅行开始的城市之外，每个城市只能访问一次，因为开始的城市必定要被访问两次。</p>
+<p>给出这个航空公司开放的城市的列表，和两两城市之间的直达航线列表。找出能够访问尽可能多的城市的路线，这条路线必须满足上述条件，也就是从列表中的第一个城市开始旅行，访问到列表中最后一个城市之后再返回第一个城市。</p>
+<p><strong>思路：</strong></p>
+<p>据说是IOI原题，很直接但由于是半个DP所以还是不会写。。<br>直接摘自写题时候的思路：</p>
+<pre><code>首先容易想得到把过去再回来的路径转换成两条不相交过去的路径
+
+并不容易 设f[i][j]表示起点同时到i,j的最短路径。
+
+容易 得f[i][j]=f[j][i] (3)
+
+有点不容易 得答案应该是f[i][n],i与n连通，这样就可返回。
+
+容易 想到既然(3)，那只要转移一维就可以了，f[i][j]=max{f[i][k]}+1，当g[j][k]=1
+
+并不容易 如果有香蕉情况出现，则一定会重复经过某点，有f[i][i]答案不为0.
+
+于是我们强制限制j&gt;i搜索，就不会有香蕉啦！
+</code></pre><p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,f[<span class="number">1000</span>][<span class="number">1000</span>];</span><br><span class="line"><span class="keyword">int</span> g[<span class="number">1000</span>][<span class="number">1000</span>],ans=<span class="number">1</span>,num;</span><br><span class="line"><span class="built_in">string</span> s,s1,s2;</span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; hash;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	 <span class="built_in">cin</span>&gt;&gt;s,hash[s]=++num;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s1&gt;&gt;s2;</span><br><span class="line">		<span class="keyword">int</span> k1=hash[s1],k2=hash[s2];</span><br><span class="line">		g[k1][k2]=g[k2][k1]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">	f[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;j;k++)</span><br><span class="line">		<span class="keyword">if</span> (g[j][k]&amp;&amp;f[i][k]) f[i][j]=f[j][i]=max(f[i][j],f[i][k]+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">	<span class="keyword">if</span> (g[i][n]) ans=max(ans,f[i][n]);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此题可温故知新。</p>
+<h3 id="USACO5-5-隐藏口令Hidden-Password"><a href="#USACO5-5-隐藏口令Hidden-Password" class="headerlink" title="[USACO5.5]隐藏口令Hidden Password"></a>[USACO5.5]隐藏口令Hidden Password</h3><p><strong>题面：</strong></p>
+<p>Binny选择一个字符串S（由N个小写字母组成，5&lt;=N&lt;=5,000,000），然后他把S顺时针绕成一个圈，每次取一个做开头字母并顺时针依次取字母而组成一个字符串。这样将得到一些字符串，他把它们排序后取出第一个字符串。把这个字符串的第一个字母在原字符串中的位置-1做为口令。</p>
+<p><strong>思路：</strong></p>
+<p>以下思路是在学了一个叫”最小表示法”的东西之后，大家可以先去看看zy的论文，很清晰了。</p>
+<p>或者您就简单听我讲一下此题的做法，可不用掌握那玩意：</p>
+<p>首先取字典序最小的字符串，可以通过“最小表示法”的思路，构造两个字符串：一个是给定的原串，第二个是圈右移一个得到的新字符串，在样例中就是：</p>
+<pre><code>s1=anabana
+s2=nabanaa
+</code></pre><p>我们可以搞两个指针从头扫，比较当前字符是否匹配。当匹配K的时候发现不匹配了，由于我们要找最小的字符串，所以我们就把较大字符的指针往后挪一个$k+1$。</p>
+<p><strong>为啥是$K+1$？</strong></p>
+<p>假设$s1$的指针在$i$，$s2$的指针在$j$。假设当第k位发现$s1[i+k]&gt;s2[j+k]$时，s1肯定不可能是最小表示了（s2比他小啊），所以我们就直接从$i+k+1$再重新找，仍可以保证能找到（s1一直找不到不就是当前的s2了吗）。</p>
+<p>但是此题可能会出现$i+1==j$（就是在原串中重合）的情况，这时候如果不处理就会直接匹配完，但未必最小。这时候随便把一个指针++即可，因为如果当前是最小表示的话任意一个也满足条件。</p>
+<p>遇到循环题最好倍个长。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> s1,s2;</span><br><span class="line"><span class="keyword">char</span> c;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">zy</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,k=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i&lt;n&amp;&amp;j&lt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		k=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (i==j+<span class="number">1</span>) j++;</span><br><span class="line">		<span class="keyword">while</span> (s1[i+k]==s2[j+k]&amp;&amp;k&lt;=n) k++;</span><br><span class="line">		<span class="keyword">if</span> (k&gt;n) <span class="keyword">return</span> (i&lt;j<span class="number">-1</span>)?i:j<span class="number">-1</span>; </span><br><span class="line">		<span class="keyword">if</span> (s2[j+k]&gt;s1[i+k]) j+=k+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> i+=k+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (i&lt;j<span class="number">-1</span>)?i:j<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;c; <span class="keyword">if</span> (c!=<span class="string">'\n'</span>) s1+=c;</span><br><span class="line">	&#125;</span><br><span class="line">	s1=s1+s1;</span><br><span class="line">	s2=s1+s1[<span class="number">0</span>]; s2.erase(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;zy()&lt;&lt;<span class="built_in">endl</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="USACO5-5-矩形周长Picture"><a href="#USACO5-5-矩形周长Picture" class="headerlink" title="[USACO5.5]矩形周长Picture"></a>[USACO5.5]矩形周长Picture</h3><p><strong>题面：</strong>求矩形凸包周长。</p>
+<p><strong>思路：</strong></p>
+<p>扫描线板子题，结果还是花了一天去学了那玩意。。</p>
+<p>简单就是维护3个值$l,r,h,f$，分别代表当前线段的左端点，右端点，高度，以及上下边bool，下边就加上，上边就减去。</p>
+<p>然后就是维护整个x轴区间，判断当前有多大范围被覆盖。线段树搞两个标记，一个村覆盖总长一个存当前区间是否覆盖，然后还要魔改一下pushup函数。</p>
+<p>但是可能之前覆盖的边没有被删，导致重复计算，于是答案还要减去上一次搜到的答案。于是当前答案加一个$abs(tr[1]-last)$即可（这就是整个x轴区间的答案）。</p>
+<p>这是竖边，横边重新存个图倒一下不就行了吗，为啥还要维护一些乱七八糟的东西啊。。。</p>
+<p>讲的并不是很清楚，这种板子还是要自己去找博客学学的（暴露自己也没掌握透的事实）。。</p>
+<p><strong>代码（核心）：</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=st;i++)&#123;  <span class="comment">//数据不保证y不等高。 </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> l=e[i].l,r=e[i].r,v=e[i].f;</span><br><span class="line">    add(<span class="number">1</span>,<span class="number">0</span>,mx+<span class="number">1</span>,l,r<span class="number">-1</span>,v);</span><br><span class="line">    <span class="keyword">while</span> (e[i].h==e[i+<span class="number">1</span>].h&amp;&amp;e[i].f==e[i+<span class="number">1</span>].f)</span><br><span class="line">    <span class="comment">//先处理完所有的边长，减边的后面搞绝对值再干。</span></span><br><span class="line">    &#123;</span><br><span class="line">        i++; l=e[i].l,r=e[i].r,v=e[i].f;</span><br><span class="line">        add(<span class="number">1</span>,<span class="number">0</span>,mx+<span class="number">1</span>,l,r<span class="number">-1</span>,v);</span><br><span class="line">    &#125; </span><br><span class="line">    ans+=<span class="built_in">abs</span>(tr1[<span class="number">1</span>]-last); last=tr1[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="USACO5-5-贰五语言Two-Five"><a href="#USACO5-5-贰五语言Two-Five" class="headerlink" title="[USACO5.5]贰五语言Two Five"></a>[USACO5.5]贰五语言Two Five</h3><p><strong>题面：</strong>太长了。。</p>
+<p><strong>思路：</strong></p>
+<p>依然是DP，还是没想出来。。我觉得USACO的所有DP我就没有一道是写出来的。。</p>
+<p>这是个类之前有个01串的做法，那题不是搞一个辅助DP，通过不断逼近求出最终答案得嘛。。</p>
+<p>这道题问我们给定编号求第k小，还是可以把首位为A的方案数，首位为B的方案数…一直加，直到超过k为止，当前就是该为止的字符（因为这时候的方案数意味着自己可以达到的最大编号），然后再确定下一位继续从A搜（但要跳过已用字符）。</p>
+<p>那么问题来了，怎么求首位是A的方案数（下文定义此操作叫排版）啊。</p>
+<p><del>暴力！</del>记忆化搜索！</p>
+<p>但首先怎么设状态就不是很清楚啊。。</p>
+<p>然后我们手膜了一下题面里的样例：</p>
+<pre><code>A C E P T
+
+B D H Q U
+
+F J M R W
+
+G K N S X
+
+I L O V Y
+</code></pre><p>我们发现从A一直数到Y，他们时刻都是连通的！这里也有简单证明：由于我们填字符是从小到大填的，如果填的时候不连通跳着填，那中间必有空格没字母可填。</p>
+<pre><code>A C . . .
+
+B . D . .
+</code></pre><p>比如说这样，BD之间没有字母可用了。。</p>
+<p>所以我们就设状态$f[a1][a2][a3][a4][a5]$ 是第i行占了i个空，按照当前排版可达的种类数。（好像还不是很明显）</p>
+<p>我们转移的时候不妨保证先填了上面再填下面，这样就可以得到如下限制：</p>
+<pre><code>int dfs(int a,int b,int c,int d,int e,int sum)
+//sum--&gt; i have dfsed NO.sum letters
+int now=0;
+if (f[a][b][c][d][e]) return f[a][b][c][d][e];
+if (a&lt;5&amp;&amp;find(a,sum)) now+=dfs(a+1,b,c,d,e,sum+1);
+if (b&lt;a&amp;&amp;find(b+5,sum)) now+=dfs(a,b+1,c,d,e,sum+1);
+
+if (c&lt;b&amp;&amp;find(c+10,sum)) now+=dfs(a,b,c+1,d,e,sum+1);
+if (d&lt;c&amp;&amp;find(d+15,sum)) now+=dfs(a,b,c,d+1,e,sum+1);
+if (e&lt;d&amp;&amp;find(e+20,sum)) now+=dfs(a,b,c,d,e+1,sum+1);
+return f[a][b][c][d][e]=now;
+</code></pre><p>这个应该可以搞懂，但是我们如何按照自己的排版搞呢？</p>
+<p>我们可以在判断的时候加一个find函数确定这个位置有没有被排版。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> sum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (!s[x]||(s[x]==(<span class="keyword">char</span>)(sum+<span class="string">'A'</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中$s[i]$即是我们排版数组，如果没排那随便放，要是排了版就看当前位置是否匹配。</p>
+<p>另一个操作同理，搞搞前缀和就行了，主要是在记忆化搜索状态能不能想到的问题。。</p>
+<p><strong>代码：</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> str;</span><br><span class="line"><span class="keyword">char</span> c,s[<span class="number">10000</span>],v[<span class="number">1000</span>];</span><br><span class="line"><span class="keyword">int</span> num,f[<span class="number">6</span>][<span class="number">6</span>][<span class="number">6</span>][<span class="number">6</span>][<span class="number">6</span>],ans;</span><br><span class="line"><span class="comment">//f[a1...a5]--&gt;when NO.i line has ai number,the sum of sorts</span></span><br><span class="line"><span class="comment">//we can fix a letter during dfs</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> sum)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (!s[x]||(s[x]==(<span class="keyword">char</span>)(sum+<span class="string">'A'</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c,<span class="keyword">int</span> d,<span class="keyword">int</span> e,<span class="keyword">int</span> sum)</span></span></span><br><span class="line"><span class="function"><span class="comment">//sum--&gt; i have dfsed sum letters</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (f[a][b][c][d][e]) <span class="keyword">return</span> f[a][b][c][d][e];</span><br><span class="line">	<span class="keyword">if</span> (a&lt;<span class="number">5</span>&amp;&amp;find(a,sum)) now+=dfs(a+<span class="number">1</span>,b,c,d,e,sum+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span> (b&lt;a&amp;&amp;find(b+<span class="number">5</span>,sum)) now+=dfs(a,b+<span class="number">1</span>,c,d,e,sum+<span class="number">1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (c&lt;b&amp;&amp;find(c+<span class="number">10</span>,sum)) now+=dfs(a,b,c+<span class="number">1</span>,d,e,sum+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span> (d&lt;c&amp;&amp;find(d+<span class="number">15</span>,sum)) now+=dfs(a,b,c,d+<span class="number">1</span>,e,sum+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span> (e&lt;d&amp;&amp;find(e+<span class="number">20</span>,sum)) now+=dfs(a,b,c,d,e+<span class="number">1</span>,sum+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> f[a][b][c][d][e]=now;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;c;</span><br><span class="line">	<span class="keyword">if</span> (c==<span class="string">'N'</span>) &#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">25</span>;i++)</span><br><span class="line">		<span class="keyword">for</span> (s[i]=<span class="string">'A'</span>;;s[i]++) </span><br><span class="line">		<span class="keyword">if</span> (!v[s[i]])&#123;</span><br><span class="line">			v[s[i]]=<span class="number">1</span>;</span><br><span class="line">			<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f)); f[<span class="number">5</span>][<span class="number">5</span>][<span class="number">5</span>][<span class="number">5</span>][<span class="number">5</span>]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span> now=dfs(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">			<span class="keyword">if</span> (ans+now&gt;=num) &#123;</span><br><span class="line">				 <span class="built_in">cout</span>&lt;&lt;s[i]; <span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			ans+=now; v[s[i]]=<span class="number">0</span>;</span><br><span class="line">			<span class="comment">//需要找的编码肯定在它的后面，而查找无法直接找到前面的方案数 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;str;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">25</span>;i++)</span><br><span class="line">			<span class="keyword">for</span> (s[i]=<span class="string">'A'</span>;s[i]&lt;str[i];s[i]++) &#123;<span class="comment">//累加 </span></span><br><span class="line">				<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f)); f[<span class="number">5</span>][<span class="number">5</span>][<span class="number">5</span>][<span class="number">5</span>][<span class="number">5</span>]=<span class="number">1</span>;</span><br><span class="line">				ans+=dfs(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans+<span class="number">1</span>&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="后续："><a href="#后续：" class="headerlink" title="后续："></a>后续：</h3><p>总算按老师的想法刷完USACO，确实有很多好题也暴露了自己的短板，但想到自己省选的知识仍没有补完心里总是放不下心。</p>
+<p>今后还是以学新知识为主了，脑子好昏想睡觉，不写了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+            <a href="/tags/线性DP/" rel="tag"># 线性DP</a>
+          
+            <a href="/tags/搜索/" rel="tag"># 搜索</a>
+          
+            <a href="/tags/记忆化搜索/" rel="tag"># 记忆化搜索</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/26/USACO刷题集锦-Part-3/" rel="next" title="USACO刷题集锦(Part.3)">
+                <i class="fa fa-chevron-left"></i> USACO刷题集锦(Part.3)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/05/碎碎念/" rel="prev" title="碎碎念">
+                碎碎念 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://cdn.luogu.org/upload/usericon/15984.png" alt="TURLE">
+            
+              <p class="site-author-name" itemprop="name">TURLE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.luogu.org/space/show?uid=15984" title="洛谷 &rarr; https://www.luogu.org/space/show?uid=15984" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>洛谷</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://user.qzone.qq.com/1597440560" title="QQZone &rarr; https://user.qzone.qq.com/1597440560" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>QQZone</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+		
+	
+		<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+		<div class="widget-wrap">
+			<h3 class="widget-title">Tag Cloud</h3>
+			<div id="myCanvasContainer" class="widget tagcloud">
+				<canvas width="250" height="250" id="resCanvas" style="width=100%">
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+				</canvas>
+			</div>
+		</div>
+	
+	
+	
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TURLE</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
