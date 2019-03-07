@@ -92,16 +92,21 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="网络流大结（雾">
+  <meta name="description" content="前言：花了一礼拜学了网络流，最小割及费用流，估计还要再花半个月把整个网络流彻彻底底地过一遍。 这篇博文先记一下学网络流全家桶中各代码的一些总体思路&amp;amp;细节，再挑十几道题讲讲如何正确建图（可能还不够）。 现在是$19/03/07$，时间不够，今晚就总结下几个板子吧。。 最大流： EK DINIC ISAP（待学） 最大流最小割定理  费用流 EK+SPFA DINIC+SPFA PP（Dij堆">
+<meta name="keywords" content="网络流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流模板小结">
 <meta property="og:url" content="http://yoursite.com/2019/03/07/网络流大结（雾/index.html">
 <meta property="og:site_name" content="天泽龟的小龟壳">
+<meta property="og:description" content="前言：花了一礼拜学了网络流，最小割及费用流，估计还要再花半个月把整个网络流彻彻底底地过一遍。 这篇博文先记一下学网络流全家桶中各代码的一些总体思路&amp;amp;细节，再挑十几道题讲讲如何正确建图（可能还不够）。 现在是$19/03/07$，时间不够，今晚就总结下几个板子吧。。 最大流： EK DINIC ISAP（待学） 最大流最小割定理  费用流 EK+SPFA DINIC+SPFA PP（Dij堆">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/07/网络流大结（雾/qaq.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/07/网络流大结（雾/ge.png">
-<meta property="og:updated_time" content="2019-03-07T15:05:03.721Z">
+<meta property="og:updated_time" content="2019-03-07T15:52:02.974Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="网络流大结（雾">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/07/网络流大结（雾/ge.png">
+<meta name="twitter:title" content="网络流模板小结">
+<meta name="twitter:description" content="前言：花了一礼拜学了网络流，最小割及费用流，估计还要再花半个月把整个网络流彻彻底底地过一遍。 这篇博文先记一下学网络流全家桶中各代码的一些总体思路&amp;amp;细节，再挑十几道题讲讲如何正确建图（可能还不够）。 现在是$19/03/07$，时间不够，今晚就总结下几个板子吧。。 最大流： EK DINIC ISAP（待学） 最大流最小割定理  费用流 EK+SPFA DINIC+SPFA PP（Dij堆">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/07/网络流大结（雾/qaq.png">
 
 
 
@@ -118,7 +123,7 @@
   };
 </script>
 
-  <title>网络流大结（雾 | 天泽龟的小龟壳</title>
+  <title>网络流模板小结 | 天泽龟的小龟壳</title>
   
 
 
@@ -338,7 +343,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">网络流大结（雾
+          <h1 class="post-title" itemprop="name headline">网络流模板小结
 
               
             
@@ -364,7 +369,7 @@
                 
               
 
-              <time title="创建时间：2019-03-07 22:58:25 / 修改时间：23:05:03" itemprop="dateCreated datePublished" datetime="2019-03-07T22:58:25+08:00">2019-03-07</time>
+              <time title="创建时间：2019-03-07 22:58:25 / 修改时间：23:52:02" itemprop="dateCreated datePublished" datetime="2019-03-07T22:58:25+08:00">2019-03-07</time>
             
 
             
@@ -374,6 +379,24 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法学习/" itemprop="url" rel="index"><span itemprop="name">算法学习</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -410,7 +433,76 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><img src="/2019/03/07/网络流大结（雾/ge.png">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>花了一礼拜学了网络流，最小割及费用流，估计还要再花半个月把整个网络流彻彻底底地过一遍。</p>
+<p>这篇博文先记一下学网络流全家桶中各代码的一些总体思路&amp;细节，再挑十几道题讲讲如何正确建图（可能还不够）。</p>
+<p>现在是$19/03/07$，时间不够，今晚就总结下几个板子吧。。</p>
+<h4 id="最大流："><a href="#最大流：" class="headerlink" title="最大流："></a>最大流：</h4><ol>
+<li>EK</li>
+<li>DINIC</li>
+<li>ISAP（待学）</li>
+<li>最大流最小割定理</li>
+</ol>
+<h4 id="费用流"><a href="#费用流" class="headerlink" title="费用流"></a>费用流</h4><ol>
+<li>EK+SPFA</li>
+<li>DINIC+SPFA</li>
+<li>PP（Dij堆优化）<del>（并不想学）</del></li>
+</ol>
+<h4 id="上下界网络流（待学）"><a href="#上下界网络流（待学）" class="headerlink" title="上下界网络流（待学）"></a>上下界网络流（待学）</h4><hr>
+<h2 id="网络流入门"><a href="#网络流入门" class="headerlink" title="网络流入门"></a>网络流入门</h2><ol>
+<li><p>概念啥的别类比水流，太抽象，类比人流会好理解一些（认真）</p>
+</li>
+<li><p>引入新的概念：增广路。和二分图来回走交替路不同，网络流的增广路就是一条<strong>最大容量&gt;实际流量</strong>的路径，<strong>找出所有增广路之后就可以得到最大流</strong>。</p>
+</li>
+</ol>
+<p>为啥是严格大于的呢，因为如果实际容量已经等于最大容量了，就相当于你这时候已经再也挤不下人了，如果你还认为可以加0个人就会死循环， $if (!v[u]$&amp;&amp;$w)$ 的$w$就体现这一点（意思是仍有容量）。。</p>
+<ol start="3">
+<li>对于每次增广路的处理就类似二分图了，核心思想都在于<strong>反悔</strong>，只不过二分图是递归回去找错误，EK是把错误以<strong>反向边</strong>的形式记录下来，要是想反悔直接送您回家</li>
+</ol>
+<p>反向边虽然是我们脑补出来的，但是也是<strong>要一开始建在图里面，实打实参加求增广路过程的。。</strong><br>反向边w初值为0，在EK算法中关于正常边反着操作就行了。</p>
+<h3 id="1-EK-算法："><a href="#1-EK-算法：" class="headerlink" title="$1.~EK$算法："></a>$1.~EK$算法：</h3><ol>
+<li><p>找增广路实质上还是BFS暴力搜索的过程（要注意的都在代码里注释了）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (!v[u]&amp;&amp;w) &#123;//没访问过+还有流量=走着</span><br><span class="line">		p[u].pp=k,p[u].ed=i;</span><br><span class="line">		if (u==t) return 1;  //流到终点就是增广路！ </span><br><span class="line">		v[u]=1; q.push(u); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>找完增广路我们也顺手把路径存下来了，然后依然是<strong>暴力走增广路</strong>的操作：</p>
+</li>
+</ol>
+<p>①先暴力走一遍增广路找最小流量</p>
+<p>②再暴力修改所有增广路边权和反向边边权</p>
+<p>③答案加上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for (int i=t;i!=s;i=p[i].pp) mw=min(mw,e[p[i].ed].w);</span><br><span class="line">//找这条路的最小流量，减掉！ </span><br><span class="line">for (int i=t;i!=s;i=p[i].pp)&#123;</span><br><span class="line">	int ed=p[i].ed;</span><br><span class="line">	e[ed].w-=mw,e[ed+1].w+=mw;</span><br><span class="line">&#125;  </span><br><span class="line">//从终点倒回去找前驱，反向边的处理 </span><br><span class="line">ans+=mw;</span><br></pre></td></tr></table></figure></p>
+<h4 id="EK部分代码务必要在5分钟内打完-正确，切忌将时间浪费在这上面！"><a href="#EK部分代码务必要在5分钟内打完-正确，切忌将时间浪费在这上面！" class="headerlink" title="EK部分代码务必要在5分钟内打完+正确，切忌将时间浪费在这上面！"></a>EK部分代码务必要在5分钟内打完+正确，切忌将时间浪费在这上面！</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;//26--&gt;30</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ed</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,next,w;</span><br><span class="line">&#125;e[<span class="number">300000</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">path</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> pre,ed;</span><br><span class="line">&#125;p[<span class="number">300000</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,s,t,x,y,w,st=<span class="number">1</span>,fir[<span class="number">100000</span>];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q; <span class="keyword">bool</span> v[<span class="number">100000</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">	e[++st].u=v; e[st].next=fir[u]; e[fir[u]=st].w=w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span>(v)); <span class="built_in">memset</span>(p,<span class="number">0</span>,<span class="keyword">sizeof</span>(p));</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) q.pop(); q.push(s);</span><br><span class="line">	<span class="keyword">while</span> (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> k=q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=fir[k];i;i=e[i].next)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> u=e[i].u,w=e[i].w;</span><br><span class="line">			<span class="keyword">if</span> (!v[u]&amp;&amp;w) &#123;</span><br><span class="line">				p[u].pre=k; p[u].ed=i;</span><br><span class="line">				<span class="keyword">if</span> (u==t) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">				v[u]=<span class="number">1</span>,q.push(u);	</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ek</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (bfs())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mw=<span class="number">10000000</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=t;i!=s;i=p[i].pre) mw=min(mw,e[p[i].ed].w);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=t;i!=s;i=p[i].pre)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> ed=p[i].ed;</span><br><span class="line">			e[ed].w-=mw; e[ed^<span class="number">1</span>].w+=mw;	</span><br><span class="line">		&#125;</span><br><span class="line">		ans+=mw;   <span class="comment">//ans加上当前增广路的最大流量 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y&gt;&gt;w; add(x,y,w); add(y,x,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ek()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;d</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="2-Dinic-算法"><a href="#2-Dinic-算法" class="headerlink" title="$2.~Dinic$算法"></a>$2.~Dinic$算法</h3><ol>
+<li>概念：EK每次搜到一条增广路就要重新bfs下，太慢啦！</li>
+</ol>
+<p>我们要搞一个可以一次多条增广路一起更新的算法，于是就又发明了dinic。</p>
+<ol start="2">
+<li>核心：引入<strong>分层图</strong>的概念，把不同点到起点的最短距离用<strong>BFS</strong>求出，然后用<strong>DFS</strong>每次都找当前深度+1的点，往下推进，回溯的时候就顺便更新所有增广路上的点。</li>
+</ol>
+<h5 id="①"><a href="#①" class="headerlink" title="①"></a>①</h5><p>BFS,DFS的时候依然要遵循有流量再走的原则（说白了就还要判$w&gt;0$），是否访问到改成判断最小深度，将访问的v数组挪到里面处理入队列之类的问题。。</p>
+<p>最后通过判断终点深度是否是INF，来确定是否还有增广路。</p>
+<h5 id="②"><a href="#②" class="headerlink" title="②"></a>②</h5><p>DFS每次找到深度加一的点后，递归应该这样写：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> mw=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (p==n) <span class="keyword">return</span> now;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">if</span> (w&amp;&amp;d[u]==d[p]+<span class="number">1</span>)&#123;  <span class="comment">//这里也要判断流量，不然死循 </span></span><br><span class="line"><span class="keyword">if</span> (mw=dfs(u,min(now,w))) &#123;</span><br><span class="line">	e[i].w-=mw,e[i^<span class="number">1</span>].w+=mw;</span><br><span class="line">	<span class="keyword">return</span> mw;    </span><br><span class="line">    <span class="comment">//找着增广路了，直接回【就太慢了】。 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>now是递归里上一次的最大流量，但发现这依然是DFS一下BFS一下，还是慢。。</p>
+<h4 id="于是就有了多路增广优化！"><a href="#于是就有了多路增广优化！" class="headerlink" title="于是就有了多路增广优化！"></a>于是就有了多路增广优化！</h4><ol>
+<li>核心思想：只要我当前点流出的流量小于我的最大流入流量，我就能一直找增广路！</li>
+</ol>
+<p>设一个变量used表示当前节点已经用了多少流量，那么只要加一行就会极大优化时间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (w&amp;&amp;d[u]==d[p]+1)&#123;  //这里也要判断流量，不然死循 </span><br><span class="line">	if (mw=dfs(u,min(now-used,w))) &#123;</span><br><span class="line">    //由于当前流量已经用了一点，不在是最大流量了，所以要更新。</span><br><span class="line">	e[i].w-=mw,e[i^1].w+=mw;</span><br><span class="line">	used+=mw; if (used==now) break;</span><br><span class="line">	//找着增广路了，直接回【就太慢了】。 </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="其实已经挺快了，但是那些人闲着无聊又发明了弧优化。"><a href="#其实已经挺快了，但是那些人闲着无聊又发明了弧优化。" class="headerlink" title="其实已经挺快了，但是那些人闲着无聊又发明了弧优化。"></a>其实已经挺快了，但是那些人闲着无聊又发明了弧优化。</h4><ol>
+<li>核心思想：当我们增广完一条边，退出这条边递归后，<strong>这条边就没有利用价值了</strong>，因为它所经过的增广路径已经被榨干了。。</li>
+</ol>
+<p><strong>于是我们就搞一个c数组来代替fir数组，直接从上一个没有被榨干的边再走，之前那些边就跳过了。</strong></p>
+<img src="/2019/03/07/网络流大结（雾/qaq.png">
+<p>如图，比方说先走s-&gt;3-&gt;t，那么3-&gt;t这边就废了，当我们再从s-&gt;1-&gt;3时候，我们就直接到3-&gt;5，不管t了。。</p>
+<p>写出来大概是：</p>
+<ul>
+<li>BFS里面 $memcpy(c,fir,sizeof(fir));$</li>
+<li>DFS:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (int i=c[p];i;i=e[i].next)</span><br><span class="line">	&#123;</span><br><span class="line">		c[p]=i;</span><br><span class="line">		....</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>大概就这样？？</p>
+<h4 id="代码依然保证不超过6-7分钟打完加正确："><a href="#代码依然保证不超过6-7分钟打完加正确：" class="headerlink" title="代码依然保证不超过6~7分钟打完加正确："></a>代码依然保证不超过6~7分钟打完加正确：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;//43--&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ed</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,next,w;</span><br><span class="line">&#125;e[<span class="number">300000</span>];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">path</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> pre,ed;</span><br><span class="line">&#125;p[<span class="number">300000</span>];</span><br><span class="line"><span class="keyword">int</span> n,m,s,t,x,y,w,ans,st=<span class="number">1</span>,c[<span class="number">100000</span>],fir[<span class="number">100000</span>];</span><br><span class="line"><span class="keyword">int</span> d[<span class="number">100000</span>]; <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q; <span class="keyword">bool</span> v[<span class="number">100000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">	e[++st].u=v; e[st].next=fir[u]; e[fir[u]=st].w=w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) v[i]=<span class="number">0</span>,d[i]=INT_MAX/<span class="number">2</span>,c[i]=fir[i];</span><br><span class="line">	q.push(s); v[s]=<span class="number">1</span>; d[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> k=q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=fir[k];i;i=e[i].next)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> u=e[i].u,w=e[i].w;</span><br><span class="line">			<span class="keyword">if</span> (d[u]&gt;d[k]+<span class="number">1</span>&amp;&amp;w)</span><br><span class="line">			&#123;</span><br><span class="line">				d[u]=d[k]+<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span> (!v[u]) v[u]=<span class="number">1</span>,q.push(u);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (d[t]&lt;INT_MAX/<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> now)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (p==t) <span class="keyword">return</span> now;</span><br><span class="line">	<span class="keyword">int</span> mw=<span class="number">0</span>,used=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=c[p];i;i=e[i].next)</span><br><span class="line">	&#123;</span><br><span class="line">		c[p]=i;</span><br><span class="line">		<span class="keyword">int</span> u=e[i].u,w=e[i].w;</span><br><span class="line">		<span class="keyword">if</span> (w&amp;&amp;d[u]==d[p]+<span class="number">1</span>) </span><br><span class="line">		<span class="comment">//这里也要判断流量，不然死循 </span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (mw=dfs(u,min(w,now-used)))</span><br><span class="line">			&#123;</span><br><span class="line">				e[i].w-=mw; e[i^<span class="number">1</span>].w+=mw; used+=mw;</span><br><span class="line">				<span class="keyword">if</span> (used==now) <span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> used;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (bfs())</span><br><span class="line">	&#123;</span><br><span class="line">		ans+=dfs(s,INT_MAX/<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;x&gt;&gt;y&gt;&gt;w; add(x,y,w); add(y,x,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;dinic()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="3-最大流最小割"><a href="#3-最大流最小割" class="headerlink" title="$3.~ $最大流最小割"></a>$3.~ $最大流最小割</h3><p><strong>直接摘抄笔记了。</strong></p>
+<img src="/2019/03/07/网络流大结（雾/ge.png">
 
       
     </div>
@@ -431,6 +523,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+        </div>
       
 
       
@@ -541,7 +639,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -600,7 +700,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">23</span>
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -667,7 +769,7 @@
 			<h3 class="widget-title">Tag Cloud</h3>
 			<div id="myCanvasContainer" class="widget tagcloud">
 				<canvas width="250" height="250" id="resCanvas" style="width=100%">
-					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络流/">网络流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
 				</canvas>
 			</div>
 		</div>
