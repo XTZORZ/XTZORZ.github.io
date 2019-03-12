@@ -92,19 +92,19 @@
 
 
 
-  <meta name="description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录:$1.~$网络流基础题#####$2.~$网络流24题选做 #####$3.~$费用流乱七八糟的选做 $3.5~$上下界网络流入门#####$4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+">
+  <meta name="description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录:$1.~$网络流基础题$2.~$网络流24题选做$3.~$费用流乱七八糟的选做$3.5~$上下界网络流入门$4.$一些奇技淫巧的建图$1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+对于割边集的边数询问。由于不要求输出">
 <meta name="keywords" content="网络流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【网络流】习题小结">
 <meta property="og:url" content="http://yoursite.com/2019/03/12/网络流大结2/index.html">
 <meta property="og:site_name" content="天泽龟的小龟壳">
-<meta property="og:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录:$1.~$网络流基础题#####$2.~$网络流24题选做 #####$3.~$费用流乱七八糟的选做 $3.5~$上下界网络流入门#####$4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+">
+<meta property="og:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录:$1.~$网络流基础题$2.~$网络流24题选做$3.~$费用流乱七八糟的选做$3.5~$上下界网络流入门$4.$一些奇技淫巧的建图$1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+对于割边集的边数询问。由于不要求输出">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/03/12/网络流大结2/2.png">
-<meta property="og:updated_time" content="2019-03-12T16:51:18.006Z">
+<meta property="og:updated_time" content="2019-03-12T17:01:48.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【网络流】习题小结">
-<meta name="twitter:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录:$1.~$网络流基础题#####$2.~$网络流24题选做 #####$3.~$费用流乱七八糟的选做 $3.5~$上下界网络流入门#####$4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+">
+<meta name="twitter:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录:$1.~$网络流基础题$2.~$网络流24题选做$3.~$费用流乱七八糟的选做$3.5~$上下界网络流入门$4.$一些奇技淫巧的建图$1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+对于割边集的边数询问。由于不要求输出">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/12/网络流大结2/2.png">
 
 
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-13 00:51:18" itemprop="dateModified" datetime="2019-03-13T00:51:18+08:00">2019-03-13</time>
+                <time title="修改时间：2019-03-13 01:01:48" itemprop="dateModified" datetime="2019-03-13T01:01:48+08:00">2019-03-13</time>
               
             
           </span>
@@ -445,10 +445,7 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>网络流核心在于<strong>建图</strong>，于是就有了这篇博客。</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录:"></a>目录:</h2><h5 id="1-网络流基础题"><a href="#1-网络流基础题" class="headerlink" title="$1.~$网络流基础题"></a>$1.~$网络流基础题</h5><p>#####$2.~$网络流24题选做</p>
-<p>#####$3.~$费用流乱七八糟的选做</p>
-<h5 id="3-5-上下界网络流入门"><a href="#3-5-上下界网络流入门" class="headerlink" title="$3.5~$上下界网络流入门"></a>$3.5~$上下界网络流入门</h5><p>#####$4.$一些奇技淫巧的建图</p>
-<h2 id="1-网络流基础"><a href="#1-网络流基础" class="headerlink" title="$1.~$网络流基础"></a>$1.~$网络流基础</h2><p><strong>模板就不讲了，详见上回<a href="https://xtzorz.github.io/2019/03/07/%E7%BD%91%E7%BB%9C%E6%B5%81%E5%A4%A7%E7%BB%93%EF%BC%88%E9%9B%BE/" target="_blank" rel="noopener">模板小结。</a></strong></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录:"></a>目录:</h2><h5 id="1-网络流基础题"><a href="#1-网络流基础题" class="headerlink" title="$1.~$网络流基础题"></a>$1.~$网络流基础题</h5><h5 id="2-网络流24题选做"><a href="#2-网络流24题选做" class="headerlink" title="$2.~$网络流24题选做"></a>$2.~$网络流24题选做</h5><h5 id="3-费用流乱七八糟的选做"><a href="#3-费用流乱七八糟的选做" class="headerlink" title="$3.~$费用流乱七八糟的选做"></a>$3.~$费用流乱七八糟的选做</h5><h5 id="3-5-上下界网络流入门"><a href="#3-5-上下界网络流入门" class="headerlink" title="$3.5~$上下界网络流入门"></a>$3.5~$上下界网络流入门</h5><h5 id="4-一些奇技淫巧的建图"><a href="#4-一些奇技淫巧的建图" class="headerlink" title="$4.$一些奇技淫巧的建图"></a>$4.$一些奇技淫巧的建图</h5><h2 id="1-网络流基础"><a href="#1-网络流基础" class="headerlink" title="$1.~$网络流基础"></a>$1.~$网络流基础</h2><p><strong>模板就不讲了，详见上回<a href="https://xtzorz.github.io/2019/03/07/%E7%BD%91%E7%BB%9C%E6%B5%81%E5%A4%A7%E7%BB%93%EF%BC%88%E9%9B%BE/" target="_blank" rel="noopener">模板小结。</a></strong></p>
 <p>入门题还是$USACO$的毒瘤题吧，没啥技巧。</p>
 <h3 id="USACO4-4-追查坏牛奶Pollutant-Control"><a href="#USACO4-4-追查坏牛奶Pollutant-Control" class="headerlink" title="[USACO4.4]追查坏牛奶Pollutant Control"></a><a href="https://www.luogu.org/problemnew/show/P1344" target="_blank" rel="noopener">[USACO4.4]追查坏牛奶Pollutant Control</a></h3><p>最小割板子+对于割边集的边数询问。由于不要求输出边集所以较为简单。</p>
 <p>首先学了网络流的都知道，<strong>并非满流就在最小割上，但不满流一定不在。</strong>于是直接再建一个图，若当前满流就设为1，否则设为0，再跑一边网络流流，此时的最小割就是割边数。</p>
@@ -456,7 +453,7 @@
 <h4 id="用到的是拆点的思想。"><a href="#用到的是拆点的思想。" class="headerlink" title="用到的是拆点的思想。"></a>用到的是拆点的思想。</h4><p>拆点顾名思义，就是把<code>“点”</code>拆成<code>“点--边--点”</code>的形式，边的权值由具体题目而定。</p>
 <p>当然通过拆点，我们就可以将<strong>无向图转换为有向图</strong>来跑网络流啦。我们将原点$A$拆成$A_1$和$A_2$，其中$A_1$为入边点，负责连接所有的入边；同理，$A_2$负责连接所有出边，从入边到出边<strong>连一条大小为点值</strong>的边，此题点值为1。</p>
 <p>然后就是裸的网络流。</p>
-<h2 id="2-网络流24题选做"><a href="#2-网络流24题选做" class="headerlink" title="$2.~$网络流24题选做"></a>$2.~$网络流24题选做</h2><ul>
+<h2 id="2-网络流24题选做-1"><a href="#2-网络流24题选做-1" class="headerlink" title="$2.~$网络流24题选做"></a>$2.~$网络流24题选做</h2><ul>
 <li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P1251" target="_blank" rel="noopener">餐巾计划问题</a></li>
 <li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P2754" target="_blank" rel="noopener">【CTSC1999】家园</a></li>
 <li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P2756" target="_blank" rel="noopener">飞行员配对方案问题</a></li>
