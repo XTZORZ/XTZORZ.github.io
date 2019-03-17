@@ -92,25 +92,25 @@
 
 
 
-  <meta name="description" content="马上又是一年一度的AHOI了呢……目前两个题解都是正解的递归算法，但是考场上像我这种蒟蒻，只能想到暴力模拟对不对啊（只有你一个人吧） 所以本蒟蒻就给大家模拟一下考场上如何 暴力骗分！因为暴力骗分的程序也能拿90（第八个点超时了），所以只要第一题稳住，第二题玄学找规律骗分，拿一等奖真的不是梦！  暴力模拟时候只要想到以下几点就成功一半！1.判断括号的优先区间时，应以后括号为准，且上一个前括号一定匹配">
-<meta name="keywords" content="模拟,字符串">
+  <meta name="description" content="本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。拿到题后根据标签大体上可以判断出这是一个最小费用流。题目中有一段这样说道： 每天结束时,餐厅必须决定将多少块脏的餐巾送到快洗部,多少块餐巾送到慢洗部,以及多少块保存起来延期送洗。 但是每天洗好的餐巾和购买的新餐巾数之和,要满足当天的需求量。 于是整理得，我们需要支持以下操作：  将脏餐巾以f元/条送到快洗部，过m天">
+<meta name="keywords" content="网络流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[AHOI2017初中组]rexp">
-<meta property="og:url" content="http://yoursite.com/2019/02/09/AHOI2017初中组-rexp/index.html">
+<meta property="og:title" content="【网络流24题】餐巾计划问题">
+<meta property="og:url" content="http://yoursite.com/2019/03/18/【网络流24题】餐巾计划问题/index.html">
 <meta property="og:site_name" content="天泽龟的小龟壳">
-<meta property="og:description" content="马上又是一年一度的AHOI了呢……目前两个题解都是正解的递归算法，但是考场上像我这种蒟蒻，只能想到暴力模拟对不对啊（只有你一个人吧） 所以本蒟蒻就给大家模拟一下考场上如何 暴力骗分！因为暴力骗分的程序也能拿90（第八个点超时了），所以只要第一题稳住，第二题玄学找规律骗分，拿一等奖真的不是梦！  暴力模拟时候只要想到以下几点就成功一半！1.判断括号的优先区间时，应以后括号为准，且上一个前括号一定匹配">
+<meta property="og:description" content="本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。拿到题后根据标签大体上可以判断出这是一个最小费用流。题目中有一段这样说道： 每天结束时,餐厅必须决定将多少块脏的餐巾送到快洗部,多少块餐巾送到慢洗部,以及多少块保存起来延期送洗。 但是每天洗好的餐巾和购买的新餐巾数之和,要满足当天的需求量。 于是整理得，我们需要支持以下操作：  将脏餐巾以f元/条送到快洗部，过m天">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-09T12:40:34.226Z">
+<meta property="og:updated_time" content="2019-03-17T16:11:25.775Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[AHOI2017初中组]rexp">
-<meta name="twitter:description" content="马上又是一年一度的AHOI了呢……目前两个题解都是正解的递归算法，但是考场上像我这种蒟蒻，只能想到暴力模拟对不对啊（只有你一个人吧） 所以本蒟蒻就给大家模拟一下考场上如何 暴力骗分！因为暴力骗分的程序也能拿90（第八个点超时了），所以只要第一题稳住，第二题玄学找规律骗分，拿一等奖真的不是梦！  暴力模拟时候只要想到以下几点就成功一半！1.判断括号的优先区间时，应以后括号为准，且上一个前括号一定匹配">
+<meta name="twitter:title" content="【网络流24题】餐巾计划问题">
+<meta name="twitter:description" content="本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。拿到题后根据标签大体上可以判断出这是一个最小费用流。题目中有一段这样说道： 每天结束时,餐厅必须决定将多少块脏的餐巾送到快洗部,多少块餐巾送到慢洗部,以及多少块保存起来延期送洗。 但是每天洗好的餐巾和购买的新餐巾数之和,要满足当天的需求量。 于是整理得，我们需要支持以下操作：  将脏餐巾以f元/条送到快洗部，过m天">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/09/AHOI2017初中组-rexp/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/18/【网络流24题】餐巾计划问题/">
 
 
 
@@ -120,7 +120,7 @@
   };
 </script>
 
-  <title>[AHOI2017初中组]rexp | 天泽龟的小龟壳</title>
+  <title>【网络流24题】餐巾计划问题 | 天泽龟的小龟壳</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/09/AHOI2017初中组-rexp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/18/【网络流24题】餐巾计划问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TURLE">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[AHOI2017初中组]rexp
+          <h1 class="post-title" itemprop="name headline">【网络流24题】餐巾计划问题
 
               
             
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-02-09 17:16:51 / 修改时间：20:40:34" itemprop="dateCreated datePublished" datetime="2019-02-09T17:16:51+08:00">2019-02-09</time>
+              <time title="创建时间：2019-03-18 00:08:33 / 修改时间：00:11:25" itemprop="dateCreated datePublished" datetime="2019-03-18T00:08:33+08:00">2019-03-18</time>
             
 
             
@@ -388,7 +388,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/省选/" itemprop="url" rel="index"><span itemprop="name">省选</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/洛谷/" itemprop="url" rel="index"><span itemprop="name">洛谷</span></a></span>
 
                 
                 
@@ -430,15 +430,33 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h3 id="马上又是一年一度的AHOI了呢……"><a href="#马上又是一年一度的AHOI了呢……" class="headerlink" title="马上又是一年一度的AHOI了呢……"></a>马上又是一年一度的AHOI了呢……</h3><p>目前两个题解都是正解的递归算法，但是考场上像我这种蒟蒻，只能想到暴力模拟对不对啊<del>（只有你一个人吧）</del></p>
-<p>所以本蒟蒻就给大家模拟一下考场上如何</p>
-<h1 id="暴力骗分！"><a href="#暴力骗分！" class="headerlink" title="暴力骗分！"></a>暴力骗分！</h1><p>因为暴力骗分的程序也能拿90（第八个点超时了），所以只要第一题稳住，第二题<del>玄学</del>找规律骗分，拿一等奖真的不是梦！</p>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h3 id="本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。"><a href="#本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。" class="headerlink" title="本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。"></a>本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。</h3><p>拿到题后<del>根据标签</del>大体上可以判断出这是一个最小费用流。题目中有一段这样说道：</p>
+<pre><code>每天结束时,餐厅必须决定将多少块脏的餐巾送到快洗部,多少块餐巾送到慢洗部,以及多少块保存起来延期送洗。
+但是每天洗好的餐巾和购买的新餐巾数之和,要满足当天的需求量。
+</code></pre><p>于是整理得，我们需要支持以下操作：</p>
+<ul>
+<li>将脏餐巾以<code>f元/条</code>送到快洗部，过m天后，干净餐巾送回来使用</li>
+<li>将脏餐巾以<code>s元/条</code>送到慢洗部，过n天后，干净餐巾送回来使用</li>
+<li>延期送洗（可能会出现之后餐巾需求过少，并不需要所有餐巾的情况）</li>
+<li>以<code>p元/条</code>购买新的餐巾</li>
+</ul>
+<h3 id="于是本题第一个难点就来了：如何处理脏餐巾和干净餐巾？"><a href="#于是本题第一个难点就来了：如何处理脏餐巾和干净餐巾？" class="headerlink" title="于是本题第一个难点就来了：如何处理脏餐巾和干净餐巾？"></a>于是本题第一个难点就来了：如何处理脏餐巾和干净餐巾？</h3><p>我们可以想到，每天开始的时候只有干净的餐巾可使用，每天结束的时候仅有脏的餐巾需要操作。<strong>于是将每天拆成两个点：起始点与结束点</strong>，分别处理不同时间段所需操作。</p>
+<p>于是也可以想到：</p>
+<ul>
+<li>送到快洗部属于结束点操作，连向<code>i+m</code>天后的起始点，费用为f（表示餐巾洗好了，可使用）</li>
+<li>送到慢洗部属于结束点操作，连向<code>i+n</code>天后的起始点，费用为s</li>
+<li>延期送洗属于结束点操作，连向<code>i+1</code>的起始点，不需费用。</li>
+<li>购买新的餐巾属于起始点操作，目前并没有确定从哪连的，但费用为p。</li>
+</ul>
+<p>以上操作流量均为$inf$</p>
+<p>好了，到这里你有没有发现以上操作有什么共同点？</p>
+<h3 id="没错，他们都是连向起始点的有向边！"><a href="#没错，他们都是连向起始点的有向边！" class="headerlink" title="没错，他们都是连向起始点的有向边！"></a>没错，他们都是连向起始点的有向边！</h3><p>事实上，网络流24题的全称为“网络流与线性规划24题”，这也就告诉我们：  <strong>网络流的建图一定有顺序的，建的边一定是沿源点流向汇点，否则图就会不流通。</strong></p>
+<p>所以现在我们就弄明白了：我们应该将源点连接每天的<strong>结束点</strong>，而不是他们的起始点；起始点连向他们的汇点，容量为这天所需的餐巾数量，费用为0。</p>
+<p>此外购买餐巾直接从源点购买即可。</p>
 <hr>
-<h4 id="暴力模拟时候只要想到以下几点就成功一半！"><a href="#暴力模拟时候只要想到以下几点就成功一半！" class="headerlink" title="暴力模拟时候只要想到以下几点就成功一半！"></a>暴力模拟时候只要想到以下几点就成功一半！</h4><p>1.判断括号的优先区间时，应以后括号为准，且上一个前括号一定匹配。</p>
-<p>2.判断一个区间中的答案时，可以用pos（当时仍是p党）逐步判断长度，虽然思路简单但很容易实现<del>（为之后的DEBUG留下充裕时间）</del>。</p>
-<p>3.因为程序最外围可能无括号，所以在程序最后仍需进行一次搜索。</p>
-<hr>
-<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">program</span> rexp;       </span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  s,s1:ansistring;</span><br><span class="line">  i,p,p1,l1,l2,sum:longint;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span><span class="params">(s:ansistring)</span>:</span>ansistring;  <span class="comment">//区间处理</span></span><br><span class="line"><span class="keyword">var</span></span><br><span class="line">  s2:ansistring;</span><br><span class="line">  i,j,p,p1:longint;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  p:=pos(<span class="string">'|'</span>,s);     <span class="comment">//寻找</span></span><br><span class="line">  <span class="keyword">while</span> p&lt;&gt;<span class="number">0</span> <span class="keyword">do</span> <span class="keyword">begin</span> p:=pos(<span class="string">'|'</span>,s); s2:=s;</span><br><span class="line">    l1:=p-<span class="number">1</span>;</span><br><span class="line">    delete(s2,<span class="number">1</span>,p);</span><br><span class="line">    p1:=pos(<span class="string">'|'</span>,s2);</span><br><span class="line">    <span class="keyword">if</span> p1&lt;&gt;<span class="number">0</span> <span class="keyword">then</span> l2:=p1-<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span> l2:=length(s2);</span><br><span class="line">    <span class="keyword">if</span> l1&lt;l2 <span class="keyword">then</span> <span class="keyword">begin</span></span><br><span class="line">      l1:=l2;</span><br><span class="line">      delete(s,<span class="number">1</span>,p);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> delete(s,p,l2+<span class="number">1</span>);  <span class="comment">//将左右两个部分进行判断，留下较优的</span></span><br><span class="line">    <span class="keyword">if</span> p1=<span class="number">0</span> <span class="keyword">then</span> <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span> p:=p1;</span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  <span class="keyword">exit</span>(s);</span><br><span class="line"><span class="keyword">end</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="comment">//assign(input,'rexp.in');reset(input);</span></span><br><span class="line">  <span class="comment">//assign(output,'rexp.out');rewrite(output);</span></span><br><span class="line">  readln(s);</span><br><span class="line">  <span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  for i:=length(s)-1 downto 1 do</span></span><br><span class="line"><span class="comment">  begin</span></span><br><span class="line"><span class="comment">    if (s[i]=')') and (s[i+1]=')') then inc(sum)</span></span><br><span class="line"><span class="comment">    else break;</span></span><br><span class="line"><span class="comment">    if (sum&gt;1000) then begin</span></span><br><span class="line"><span class="comment">    writeln('20000'); halt;</span></span><br><span class="line"><span class="comment">    end;</span></span><br><span class="line"><span class="comment">  end;   &#125;</span>        <span class="comment">//为了AC不择手段，针对第八个点的部分程序，略去</span></span><br><span class="line">  p:=pos(<span class="string">')'</span>,s);</span><br><span class="line">  <span class="keyword">while</span> p&lt;&gt;<span class="number">0</span> <span class="keyword">do</span> <span class="keyword">begin</span>     <span class="comment">//若仍有优先处理的区间就继续</span></span><br><span class="line">    <span class="keyword">for</span> i:=p <span class="keyword">downto</span> <span class="number">1</span> <span class="keyword">do</span>         <span class="comment">//倒序寻找第一个出现的前括号</span></span><br><span class="line">      <span class="keyword">if</span> s[i]=<span class="string">'('</span> <span class="keyword">then</span> <span class="keyword">begin</span></span><br><span class="line">        p1:=i; <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">end</span>;</span><br><span class="line">    s1:=copy(s,p1+<span class="number">1</span>,p-p1-<span class="number">1</span>);   <span class="comment">//将区间独立处理，删除该区间并加上处理后的单元正解区间</span></span><br><span class="line">    delete(s,p1,p-p1+<span class="number">1</span>);</span><br><span class="line">    insert(search(s1),s,p1);</span><br><span class="line">    p:=pos(<span class="string">')'</span>,s);             <span class="comment">//继续搜</span></span><br><span class="line">    <span class="comment">//writeln(s);</span></span><br><span class="line">  <span class="keyword">end</span>;</span><br><span class="line">  s:=search(s);               <span class="comment">//没有后括号进行最后处理</span></span><br><span class="line">  writeln(length(s));</span><br><span class="line">  readln;readln;</span><br><span class="line">  <span class="comment">//close(input);close(output);</span></span><br><span class="line"><span class="keyword">end</span>.</span><br></pre></td></tr></table></figure>
+<p>之后跑一个裸的费用流即可。上我丑陋的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 2*n+1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 2147483647</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ed</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,next,w,f;</span><br><span class="line">&#125;e[<span class="number">300000</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,p,b,f,a,s,st=<span class="number">1</span>,cost,ans;</span><br><span class="line"><span class="keyword">int</span> r[<span class="number">100000</span>],d[<span class="number">100000</span>],fir[<span class="number">100000</span>],c[<span class="number">100000</span>];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q; <span class="keyword">bool</span> v[<span class="number">100000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">spfa</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=N;i++) d[i]=inf/<span class="number">2</span>,v[i]=<span class="number">0</span>,c[i]=fir[i];</span><br><span class="line">	q.push(<span class="number">0</span>); v[<span class="number">0</span>]=<span class="number">1</span>; d[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> k=q.front(); q.pop(); v[k]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=fir[k];i;i=e[i].next)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> u=e[i].u,w=e[i].f;</span><br><span class="line">			<span class="keyword">if</span> (d[u]&gt;d[k]+w&amp;&amp;e[i].w)</span><br><span class="line">			&#123;</span><br><span class="line">				d[u]=d[k]+w; <span class="keyword">if</span> (!v[u]) v[u]=<span class="number">1</span>,q.push(u); </span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> (d[N]&lt;inf/<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> now)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (p==N) &#123;</span><br><span class="line">		v[N]=<span class="number">1</span>; ans+=now; <span class="keyword">return</span> now;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mw=<span class="number">0</span>,used=<span class="number">0</span>;  v[p]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=c[p];i;i=e[i].next)&#123;</span><br><span class="line">		c[p]=<span class="number">1</span>; <span class="keyword">int</span> u=e[i].u,w=e[i].f;</span><br><span class="line">		<span class="keyword">if</span> ((!v[u]||u==N)&amp;&amp;d[u]==d[p]+w&amp;&amp;e[i].w)</span><br><span class="line">		<span class="keyword">if</span> (mw=dfs(u,min(now-used,e[i].w)))</span><br><span class="line">		&#123;</span><br><span class="line">			e[i].w-=mw; e[i^<span class="number">1</span>].w+=mw; used+=mw;</span><br><span class="line">			cost+=w*mw; <span class="keyword">if</span> (used==now) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> used;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (spfa())</span><br><span class="line">	&#123;</span><br><span class="line">		v[N]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (v[N])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">memset</span>(v,<span class="number">0</span>,<span class="keyword">sizeof</span>(v));</span><br><span class="line">			dfs(<span class="number">0</span>,inf);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cost;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> w,<span class="keyword">int</span> f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	e[++st].u=y; e[st].next=fir[x]; e[fir[x]=st].w=w; e[st].f=f;</span><br><span class="line">	e[++st].u=x; e[st].next=fir[y]; e[fir[y]=st].w=<span class="number">0</span>; e[st].f=-f;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) &#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;r[i];</span><br><span class="line">		add(<span class="number">0</span>,i,r[i],<span class="number">0</span>); add(i+n,N,r[i],<span class="number">0</span>);</span><br><span class="line">        <span class="comment">//源点连接结束点，起始点连向他们的汇点。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;p&gt;&gt;a&gt;&gt;f&gt;&gt;b&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		add(<span class="number">0</span>,i+n,inf,p);  <span class="comment">//从源点购买餐巾</span></span><br><span class="line">		<span class="keyword">if</span> (i+<span class="number">1</span>&lt;=n) add(i,i+<span class="number">1</span>,inf,<span class="number">0</span>);   <span class="comment">//把今天的脏毛巾拖到明天 </span></span><br><span class="line">		<span class="keyword">if</span> (i+a&lt;=n) add(i,i+n+a,inf,f); <span class="comment">//把餐巾送到快洗部</span></span><br><span class="line">		<span class="keyword">if</span> (i+b&lt;=n) add(i,i+n+b,inf,s); <span class="comment">//把餐巾送到慢洗部</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//可以注意到，以上的连边均是由源点向汇点的。</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;dinic()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -461,9 +479,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/模拟/" rel="tag"># 模拟</a>
-          
-            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
           
         </div>
       
@@ -476,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/09/CSYZ集训题总解/" rel="next" title="CSYZ集训题总解">
-                <i class="fa fa-chevron-left"></i> CSYZ集训题总解
+              <a href="/2019/03/17/【网络流24题】魔术球问题/" rel="next" title="【网络流24题】魔术球问题">
+                <i class="fa fa-chevron-left"></i> 【网络流24题】魔术球问题
               </a>
             
           </div>
@@ -485,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/09/NOI2001-食物链/" rel="prev" title="[NOI2001]食物链">
-                [NOI2001]食物链 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -714,7 +726,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#马上又是一年一度的AHOI了呢……"><span class="nav-text">马上又是一年一度的AHOI了呢……</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#暴力骗分！"><span class="nav-text">暴力骗分！</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#暴力模拟时候只要想到以下几点就成功一半！"><span class="nav-text">暴力模拟时候只要想到以下几点就成功一半！</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。"><span class="nav-text">本篇题解将充分，全面地来解释建图的过程，以及其中的诸多细节。也欢迎各位指出其中不足。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#于是本题第一个难点就来了：如何处理脏餐巾和干净餐巾？"><span class="nav-text">于是本题第一个难点就来了：如何处理脏餐巾和干净餐巾？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#没错，他们都是连向起始点的有向边！"><span class="nav-text">没错，他们都是连向起始点的有向边！</span></a></li></ol></div>
             
 
           </div>
