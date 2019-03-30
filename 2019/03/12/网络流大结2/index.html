@@ -101,7 +101,7 @@
 <meta property="og:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录： $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control 最小割板子+对于割边集的边数询问。由于不要求输出边集所以较">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/03/12/网络流大结2/2.png">
-<meta property="og:updated_time" content="2019-03-30T16:26:48.297Z">
+<meta property="og:updated_time" content="2019-03-30T17:15:35.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【网络流】习题小结">
 <meta name="twitter:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录： $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control 最小割板子+对于割边集的边数询问。由于不要求输出边集所以较">
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-31 00:26:48" itemprop="dateModified" datetime="2019-03-31T00:26:48+08:00">2019-03-31</time>
+                <time title="修改时间：2019-03-31 01:15:35" itemprop="dateModified" datetime="2019-03-31T01:15:35+08:00">2019-03-31</time>
               
             
           </span>
@@ -547,7 +547,45 @@
 <h3 id="【HDU2255】【费用流】奔小康赚大钱"><a href="#【HDU2255】【费用流】奔小康赚大钱" class="headerlink" title=" 【HDU2255】【费用流】奔小康赚大钱"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2255" target="_blank" rel="noopener"><strong> 【HDU2255】【费用流】奔小康赚大钱</strong></a></h3><p>这貌似是本博客第一道洛谷上找不到的题，想着总是要先讲讲类似板子的题吧。。</p>
 <p>这题是一个经典图论的输入，我们可以把人和房子建成二分图，然后人与房子<strong>连&lt;1,g[i][j]&gt;的边（表示流量1，费用g[i][j])</strong>。</p>
 <p>然后裸的跑就行了。。</p>
-<h3 id="NOI2012-美食节"><a href="#NOI2012-美食节" class="headerlink" title="[NOI2012]美食节"></a><a href="https://www.luogu.org/problemnew/show/P2050" target="_blank" rel="noopener"><strong>[NOI2012]美食节</strong></a></h3>
+<h3 id="NOI2012-美食节"><a href="#NOI2012-美食节" class="headerlink" title="[NOI2012]美食节"></a><a href="https://www.luogu.org/problemnew/show/P2050" target="_blank" rel="noopener">[NOI2012]美食节</a></h3><p><a href="https://xtzorz.github.io/2019/03/31/NOI2012-%E7%BE%8E%E9%A3%9F%E8%8A%82/" target="_blank" rel="noopener">绝世好题，考察建图，题解。</a></p>
+<h3 id="ZJOI2010-网络扩容"><a href="#ZJOI2010-网络扩容" class="headerlink" title="[ZJOI2010]网络扩容"></a><a href="https://www.luogu.org/problemnew/show/P2604" target="_blank" rel="noopener">[ZJOI2010]网络扩容</a></h3><p><strong>题面描述：</strong></p>
+<p>求网络的最大流，且给你每个边的扩容费用，问扩容K的流量要多少钱？</p>
+<p><strong>口胡题解：</strong></p>
+<p>求完第一问的残量网络不要扔<del>,裹上鸡蛋液,粘上面包糠,下锅炸至金黄，隔壁小孩馋哭啦</del> 。因为里面虽然已经不能在流了，但可以通过扩容后面的边从而使残量网络再次利用。</p>
+<p>我们每条边再连一个<code>&lt;INF,F[I]&gt;</code>的边，在终点限个流即可。</p>
+<h3 id="SDOI2010-星际竞速"><a href="#SDOI2010-星际竞速" class="headerlink" title=" [SDOI2010]星际竞速 "></a><a href="https://www.luogu.org/problemnew/show/P2469" target="_blank" rel="noopener"> [SDOI2010]星际竞速 </a></h3><p><strong>题面描述：</strong></p>
+<p>赛车大赛的赛场由N颗行星和M条双向星际航路构成，其中每颗行星都有一个不同的引力值。大赛要求车手们从一颗与这N颗行星之间没有任何航路的天体出发，访问这N颗行星每颗恰好一次，首先完成这一目标的人获得胜利。</p>
+<p>由于赛制非常开放，很多人驾驶着千奇百怪的自制赛车来参赛。这次悠悠驾驶的赛车名为超能电驴，这是一部凝聚了全银河最尖端科技结晶的梦幻赛车。作为最高科技的产物，<strong>超能电驴有两种移动模式：高速航行模式和能力爆发模式。在高速航行模式下，超能电驴会展开反物质引擎，以数倍于光速的速度沿星际航路高速航行。在能力爆发模式下，超能电驴脱离时空的束缚，使用超能力进行空间跳跃——在经过一段时间的定位之后，它能瞬间移动到任意一个行星。</strong></p>
+<p>天不遂人愿，在比赛的前一天，超能电驴在一场离子风暴中不幸受损，机能出现了一些障碍：在使用高速航行模式的时候，<strong>只能由每个星球飞往引力比它大的星球</strong>，否则赛车就会发生爆炸。</p>
+<p>尽管心爱的赛车出了问题，但是悠悠仍然坚信自己可以取得胜利。他找到了全银河最聪明的贤者——你，请你为他安排一条比赛的方案，使得他能够用最少的时间完成比赛。</p>
+<p><strong>口胡题解：</strong></p>
+<p>这题可以看出来是个最小边覆盖，但是由于要满足费用最小所以严格来说是个<strong>最小边权覆盖</strong>(龇牙)。</p>
+<p>还是按照最小边覆盖来建立二分图，费用也顺便连了，本来想从超源连边到各个出点但这明显是<strong>不懂最小边覆盖建立二分图意义</strong>的表现。</p>
+<pre><code>二分图中的所有出点所连向的入点，仅仅表示在图上该点连向的后继，并不代表此点是否为边的起始点。
+</code></pre><p>然后我们发现，如果右边点集（入点的集合）没有流量经过，说明此点没有前驱。也就是他一定是起始点，所以我们从超源连边向每个点的入点，费用为跳到这个点的费用即可。</p>
+<h2 id="4-一些奇技淫巧的建图"><a href="#4-一些奇技淫巧的建图" class="headerlink" title="$4.~$一些奇技淫巧的建图"></a>$4.~$一些奇技淫巧的建图</h2><p>这PART估计没机会怎么写了，可能以后看到网络流好题都会加进去吧。。</p>
+<h3 id="NOI2009-植物大战僵尸"><a href="#NOI2009-植物大战僵尸" class="headerlink" title=" [NOI2009]植物大战僵尸 "></a><a href="https://www.luogu.org/problemnew/show/P2805" target="_blank" rel="noopener"> [NOI2009]植物大战僵尸 </a></h3><p>我乔鲁诺·天泽龟有一个梦想，那就是A遍以我玩过游戏命名或番剧命名的题目！</p>
+<p><del>那你一辈子A不掉星露谷物语了。</del></p>
+<p><strong>题目描述：</strong></p>
+<p>太长了不念了。</p>
+<p><strong>分析：</strong></p>
+<p>这题的难点，仅仅是<strong>建图！建图！！建图！！！</strong></p>
+<p><strong>第一张图：</strong></p>
+<p>超源连向所有行的右手第一格，然后按顺序连接格子，由于不是最终建图所以没有边权，点权是当前的能源价值，最后连到超汇。</p>
+<p>当然，可能点对之间存在保护关系，于是从保护方向被保护方连边。</p>
+<p><strong>第二张图：</strong></p>
+<p>我们发现这个DAG里出现本该没有的自环，我们可以知道原本子环内以及子环后可以到的点现在都到不了了，因为如果要到达就必须经过那个环，而环内植物可以两两保护。。</p>
+<p>于是我们就可以缩点了，别惊讶，缩点是图论里的重要算法，这正体现了本题极高的综合性。</p>
+<p>缩完点我们可以利用深搜来标记子环及子环后的点（除超汇），把他们通过打标记给删掉。</p>
+<p><strong>第三张图：</strong></p>
+<p>如果你要吃了某个植物，那首先你要把保护它的所有植物吃掉才行，这让你想到啥？</p>
+<p>没错，<strong>最大权独立子图</strong>的定义即是如此。</p>
+<p>于是我们把边全部反向，按照求最大权独立子图的方案建图（正点权连超源，负点权连超汇，原本边无限流），然后跑完直接<code>正点权和-最小割</code>即可。</p>
+<p>值得一提的是，原来的超源和超汇作为点权为0的点，仍要作为原来图的一部分参与网络流。</p>
+<p>然后就没啦！</p>
+<hr>
+<p>网络流大概就到这里了，希望过了几个月别把板子给忘了。。</p>
+
       
     </div>
 
@@ -823,7 +861,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言："><span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录："><span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-网络流基础"><span class="nav-text">$1.~$网络流基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-网络流24题选做"><span class="nav-text">$2.~$网络流24题选做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-费用流乱七八糟的选做"><span class="nav-text">$3.~$费用流乱七八糟的选做</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【HDU2255】【费用流】奔小康赚大钱"><span class="nav-text"> 【HDU2255】【费用流】奔小康赚大钱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOI2012-美食节"><span class="nav-text">[NOI2012]美食节</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言："><span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录："><span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-网络流基础"><span class="nav-text">$1.~$网络流基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-网络流24题选做"><span class="nav-text">$2.~$网络流24题选做</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-费用流乱七八糟的选做"><span class="nav-text">$3.~$费用流乱七八糟的选做</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【HDU2255】【费用流】奔小康赚大钱"><span class="nav-text"> 【HDU2255】【费用流】奔小康赚大钱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOI2012-美食节"><span class="nav-text">[NOI2012]美食节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZJOI2010-网络扩容"><span class="nav-text">[ZJOI2010]网络扩容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SDOI2010-星际竞速"><span class="nav-text"> [SDOI2010]星际竞速 </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-一些奇技淫巧的建图"><span class="nav-text">$4.~$一些奇技淫巧的建图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NOI2009-植物大战僵尸"><span class="nav-text"> [NOI2009]植物大战僵尸 </span></a></li></ol></li></ol></div>
             
 
           </div>
