@@ -92,19 +92,19 @@
 
 
 
-  <meta name="description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录: $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+对于割边集的边数询问。由于不要求输出边集所以较为">
+  <meta name="description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录： $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control 最小割板子+对于割边集的边数询问。由于不要求输出边集所以较">
 <meta name="keywords" content="网络流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【网络流】习题小结">
 <meta property="og:url" content="http://yoursite.com/2019/03/12/网络流大结2/index.html">
 <meta property="og:site_name" content="天泽龟的小龟壳">
-<meta property="og:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录: $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+对于割边集的边数询问。由于不要求输出边集所以较为">
+<meta property="og:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录： $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control 最小割板子+对于割边集的边数询问。由于不要求输出边集所以较">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/03/12/网络流大结2/2.png">
-<meta property="og:updated_time" content="2019-03-27T16:25:59.445Z">
+<meta property="og:updated_time" content="2019-03-30T14:33:02.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【网络流】习题小结">
-<meta name="twitter:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录: $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control最小割板子+对于割边集的边数询问。由于不要求输出边集所以较为">
+<meta name="twitter:description" content="前言：网络流核心在于建图，于是就有了这篇博客。 目录： $1.~$网络流基础题  $2.~$网络流24题选做  $3.~$费用流乱七八糟的选做  $4.$一些奇技淫巧的建图 $1.~$网络流基础模板就不讲了，详见上回模板小结。 入门题还是$USACO$的毒瘤题吧，没啥技巧。 [USACO4.4]追查坏牛奶Pollutant Control 最小割板子+对于割边集的边数询问。由于不要求输出边集所以较">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/12/网络流大结2/2.png">
 
 
@@ -385,7 +385,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-28 00:25:59" itemprop="dateModified" datetime="2019-03-28T00:25:59+08:00">2019-03-28</time>
+                <time title="修改时间：2019-03-30 22:33:02" itemprop="dateModified" datetime="2019-03-30T22:33:02+08:00">2019-03-30</time>
               
             
           </span>
@@ -445,21 +445,23 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>网络流核心在于<strong>建图</strong>，于是就有了这篇博客。</p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录:"></a>目录:</h2><p> $1.~$网络流基础题</p>
+<h2 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h2><p> $1.~$网络流基础题</p>
 <p> $2.~$网络流24题选做</p>
 <p> $3.~$费用流乱七八糟的选做</p>
 <p> $4.$一些奇技淫巧的建图</p>
 <h2 id="1-网络流基础"><a href="#1-网络流基础" class="headerlink" title="$1.~$网络流基础"></a>$1.~$网络流基础</h2><p><strong>模板就不讲了，详见上回<a href="https://xtzorz.github.io/2019/03/07/%E7%BD%91%E7%BB%9C%E6%B5%81%E5%A4%A7%E7%BB%93%EF%BC%88%E9%9B%BE/" target="_blank" rel="noopener">模板小结。</a></strong></p>
 <p>入门题还是$USACO$的毒瘤题吧，没啥技巧。</p>
-<h4 id="USACO4-4-追查坏牛奶Pollutant-Control"><a href="#USACO4-4-追查坏牛奶Pollutant-Control" class="headerlink" title="[USACO4.4]追查坏牛奶Pollutant Control"></a><a href="https://www.luogu.org/problemnew/show/P1344" target="_blank" rel="noopener">[USACO4.4]追查坏牛奶Pollutant Control</a></h4><p>最小割板子+对于割边集的边数询问。由于不要求输出边集所以较为简单。</p>
+<p><a href="https://www.luogu.org/problemnew/show/P1344" target="_blank" rel="noopener"><strong>[USACO4.4]追查坏牛奶Pollutant Control</strong></a></p>
+<p>最小割板子+对于割边集的边数询问。由于不要求输出边集所以较为简单。</p>
 <p>首先学了网络流的都知道，<strong>并非满流就在最小割上，但不满流一定不在。</strong>于是直接再建一个图，若当前满流就设为1，否则设为0，再跑一边网络流流，此时的最小割就是割边数。</p>
-<h4 id="USACO5-4-奶牛的电信Telecowmunication"><a href="#USACO5-4-奶牛的电信Telecowmunication" class="headerlink" title="[USACO5.4]奶牛的电信Telecowmunication"></a><a href="https://www.luogu.org/problemnew/show/P1345" target="_blank" rel="noopener">[USACO5.4]奶牛的电信Telecowmunication</a></h4><p>这题应该放在建图那块，但这个算基本操作所以谈不上奇技淫巧。</p>
+<p><a href="https://www.luogu.org/problemnew/show/P1345" target="_blank" rel="noopener"><strong>[USACO5.4]奶牛的电信Telecowmunication</strong></a></p>
+<p>这题应该放在建图那块，但这个算基本操作所以谈不上奇技淫巧。</p>
 <p><strong>用到的是拆点的思想。</strong></p>
 <p>拆点顾名思义，就是把<code>“点”</code>拆成<code>“点--边--点”</code>的形式，边的权值由具体题目而定。</p>
 <p>当然通过拆点，我们就可以将<strong>无向图转换为有向图</strong>来跑网络流啦。我们将原点$A$拆成$A_1$和$A_2$，其中$A_1$为入边点，负责连接所有的入边；同理，$A_2$负责连接所有出边，从入边到出边<strong>连一条大小为点值</strong>的边，此题点值为1。</p>
 <p>然后就是裸的网络流。</p>
-<h4 id="【洛谷】P1402-酒店之王"><a href="#【洛谷】P1402-酒店之王" class="headerlink" title="【洛谷】P1402 酒店之王 "></a><a href="https://www.luogu.org/problemnew/show/P1402" target="_blank" rel="noopener">【洛谷】P1402 酒店之王 </a></h4><p>三。。三分图？？</p>
-<p>类似二分图那样建三次边，跑个最大流就没了。。</p>
+<p><a href="https://www.luogu.org/problemnew/show/P1402" target="_blank" rel="noopener"><strong>【洛谷】P1402 酒店之王</strong> </a></p>
+<p>三。。三分图？？<br>类似二分图那样建三次边，跑个最大流就没了。。</p>
 <h2 id="2-网络流24题选做"><a href="#2-网络流24题选做" class="headerlink" title="$2.~$网络流24题选做"></a>$2.~$网络流24题选做</h2><ul>
 <li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P1251" target="_blank" rel="noopener">餐巾计划问题</a></li>
 </ul>
@@ -482,10 +484,11 @@
 </ul>
 <p>裸的二分图，学匈牙利时候写的，现在想想$Dinic$万能那为啥学匈牙利。。</p>
 <ul>
-<li><p>[x]  <a href="https://www.luogu.org/problemnew/show/P2762" target="_blank" rel="noopener">太空飞行计划问题</a></p>
-</li>
-<li><p>[x]  <a href="https://www.luogu.org/problemnew/show/P2763" target="_blank" rel="noopener">试题库问题</a></p>
-</li>
+<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P2762" target="_blank" rel="noopener">太空飞行计划问题</a></li>
+</ul>
+<p>最大权独立子图的基本应用，参照<a href="https://xtzorz.github.io/2019/03/28/%E3%80%90%E7%BD%91%E7%BB%9C%E6%B5%8124%E9%A2%98%E3%80%91%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">题解</a></p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P2763" target="_blank" rel="noopener">试题库问题</a></li>
 </ul>
 <p>怎么还是二分图。。<del>干脆改名成二分图24题算了</del></p>
 <p>超级源点连题目，题目连边到种类，种类连边到超级汇点顺便带上自己的权值。如果最大流=要出题的数量，就暴力搜索题目与类型连边中满流的边。</p>
@@ -526,7 +529,16 @@
 <li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P3356" target="_blank" rel="noopener">火星探险问题</a></li>
 <li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P4011" target="_blank" rel="noopener">孤岛营救问题</a></li>
 <li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P4012" target="_blank" rel="noopener">深海机器人问题</a></li>
-<li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P4013" target="_blank" rel="noopener">数字梯形问题</a></li>
+<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P4013" target="_blank" rel="noopener">数字梯形问题</a></li>
+</ul>
+<p>同下，就是拆点的不同运用。。</p>
+<ol>
+<li>对于第一个条件：在点的地方限流即可</li>
+<li>对于第二个条件：在点的地方不限流即可</li>
+<li>对于第三个。。：点和边都不限流即可。</li>
+</ol>
+<p>费用均为点权。</p>
+<ul>
 <li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P4015" target="_blank" rel="noopener">运输问题</a></li>
 </ul>
 <p>裸的费用流，没啥讲头。</p>
@@ -650,7 +662,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -742,7 +754,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -804,7 +818,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言："><span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-text">目录:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-网络流基础"><span class="nav-text">$1.~$网络流基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#USACO4-4-追查坏牛奶Pollutant-Control"><span class="nav-text">[USACO4.4]追查坏牛奶Pollutant Control</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#USACO5-4-奶牛的电信Telecowmunication"><span class="nav-text">[USACO5.4]奶牛的电信Telecowmunication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【洛谷】P1402-酒店之王"><span class="nav-text">【洛谷】P1402 酒店之王 </span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#2-网络流24题选做"><span class="nav-text">$2.~$网络流24题选做</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言："><span class="nav-text">前言：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录："><span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-网络流基础"><span class="nav-text">$1.~$网络流基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-网络流24题选做"><span class="nav-text">$2.~$网络流24题选做</span></a></li></ol></div>
             
 
           </div>
@@ -826,7 +840,7 @@
 			<h3 class="widget-title">Tag Cloud</h3>
 			<div id="myCanvasContainer" class="widget tagcloud">
 				<canvas width="250" height="250" id="resCanvas" style="width=100%">
-					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络流/">网络流</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/有感/">有感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络流/">网络流</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
 				</canvas>
 			</div>
 		</div>
