@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="天泽龟的小龟壳">
 <meta property="og:description" content="虽然省选和我没有任何瓜葛，我依然抱着$NOIP$般的热情去对待，因为谁都不知道省选之后会发生什么。 当然，我也不知道。也不用去知道，只需要做好当下，每一步不会让未来的自己后悔就行了。 这次省选的目标是不要打暴力，这对于专攻数据结构的$NERLCI_$同学似乎太简单了，但对于肝了3个礼拜网络流的我来说仿佛登天，因为网络流的题目只有0分和满分。。 这次复习硬说的话从两个礼拜前就开始了。 $(19/03">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-04T17:33:20.489Z">
+<meta property="og:updated_time" content="2019-04-05T14:36:18.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【颓废向】省选前的佛脚">
 <meta name="twitter:description" content="虽然省选和我没有任何瓜葛，我依然抱着$NOIP$般的热情去对待，因为谁都不知道省选之后会发生什么。 当然，我也不知道。也不用去知道，只需要做好当下，每一步不会让未来的自己后悔就行了。 这次省选的目标是不要打暴力，这对于专攻数据结构的$NERLCI_$同学似乎太简单了，但对于肝了3个礼拜网络流的我来说仿佛登天，因为网络流的题目只有0分和满分。。 这次复习硬说的话从两个礼拜前就开始了。 $(19/03">
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-05 01:33:20" itemprop="dateModified" datetime="2019-04-05T01:33:20+08:00">2019-04-05</time>
+                <time title="修改时间：2019-04-05 22:36:18" itemprop="dateModified" datetime="2019-04-05T22:36:18+08:00">2019-04-05</time>
               
             
           </span>
@@ -533,8 +533,39 @@ A
 <p>对于两个绝对值都把他拆开，得到一个四元方程：<br>$\left\{\begin{matrix}<br>x_i - s + y_i - t &lt;= now<br>\ s - x_i + y_i - t &lt;= now<br>\ x_i - s + t - y_i &lt;= now<br>\ s - x_i + t - y_i &lt;= now<br>\end{matrix}\right<br>$</p>
 <p>$<br>\left\{\begin{matrix}<br>x_i + y_i - now &lt;= s + t &lt;= x_i +y_i + now<br>\ x_i - y_i - now &lt;= s - t &lt;= x_i - y_i + now<br>\end{matrix}\right<br>$</p>
 <p>于是类似上面这样缩小范围即可，特判两式取等情况。</p>
-<h2 id="最后一礼拜"><a href="#最后一礼拜" class="headerlink" title="最后一礼拜"></a>最后一礼拜</h2><p>先咕着</p>
-
+<h2 id="最后一礼拜"><a href="#最后一礼拜" class="headerlink" title="最后一礼拜"></a>最后一礼拜</h2><p>由于学的少的缘故，复习的知识也很少，并不确定能不能用上。。</p>
+<h3 id="主席树："><a href="#主席树：" class="headerlink" title="主席树："></a>主席树：</h3><p>之前只做过板子，以为必须套在权值线段树上，现在想想只要是可以有时间轴表示，用前缀和套的都可以上主席树（核心还是维护每个节点的历史状态）。</p>
+<p><strong>比如这题，<a href="https://www.luogu.org/problemnew/show/P3066" target="_blank" rel="noopener">【USACO】逃跑的Barn：</a></strong></p>
+<p>就是问你子树里面深度在$[1,k]$范围内点的个数，如果没有子树的限制就可以上<strong>线段树，以深度为下标，通过一个 dfs 找到并顺手维护当前深度的点个数。</strong></p>
+<p>有了子树的话就可以用主席树维护，可以用前缀和的思想挖一个子树出来，<strong>若以dfs序为编号的话，</strong>那么以$x$为根的子树点的范围就是$[dfn_x,dfn_x+s_x-1]$。</p>
+<p>但由于此题深度太大，故先离散化。。</p>
+<p><strong>可以把板子的思路记一下：</strong></p>
+<ol>
+<li>建一颗空树，根为$rt[0]$。</li>
+<li>以dfs序（或其他顺序）遍历，每节点建一颗主席树，一开始左节点右节点接到上颗树上，<strong>然后从上向下建树（跑一链）并修改对应的左右节点</strong></li>
+<li>查询时确定前缀和的范围节点，用动态开点线段树搞就行了。。</li>
+</ol>
+<h3 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h3><p>又一个不会考的东西。。</p>
+<p>三步走：找系数最大，暴力删点，倒序算答案。</p>
+<p>判无解可看一行式子：</p>
+<ol>
+<li>若所有系数（包括常数）为0是无限解。</li>
+<li>若除系数所有系数为0就是无解。</li>
+</ol>
+<h3 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h3><p>这东西要么0分要么AC啊，，把之前的习题集锦看看。。</p>
+<h3 id="数论（exgcd-线性逆元-LUCAS-中国剩余定理）"><a href="#数论（exgcd-线性逆元-LUCAS-中国剩余定理）" class="headerlink" title="数论（exgcd,线性逆元,LUCAS,中国剩余定理）"></a>数论（exgcd,线性逆元,LUCAS,中国剩余定理）</h3><p><strong>$1.~ $卢卡斯本质就是进制的转换，若p为质数，则：</strong></p>
+<p>$$lucas(n,m)=lucas(n/pp,m/pp)*lucas(n\mod pp,m\mod pp)$$</p>
+<p><strong>$2.~ exgcd$本质就是利用求最大公约数的方式递归求不定方程解，有个公式推一下可得：</strong></p>
+<p>$$a=b; b=a-(x/y)*b$$</p>
+<p>套就行了。</p>
+<p><strong>$3.~ 线性逆元$本质还是推式子，而且很好推：</strong></p>
+<p>$$inv[i]=(p-p/i*inv[p\mod i])\mod p$$</p>
+<p><strong>$4.~$中国剩余定理本质依然推式子：</strong></p>
+<p>对于每个式子构造一组解，则可以凑出<br>$$\sum _{i=1}^n a_i*M/p_i*inv[M/p_i]$$</p>
+<p>其中$a_i$为系数，$p_i$为模数。</p>
+<h3 id="缩点割点"><a href="#缩点割点" class="headerlink" title="缩点割点"></a>缩点割点</h3><p>缩点本质还是递归找深度，如果一个点能跑到比父亲还早到的地方去，那肯定在一个环内。开栈弹出即可。</p>
+<p>割点本质是一个点没有一个子代能跑到自己上面去，或者是根节点且有好du儿子。</p>
+<h2 id="最后一天补完，开心！"><a href="#最后一天补完，开心！" class="headerlink" title="最后一天补完，开心！"></a>最后一天补完，开心！</h2>
       
     </div>
 
@@ -814,7 +845,7 @@ A
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#19-03-22-陈老师的练习1"><span class="nav-text">$(19/03/22)$陈老师的练习1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-斐波拉契表示"><span class="nav-text">$T1:$斐波拉契表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-USACO19JAN-奶牛诗人"><span class="nav-text">$T2:$ [USACO19JAN]奶牛诗人</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-03-29-陈老师的练习2"><span class="nav-text">$(19/03/29)$陈老师的练习2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-货物运输"><span class="nav-text">$T1:$货物运输</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后一礼拜"><span class="nav-text">最后一礼拜</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#19-03-22-陈老师的练习1"><span class="nav-text">$(19/03/22)$陈老师的练习1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-斐波拉契表示"><span class="nav-text">$T1:$斐波拉契表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-USACO19JAN-奶牛诗人"><span class="nav-text">$T2:$ [USACO19JAN]奶牛诗人</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-03-29-陈老师的练习2"><span class="nav-text">$(19/03/29)$陈老师的练习2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-货物运输"><span class="nav-text">$T1:$货物运输</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后一礼拜"><span class="nav-text">最后一礼拜</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主席树："><span class="nav-text">主席树：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高斯消元"><span class="nav-text">高斯消元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络流"><span class="nav-text">网络流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数论（exgcd-线性逆元-LUCAS-中国剩余定理）"><span class="nav-text">数论（exgcd,线性逆元,LUCAS,中国剩余定理）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缩点割点"><span class="nav-text">缩点割点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后一天补完，开心！"><span class="nav-text">最后一天补完，开心！</span></a></li></ol></div>
             
 
           </div>
