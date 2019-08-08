@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="$0.$前言我也不知道一个快要退役的人干嘛还要来整这个动态规划水集，可能只是想弥补一下四年来从来不会DP的大坑吧。。 作为最常考的DP类型——背包，貌似是最近唯一接触过得DP了，所以觉着应首当其冲的拿来讲一讲。 部分内容参照背包九讲，大部分来自做题经验，将来可能会截一些洛谷日报的内容。 $1,2,3:$零一，完全，多重背包三种是个人都会写的板子，用一句话概括就是： 零一背包倒着搜，完全背包正着搜，">
+<meta name="keywords" content="动态规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划水集(1)——背包十八讲">
+<meta property="og:url" content="http://yoursite.com/2019/07/01/动态规划水集-1-——背包十八讲/index.html">
+<meta property="og:site_name" content="天泽龟的小龟壳">
+<meta property="og:description" content="$0.$前言我也不知道一个快要退役的人干嘛还要来整这个动态规划水集，可能只是想弥补一下四年来从来不会DP的大坑吧。。 作为最常考的DP类型——背包，貌似是最近唯一接触过得DP了，所以觉着应首当其冲的拿来讲一讲。 部分内容参照背包九讲，大部分来自做题经验，将来可能会截一些洛谷日报的内容。 $1,2,3:$零一，完全，多重背包三种是个人都会写的板子，用一句话概括就是： 零一背包倒着搜，完全背包正着搜，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-08T06:58:14.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划水集(1)——背包十八讲">
+<meta name="twitter:description" content="$0.$前言我也不知道一个快要退役的人干嘛还要来整这个动态规划水集，可能只是想弥补一下四年来从来不会DP的大坑吧。。 作为最常考的DP类型——背包，貌似是最近唯一接触过得DP了，所以觉着应首当其冲的拿来讲一讲。 部分内容参照背包九讲，大部分来自做题经验，将来可能会截一些洛谷日报的内容。 $1,2,3:$零一，完全，多重背包三种是个人都会写的板子，用一句话概括就是： 零一背包倒着搜，完全背包正着搜，">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/01/动态规划水集-1-——背包十八讲/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>动态规划水集(1)——背包十八讲 | 天泽龟的小龟壳</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天泽龟的小龟壳</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">天泽龟的龟 是龟裂的龟(jūn)哦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/动态规划水集-1-——背包十八讲/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TURLE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.luogu.org/upload/usericon/15984.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天泽龟的小龟壳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动态规划水集(1)——背包十八讲
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-01 14:14:07" itemprop="dateCreated datePublished" datetime="2019-07-01T14:14:07+08:00">2019-07-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-08 14:58:14" itemprop="dateModified" datetime="2019-08-08T14:58:14+08:00">2019-08-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法学习/" itemprop="url" rel="index"><span itemprop="name">算法学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="$0.$前言"></a>$0.$前言</h2><p>我也不知道一个快要退役的人干嘛还要来整这个动态规划水集，可能只是想弥补一下四年来从来不会DP的大坑吧。。</p>
+<p>作为最常考的DP类型——背包，貌似是最近唯一接触过得DP了，所以觉着应首当其冲的拿来讲一讲。</p>
+<p>部分内容参照背包九讲，大部分来自做题经验，将来可能会截一些洛谷日报的内容。</p>
+<h2 id="1-2-3-零一，完全，多重背包"><a href="#1-2-3-零一，完全，多重背包" class="headerlink" title="$1,2,3:$零一，完全，多重背包"></a>$1,2,3:$零一，完全，多重背包</h2><p>三种是个人都会写的板子，用一句话概括就是：</p>
+<pre><code>零一背包倒着搜，完全背包正着搜，多重背包二进制存再套个01背包。
+</code></pre><p>就是这样，其中多重背包二进制应为从$2^0$到$2^k$的截取直至第一次容量不足，这样可以证明能取到$1\to n$所有值。</p>
+<h2 id="4-依赖背包"><a href="#4-依赖背包" class="headerlink" title="$4.$依赖背包"></a>$4.$依赖背包</h2><p><a href="https://www.luogu.org/problemnew/show/P1064" target="_blank" rel="noopener">金明</a>为我们提供一道模板。</p>
+<pre><code>一个主件和它的附件集合实际上对应于分组背包中的一个物品组.
+每个选择了主件又选择了若干附件的策略,对应这个物品组的中的一个物品.
+</code></pre><p>定义如上，实际操作中可以先枚举主件，<strong>在选取主件的前提下</strong>枚举附件的可能性。</p>
+<p>大概也没啥好说的，还有一道<a href="https://www.luogu.org/problemnew/show/P3961" target="_blank" rel="noopener">黄金矿工</a>也是依赖背包的模型，按照斜率分类后<strong>应该先取近原点的才能取到远原点的，这里枚举附件就应该是递增的过程</strong></p>
+<h2 id="5-分类背包"><a href="#5-分类背包" class="headerlink" title="$5.$ 分类背包"></a>$5.$ 分类背包</h2><p>这东西我没接触过啊。。。但事实上却是所有背包问题的起点。。</p>
+<pre><code>将物品分成几个组，每个组仅能至多选一个物品，问最大利益？
+</code></pre><p>按照01背包的思路，我们可以把整个组看做一个物品，然后枚举每个组的所有物品找一个最大利益的，用式子表示即为：</p>
+<p>$$f[j]=\sum_{k=1}^{c[i]} max(f[j],f[j-w[i][k]]+v[i][k])$$</p>
+<p>先放上代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=c[<span class="number">0</span>];i++)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j=n;j&gt;=<span class="number">0</span>;j--)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=c[i];k++)</span><br><span class="line">    <span class="keyword">if</span> (j&gt;=w[i][k]) f[j]=max(f[j],f[j-w[i][k]]+v[i][k]),ans=max(ans,f[j]);</span><br></pre></td></tr></table></figure></p>
+<p>可以注意到，我们<strong>先枚举容量再枚举每组的物品</strong>，这样可以保证对于每一个容量，组内物品最多只会保留一个当前最大的。</p>
+<h3 id="留一道例题，这题真好"><a href="#留一道例题，这题真好" class="headerlink" title="留一道例题，这题真好"></a><a href="https://www.luogu.org/blog/XTZORZ/solution-cf946d" target="_blank" rel="noopener">留一道例题，这题真好</a></h3><h2 id="6-混合背包"><a href="#6-混合背包" class="headerlink" title="$6.$混合背包"></a>$6.$混合背包</h2><p>由于多重背包读入处理后就是个01，所以每个物品加个属性，分完全和01分开跑就行了。</p>
+<h2 id="7-二维费用背包"><a href="#7-二维费用背包" class="headerlink" title="$7.$二维费用背包"></a>$7.$二维费用背包</h2><p>别看到啥二维就觉得难度上了一个档。把数组开二维，循环开二维，暴力跑就行了，用式子写就是：<br>$$f[v][u]=max \begin{Bmatrix}f[v][u],f[v-a[i]][u-b[i]]+w[i]\end{Bmatrix}$$</p>
+<h2 id="8-泛化物品背包（上）"><a href="#8-泛化物品背包（上）" class="headerlink" title="$8.$泛化物品背包（上）"></a>$8.$泛化物品背包（上）</h2><p>按道理这应该放最后的，但是对于下面的树形背包，背包九讲的作者是以这玩意为基础介绍的。。。</p>
+<pre><code>一个泛化物品就是一个数组h[0..v]，给它费用v，可得到价值h[v]，给你一个总容量$V$的背包求最大价值。
+</code></pre><p>这就是泛化背包的定义了。这其实就是个概念，可以看成是分组背包的强化版本，就是一个物品组有$v+1$件物品，费用v，价值$h[v]$，每组至多选一个的情况。<strong>事实上，泛化背包的标算就是转换成分组背包搞。。</strong></p>
+<p>当然，特殊地，对于以上的普通模型：</p>
+<ul>
+<li><p>如果它是01背包中的物品，那么把它看成泛化物品，它就是除了$h(c)=w$其它函数值都为0的一个函数。</p>
+</li>
+<li><p>如果它是完全背包中的物品，那么它可以看成这样一个函数，仅当v被c整除时有$h(v)=v/c*w$，其它函数值均为0。</p>
+</li>
+<li><p>如果它是多重背包中重复次数最多为n的物品，那么它对应的泛化物品的函数有$h(v)=v/c*w$仅当v被c整除且$(v/c&lt;=n)$，其它情况函数值均为0。</p>
+</li>
+<li><p>如果他是普通的分组背包，那么对于$h(v)=w[i][j]$，仅当$v=V[i][j]$，其他函数取值为0。</p>
+</li>
+</ul>
+<h2 id="9-泛化物品的合并（下）"><a href="#9-泛化物品的合并（下）" class="headerlink" title="$9.$泛化物品的合并（下）"></a>$9.$泛化物品的合并（下）</h2><p>背包九讲原作者的意思就是说任何一个背包问题都可以把所有物品化作一个泛化物品，然后找其在$[0..v]$的极值，我寻思着这不是对解题啥意义都没有吗。。</p>
+<blockquote>
+<p>这一讲真的很抽象，也许在“模型的抽象程度”这一方面已经超出了NOIP的要求，所以暂且看不懂也没关系。</p>
+</blockquote>
+<p>这尼玛看懂了也没啥意思。。</p>
+<h2 id="10-树形背包"><a href="#10-树形背包" class="headerlink" title="$10.$ 树形背包"></a>$10.$ 树形背包</h2><p>这玩意洛谷题解都过于夸大他的难度了，李煜东的书讲的挺好。。。</p>
+<h3 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h3><p>给你N个课呈树形结构，选子课程必须选父课程，问你选M课的最大收益？</p>
+<h3 id="口胡分析："><a href="#口胡分析：" class="headerlink" title="口胡分析："></a>口胡分析：</h3><p>以上就是树形背包板子题了，其实过程很直白，很简单。</p>
+<ol>
+<li>首先套上树形DP板子：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=fir[v];i;i=e[i].next)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=e[i].u; dfs(u); </span><br><span class="line">		<span class="comment">//~~枚举子状态，选取最大值的过程~~</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后把中间那个套一下改成背包模板就行了。。</p>
+<ol start="2">
+<li>我们可以知道题目给定的是一个森林，你要跑树形DP必须要建一个虚节点O，连接所有有向树的根，这步骤是公认的。</li>
+</ol>
+<p><strong>树形DP的通性就是他维护的子结构一定是一个子树</strong>，这样就很好定义转移方程。我们设$f[i][j]$为以i为根的子树，选了j节课且必选自己的最大利益。</p>
+<p>那么显然的，初始状态即为$f[i][1]=s[i]$。且对于每一个子树，我们可以利用<strong>泛化物品</strong>的概念去构造一个泛化物品代替一棵子树。</p>
+<p>_对于每个子树$u$所控制的泛化物品$A$,给他分配的容量$k$当然指选j节课，造成了收益$w[k]=f[u][k]$，由于我们执行$DFS$之后已经搞出每个子树的信息，所以直接调用即可。_</p>
+<p>_很显然，每个子树的泛化物品在$~0 ~to ~(m+1)$中枚举与父亲取极值后不断向上合并，最后可以汇聚成一个以虚节点O为根的总泛化物品。这应该就是DD大佬在说泛化物品时的本意。_</p>
+<p>当然我们解题时不需要这种乱七八糟的概念，我们只用把一个子树与父亲的关系看作一个分组背包，对于不同的$k$容量，价值应该是<strong>在子树里选$j$个与非该子树中选$k-j$个的价值</strong>。写作转移方程即为：<br>$$f[v][j]=max\begin{Bmatrix}f[v_{son}][j]+f[v][j-k]\end{Bmatrix} $$</p>
+<p>这样的话，对于每棵子树的组合，只能至多选一个物品，且每棵子树只搜一次，于是就是裸的分组背包了。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=fir[v];i;i=e[i].next)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> u=e[i].u; dfs(u); </span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j=m+<span class="number">1</span>;j&gt;=<span class="number">1</span>;j--)  <span class="comment">//容量VA </span></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;j;k++)  <span class="comment">//选这个子树的k节课 </span></span><br><span class="line">				f[v][j]=max(f[v][j],f[u][k]+f[v][j-k]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>就是这样。</p>
+<h2 id="11-单调队列优化背包"><a href="#11-单调队列优化背包" class="headerlink" title="$11.$单调队列优化背包"></a>$11.$单调队列优化背包</h2><p>恶心玩意，$NOIP$，不可能考，打死不学。洛谷日报自己看。</p>
+<p>前十讲都是一些板子啥的，接下来会在<strong>应用方面</strong>飙车了！</p>
+<h2 id="12-背包应用-1-——打印方案（上）"><a href="#12-背包应用-1-——打印方案（上）" class="headerlink" title="$12.$背包应用$1$——打印方案（上）"></a>$12.$背包应用$1$——打印方案（上）</h2><p><del>我发现洛谷日报就是抄袭背包九讲的。。</del></p>
+<p>我们设$g[i][j]$表示当$f[i][j]$状态时的转移来源，$g[i][j]=0$即从$f[i-1][j]$转来的，$g[i][j]=1$即从$f[i-1][j-v[i]]$转移的.</p>
+<p>类似这样写，应该很直观。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&gt;=<span class="number">1</span>;i--)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=V;j&gt;=c[i];j--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(f[j]&lt;f[j-c[i]]+w[i])</span><br><span class="line">        &#123;</span><br><span class="line">            f[j]=f[j-c[i]]+w[i];</span><br><span class="line">                g[i][j]=<span class="literal">true</span>;<span class="comment">///选第i件物品</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> g[i][j]=<span class="literal">false</span>;<span class="comment">///不选第i件物品</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>打印时就这样：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(g[i][Vm])  </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        Vm-=c[i];<span class="comment">//减去物品i的体积. </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但很显然会出现有多种情况的数据，还要写spj。</p>
+<h2 id="13-背包应用-1-——打印方案（下）"><a href="#13-背包应用-1-——打印方案（下）" class="headerlink" title="$13.$ 背包应用$1$——打印方案（下）"></a>$13.$ 背包应用$1$——打印方案（下）</h2><p>这里特别提一下打印<strong>字典序最小方案</strong>，原作者好像重点提及了，而且还不用写SPJ。</p>
+<p>首先由于路径大小在之后的状态是从$[1,n]$变为$[2,n]$的，所以应该先把物品顺序倒放，跑的时候再根据01背包。打印的时候再正着来打印。</p>
+<p>为了防止误解，11章的程序就是最小字典序了。</p>
+<p>貌似这个$g[i][j]$的第一维不能滚？毕竟他是根据原动规状态来的。</p>
+<h2 id="14-背包应用2-—-—求方案总数"><a href="#14-背包应用2-—-—求方案总数" class="headerlink" title="$14.$ 背包应用2 — —求方案总数"></a>$14.$ 背包应用2 — —求方案总数</h2><p>这个其实还是一个换背包模型的问题。。把$f[j]$定义为，容量为j的方案数，于是类似01背包可搞出转移方程<br>$$f[j]=\sum_{i=1}^n (f[j-v[i]]+w[i])$$</p>
+<p>且初始化$f[0]=1$.</p>
+<p>正常跑01即可，<a href="https://www.luogu.org/problemnew/show/P1164" target="_blank" rel="noopener">小A</a>为我们提供了板子题。</p>
+<h2 id="15-背包应用2-—-—自然数累加问题"><a href="#15-背包应用2-—-—自然数累加问题" class="headerlink" title="$15.$ 背包应用2 — —自然数累加问题"></a>$15.$ 背包应用2 — —自然数累加问题</h2><h3 id="题目大意1："><a href="#题目大意1：" class="headerlink" title="题目大意1："></a>题目大意1：</h3><p>给定一个数$s$，在$1~to~n$中，求可累加任意数等于s的方案数。</p>
+<h3 id="口胡分析1："><a href="#口胡分析1：" class="headerlink" title="口胡分析1："></a>口胡分析1：</h3><p>换背包模型，就是以$i$为容量，1为价值，求其的方案总数。。然后套一下上面那个应用板子即可。。</p>
+<p>给个程序：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j=s;j&gt;=<span class="number">1</span>;j--) <span class="keyword">if</span> (f[j]) </span><br><span class="line">		f[j]+=f[j-i]; <span class="comment">//方案数直接加上即可</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="题目大意2："><a href="#题目大意2：" class="headerlink" title="题目大意2："></a>题目大意2：</h3><p>给定一个数$s$，在$1~to~n$中，求可累加任意数<strong>大于等于</strong>s的方案数。</p>
+<h3 id="口胡分析2："><a href="#口胡分析2：" class="headerlink" title="口胡分析2："></a>口胡分析2：</h3><p>咕。</p>
+<h2 id="16-背包应用3-——特定选取物品顺序型"><a href="#16-背包应用3-——特定选取物品顺序型" class="headerlink" title="$16.$背包应用3 ——特定选取物品顺序型"></a>$16.$背包应用3 ——特定选取物品顺序型</h2><p>有些物品在特定的<strong>剩余背包容量</strong>下有特定的价值，那么区别于泛化物品的定义，我们要先确定<strong>贪心</strong>选取物品的顺序。</p>
+<p>$NOIP$仅考过涉及贪心策略的<a href="https://www.luogu.org/problemnew/show/P1080" target="_blank" rel="noopener">国王游戏</a>，魔改版的<a href="https://www.luogu.org/problemnew/show/P2123" target="_blank" rel="noopener">皇后游戏</a>。关于这种特定顺序的DP仅在培训遇到过。。</p>
+<p>比如这道<a href="https://www.luogu.org/problemnew/show/U47733" target="_blank" rel="noopener">疯狂的火神</a>，<br>由于顺序的不确定性我们要先按照贪心策略对其排序，之后套一个$01$背包板子就行了。。</p>
+<p>当$ W_1&lt;W_2 $ 时， 可推出$ \frac{a_1 }{b_2} &lt; \frac{a_2 }{b_1} $<br>，按其排序即可。</p>
+<p><del>CZH搞了个这种类型的原创题，上线后再更新。</del></p>
+<p><del>这种DP不应该放背包专题里，可以出更多东西，但为了凑18讲就拿来了。。</del></p>
+<h2 id="17-背包应用4-——多元背包转移"><a href="#17-背包应用4-——多元背包转移" class="headerlink" title="$17.$背包应用4 ——多元背包转移"></a>$17.$背包应用4 ——多元背包转移</h2><p>不同于混合背包，多元背包更偏向于<strong>转移方程中的混合</strong>而非物品的混合，且经常与线性DP，树形DP等毒瘤DP搭配使用。</p>
+<ul>
+<li>$1.$比较典型的就是$USACO$的<a href="https://www.luogu.org/problemnew/show/P2736" target="_blank" rel="noopener">魄罗乐队</a>，我们设$f[i][j]$为到第$i$个CD，用了$j$的容量。</li>
+</ul>
+<p>那么在一盘$CD$中，可以看做一个简单的$01$背包，转移式<br>$$f[i][j]=max(f[i][j],f[i][j-l[k]]+1)$$</p>
+<p>对于新开的$CD$可能，是一个线性$DP$，转移式：<br>$$f[i][j]=max(f[i][j],f[i-1][t]+1)$$</p>
+<ul>
+<li>$2.NOIP$关于背包的考察最难的莫属<a href="https://www.luogu.org/problemnew/show/P1941" target="_blank" rel="noopener">鸟羽飞扬</a>了。</li>
+</ul>
+<p>在没有题解的帮助下，我们可以用线性DP的思想得到一个简单转移式。设$f[i][j]$为到达$(i,j)$点击最小数，则：<br>$$f[i][j]=min(\sum_{j-k*x[i-1]&gt;0} f[i-1][j-k*x[i-1]+k,f[i-1][j+y[i-1])$$</p>
+<p>很明显，加上里面那重循环的话一共就有$O(n^3)$超时了。我们可以看出，这实质上就是一个<strong>容量为$x[i-1]$价值为1的物品跑完全背包</strong>，于是只要将其y值正着搜跑完全背包，之后再跑01背包就可以了（这地方用不着倒着搜，因为我们本来就是二维转移，但完全背包不用考虑第一维）。</p>
+<p>用式子表示就是：<br>$$f[i][j]=min(min(f[i-1][j-x[i-1]],f[i][j-x[i-1]])+1,f[i-1][j+y[i-1]])$$</p>
+<p>我知道很长，而且还有很多小细节。。。</p>
+<h2 id="18-背包应用5-——神题集萃"><a href="#18-背包应用5-——神题集萃" class="headerlink" title="$18.$背包应用5 ——神题集萃"></a>$18.$背包应用5 ——神题集萃</h2><p>你觉得我有机会写这一章吗？？</p>
+<p>丢几道我都不会写的题，自己感受：</p>
+<ul>
+<li><p><a href="https://www.luogu.org/problemnew/show/P4365" target="_blank" rel="noopener">【九省联考】秘密袭击</a></p>
+</li>
+<li><p><a href="https://www.luogu.org/problemnew/show/P5289" target="_blank" rel="noopener">【十二省联考】皮配</a></p>
+</li>
+<li><p><a href="https://www.luogu.org/problemnew/show/P4037" target="_blank" rel="noopener">【JSOI】魔兽地图</a></p>
+</li>
+</ul>
+<h1 id="完。。。"><a href="#完。。。" class="headerlink" title="完。。。"></a>完。。。</h1>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/26/十二省省选游记/" rel="next" title="十二省省选游记">
+                <i class="fa fa-chevron-left"></i> 十二省省选游记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://cdn.luogu.org/upload/usericon/15984.png" alt="TURLE">
+            
+              <p class="site-author-name" itemprop="name">TURLE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.luogu.org/space/show?uid=15984" title="洛谷 &rarr; https://www.luogu.org/space/show?uid=15984" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>洛谷</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://user.qzone.qq.com/1597440560" title="QQZone &rarr; https://user.qzone.qq.com/1597440560" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>QQZone</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-前言"><span class="nav-text">$0.$前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-3-零一，完全，多重背包"><span class="nav-text">$1,2,3:$零一，完全，多重背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-依赖背包"><span class="nav-text">$4.$依赖背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-分类背包"><span class="nav-text">$5.$ 分类背包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#留一道例题，这题真好"><span class="nav-text">留一道例题，这题真好</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-混合背包"><span class="nav-text">$6.$混合背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-二维费用背包"><span class="nav-text">$7.$二维费用背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-泛化物品背包（上）"><span class="nav-text">$8.$泛化物品背包（上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-泛化物品的合并（下）"><span class="nav-text">$9.$泛化物品的合并（下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-树形背包"><span class="nav-text">$10.$ 树形背包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述："><span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#口胡分析："><span class="nav-text">口胡分析：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-单调队列优化背包"><span class="nav-text">$11.$单调队列优化背包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-背包应用-1-——打印方案（上）"><span class="nav-text">$12.$背包应用$1$——打印方案（上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-背包应用-1-——打印方案（下）"><span class="nav-text">$13.$ 背包应用$1$——打印方案（下）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-背包应用2-—-—求方案总数"><span class="nav-text">$14.$ 背包应用2 — —求方案总数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-背包应用2-—-—自然数累加问题"><span class="nav-text">$15.$ 背包应用2 — —自然数累加问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意1："><span class="nav-text">题目大意1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#口胡分析1："><span class="nav-text">口胡分析1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意2："><span class="nav-text">题目大意2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#口胡分析2："><span class="nav-text">口胡分析2：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-背包应用3-——特定选取物品顺序型"><span class="nav-text">$16.$背包应用3 ——特定选取物品顺序型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-背包应用4-——多元背包转移"><span class="nav-text">$17.$背包应用4 ——多元背包转移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-背包应用5-——神题集萃"><span class="nav-text">$18.$背包应用5 ——神题集萃</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#完。。。"><span class="nav-text">完。。。</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+		
+	
+		<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+		<div class="widget-wrap">
+			<h3 class="widget-title">Tag Cloud</h3>
+			<div id="myCanvasContainer" class="widget tagcloud">
+				<canvas width="250" height="250" id="resCanvas" style="width=100%">
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动态规划/">动态规划</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打表/">打表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/有感/">有感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络流/">网络流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+				</canvas>
+			</div>
+		</div>
+	
+	
+	
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TURLE</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
