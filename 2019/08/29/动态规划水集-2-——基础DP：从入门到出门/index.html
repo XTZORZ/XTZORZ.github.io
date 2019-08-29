@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon32.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon16.png?v=7.0.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="$0.$前言作为半个身子埋在物竞里面的人，暑假可能就没多少功夫管OI了。。其实如果想在物竞上有所作为的话，我现在应该直接把电脑往地上一摔，从此与OI不再往来才好。。 但出于道义也好，处于情义也罢，还是想把这玩意给好好写完。。 本文将把NOIP会考的DP模型全部说一遍，让各位有一个相对完整的技能树。至于一些优化部分可能会另开一文细谈。 $1.$线性$DP$我们入门学的几乎全是线性DP，比较常见的有：">
+<meta name="keywords" content="动态规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划水集(2)——基础DP：从入门到出门">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/动态规划水集-2-——基础DP：从入门到出门/index.html">
+<meta property="og:site_name" content="天泽龟的小龟壳">
+<meta property="og:description" content="$0.$前言作为半个身子埋在物竞里面的人，暑假可能就没多少功夫管OI了。。其实如果想在物竞上有所作为的话，我现在应该直接把电脑往地上一摔，从此与OI不再往来才好。。 但出于道义也好，处于情义也罢，还是想把这玩意给好好写完。。 本文将把NOIP会考的DP模型全部说一遍，让各位有一个相对完整的技能树。至于一些优化部分可能会另开一文细谈。 $1.$线性$DP$我们入门学的几乎全是线性DP，比较常见的有：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.luogu.org/upload/pic/68708.png">
+<meta property="og:updated_time" content="2019-08-29T06:08:24.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划水集(2)——基础DP：从入门到出门">
+<meta name="twitter:description" content="$0.$前言作为半个身子埋在物竞里面的人，暑假可能就没多少功夫管OI了。。其实如果想在物竞上有所作为的话，我现在应该直接把电脑往地上一摔，从此与OI不再往来才好。。 但出于道义也好，处于情义也罢，还是想把这玩意给好好写完。。 本文将把NOIP会考的DP模型全部说一遍，让各位有一个相对完整的技能树。至于一些优化部分可能会另开一文细谈。 $1.$线性$DP$我们入门学的几乎全是线性DP，比较常见的有：">
+<meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/68708.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/29/动态规划水集-2-——基础DP：从入门到出门/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>动态规划水集(2)——基础DP：从入门到出门 | 天泽龟的小龟壳</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">天泽龟的小龟壳</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">天泽龟的龟 是龟裂的龟(jūn)哦</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/动态规划水集-2-——基础DP：从入门到出门/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TURLE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cdn.luogu.org/upload/usericon/15984.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="天泽龟的小龟壳">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动态规划水集(2)——基础DP：从入门到出门
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-29 13:55:55 / 修改时间：14:08:24" itemprop="dateCreated datePublished" datetime="2019-08-29T13:55:55+08:00">2019-08-29</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法学习/" itemprop="url" rel="index"><span itemprop="name">算法学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="$0.$前言"></a>$0.$前言</h2><p>作为半个身子埋在物竞里面的人，暑假可能就没多少功夫管OI了。。其实如果想在物竞上有所作为的话，我现在应该直接把电脑往地上一摔，从此与OI不再往来才好。。</p>
+<p>但出于道义也好，处于情义也罢，还是想把这玩意给好好写完。。</p>
+<p>本文将把NOIP会考的<strong>DP模型</strong>全部说一遍，让各位有一个相对完整的技能树。至于一些优化部分可能会另开一文细谈。</p>
+<h2 id="1-线性-DP"><a href="#1-线性-DP" class="headerlink" title="$1.$线性$DP$"></a>$1.$线性$DP$</h2><p>我们入门学的几乎全是线性DP，比较常见的有：</p>
+<ul>
+<li>$LIS,LCS$问题</li>
+<li><a href="https://www.luogu.org/blog/XTZORZ/beibao-18-jiang" target="_blank" rel="noopener">背包问题</a></li>
+</ul>
+<p>目前只想到这两个比较重要的，别看模型十分简单，却可以出很难的题。</p>
+<p><strong>线性DP常用刷表法解决。</strong> 基本上确定DP可转移的状态，找到与已知状态间的关系，写出转移方程，之后就是很简单的事了。</p>
+<ul>
+<li><h4 id="NOIP-对于线性DP的考察也很多，这里以传纸条为例。"><a href="#NOIP-对于线性DP的考察也很多，这里以传纸条为例。" class="headerlink" title="$NOIP$对于线性DP的考察也很多，这里以传纸条为例。"></a>$NOIP$对于线性DP的考察也很多，这里以<a href="https://www.luogu.org/problemnew/show/P1006" target="_blank" rel="noopener">传纸条</a>为例。</h4><strong>题面：</strong></li>
+</ul>
+<p>给你一个矩阵，找两条连接对角线定点的不重合路径，使权值最大。</p>
+<p><strong>口胡分析：</strong></p>
+<p>首先看到一来一回两条路径肯定要当做两条由上及下的不重叠路径做，才符合线性DP的规则。</p>
+<p>设$f[i][j][x][y]$为一号路径到$(i,j)$和二号路径到$(x,y)$的最大和。</p>
+<p>那么对于两条路径，均有两种转移方案：</p>
+<ol>
+<li>从上方下来，以一号路径即：$f[i][j]=f[i-1][j]+w[i][j]$</li>
+<li>从左方过来，以一号路径即：$f[i][j]=f[i][j-1]+w[i][j]$</li>
+</ol>
+<p>考虑上二号路径同理，即得线性DP转移方程：<br>$f[i][j][k][q]=max($ </p>
+<p>$f[i-1][j][k-1][q],f[i][j-1][k-1][q],$</p>
+<pre><code>一号由1，二号由1； 一号由2，二号由1
+</code></pre><p>$f[i-1][j][k][q-1],f[i][j-1][k][q-1])$</p>
+<pre><code>一号由1，二号由2； 一号由2，二号由2
+</code></pre><p>$+a[i][j]+a[k][q]$    </p>
+<pre><code>两种路径新添价值。
+</code></pre><p>最后注意路径不可重叠，特判一下，这个原因也导致$f[n][m][n][m]$无结果，取$f[n][m][n][m-1]$即可。（一道SB题说了很多。。）</p>
+<h2 id="2-树形-DP"><a href="#2-树形-DP" class="headerlink" title="$2.$树形$DP$"></a>$2.$树形$DP$</h2><p>用来维护父亲节点与各个儿子间的关系，基本上采用$dfs$进行深搜转移。<br>通过这种方式，才能得到所有儿子的信息从而转移回根节点。</p>
+<p>通常这样写：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	..balala...  <span class="comment">//处理叶子节点</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=fir[u];i;i=e[i].nex)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> v=e[i].u; <span class="keyword">if</span> (v==fa) <span class="keyword">continue</span>;</span><br><span class="line">		dfs(v,u); </span><br><span class="line">		..balabala...  <span class="comment">//通过子树推导当前根节点信息。</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>比较典型的要数<a href="https://www.luogu.org/problemnew/show/P1352" target="_blank" rel="noopener">没有上司的舞会</a>，这也是$2018NOIP~D2T3$的部分分，那么煞笔我居然没拿到。。</p>
+<ul>
+<li><h3 id="可以以最近做的有线电视网为例。"><a href="#可以以最近做的有线电视网为例。" class="headerlink" title="可以以最近做的有线电视网为例。"></a>可以以最近做的<a href="https://www.luogu.org/problemnew/show/P1273" target="_blank" rel="noopener">有线电视网</a>为例。</h3></li>
+</ul>
+<p><strong>题面：</strong> 太长不复制了。。</p>
+<p><strong>口胡分析：</strong></p>
+<p>都说这题是背包，但非叶子节点价值是负数也能算背包吗（好像真的可以。。），于是就当树形DP讲了。。</p>
+<p>虽然要求算最多可获益的人数，但这玩意明显应该作为容量来考虑。所以我们设$f[i][j]$为以$i$为根，最多可获益$j$人的最大收益（可为负）。然后找最大的$i$使收益$f[n][i]&gt;0$即可。。</p>
+<ol>
+<li><p>那么对于初始化，明显$f[\forall u][0]=0,f[\forall u][i]=-INF$</p>
+</li>
+<li><p>对于叶子结点u，$f[u][1]=a[u]$</p>
+</li>
+<li><p>对于非叶子节点，枚举其所有儿子$v$，则有：</p>
+</li>
+</ol>
+<p>$$f[u][i]=max(f[v][k]+f[u][j-k]-e[i].w)$$</p>
+<p>即是在该儿子子树内选k个人加上除了其他儿子选(j-k)个人，最终加上价值（负的），取最大即可。</p>
+<h2 id="3-区间-DP"><a href="#3-区间-DP" class="headerlink" title="$3.$区间$DP$"></a>$3.$区间$DP$</h2><p>区间DP通常是设$f[i][j]$表示在$[i,j]$间的某些信息，并通过拓宽边界的方式得到$[1,n]$区间的答案。</p>
+<p>由于动态规划的无后效性，我们当然要从子结构往大的转移。对于树形DP显然就是从子树转移到根，而对于区间DP就是<strong>从小区间转移到大区间</strong></p>
+<p>通常这样写：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l=<span class="number">2</span>;l&lt;=n;l++) <span class="comment">//枚举长度 </span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n-l+<span class="number">1</span>;i++)  <span class="comment">//枚举起点</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> j=i+l<span class="number">-1</span>; <span class="comment">//确定终点</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> k=i;k&lt;j;k++)&#123; <span class="comment">//寻找断点 </span></span><br><span class="line">		...balabala...</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="比较典型的有："><a href="#比较典型的有：" class="headerlink" title="比较典型的有："></a>比较典型的有：</h3><ul>
+<li>NOI的<a href="https://www.luogu.org/problemnew/show/P1880" target="_blank" rel="noopener"><strong>傻子合并</strong></a>，</li>
+<li>NOIP的不需要枚举断点<del>就十分简单还装作二维区间</del>的<a href="https://www.luogu.org/problemnew/show/P1005" target="_blank" rel="noopener"><strong>矩阵取数问题</strong></a></li>
+</ul>
+<p>由于不需要断点导致记忆化搜索更简单一点。。</p>
+<ul>
+<li>NOIP十分经典的<a href="https://www.luogu.org/problemnew/show/P1063" target="_blank" rel="noopener"><strong>能量项链</strong></a>。</li>
+</ul>
+<p>可以口胡一下题解：对于一个区间$[i,j]$枚举其断点，分析样例就可看出增加的价值即为$v[i]*v[k]* v[j]$，直接套板子子即可。</p>
+<ul>
+<li><h3 id="在李煜东书里面有道【IOI】多边形挺好的。"><a href="#在李煜东书里面有道【IOI】多边形挺好的。" class="headerlink" title="在李煜东书里面有道【IOI】多边形挺好的。"></a>在李煜东书里面有道<a href="https://www.luogu.org/problemnew/show/P4342" target="_blank" rel="noopener">【IOI】多边形</a>挺好的。</h3></li>
+</ul>
+<p><strong>题意：</strong> 给你个环由数点和运算符边构成，要求你断一条边然后求其最值的最值。</p>
+<p><strong>口胡分析：</strong><br>由于DP经验为0，我一开始真没想到用区间DP搞，现在想想这不和能量项链一个套路吗。。</p>
+<p>设$f[i][j]$为$[i,j]$区间的最大计算数，很显然我们可以预处理$f[i][i]$和$f[i][i+1]$，对于$\forall f[i][j]=max(f[i][k]~op~f[k+1][j])$<br>，其中op为运算符，这是大概的思路。</p>
+<p>我们敲完才发现有80分。。但这20分决定这道题是绿的还是紫的。。</p>
+<p>经思考我们恍然大悟： <strong>这TM负负得正啊！如果两个负数相乘要想得到最大值要求两个负数越小越好啊！</strong></p>
+<p>于是我们还要维护$g[i][j]$表示区间的最小计算数然后特判乘法情况：</p>
+<ul>
+<li>$f[i][j]=max(g[i][k]*g[k+1][j])$<br><code>//这是负负得正的情况</code></li>
+<li>$g[i][j]=min(g[i][k]*f[k+1][j],f[i][k]*g[k+1][j])$<br><code>//这是正负得负的情况</code></li>
+</ul>
+<p>然后直接上就行了，破环为链在划水集（三）中提到就不赘述。</p>
+<ul>
+<li><h3 id="还有一道二维区间的棋盘分割也很考验对区间DP的理解。"><a href="#还有一道二维区间的棋盘分割也很考验对区间DP的理解。" class="headerlink" title="还有一道二维区间的棋盘分割也很考验对区间DP的理解。"></a>还有一道二维区间的棋盘分割也很考验对区间DP的理解。</h3></li>
+</ul>
+<p><strong>题意：</strong> 给定一个棋盘，要求重复n下操作：选一个矩阵，然后把这个矩阵按水平或竖直线一分为二。这样就得到了n个独立的矩阵，求这些矩阵的平方和最大值。</p>
+<p><strong>口胡分析：</strong> 我们大可不用想复杂，继续套区间DP的板子。</p>
+<p>— —先枚举小区间的边长$(l_x,l_y)$，再枚举起点$(x,y)$，最终在当前子区间内讨论DP转移就行了，这是一个区间DP的通用思路。</p>
+<p>那我们设$f[i][j][a][b][k]$为从$(i,j)$到$(a,b)$区间内分成$k$份所得到最大分数平方。经思考可得到一下方程：</p>
+<ul>
+<li>对于$k=1$的情况，很显然只要套一个二维前缀和就搞定了。</li>
+<li>对于$k&gt;1$的情况，我们考虑一个二维断点$(x,y)$表示此处横或竖直切一刀。</li>
+</ul>
+<p>$RT:$<img src="https://cdn.luogu.org/upload/pic/68708.png" alt=""></p>
+<p>那么对于切下来的两个矩形，一个我们可以继续切而另一个要丢掉，那么就可以口胡出转移方程：</p>
+<ul>
+<li><p>对于横着切：<br>$f[i][j][a][b][k]= max\begin{Bmatrix} f[i][j][a][y][1]+f[i+1][y][a][b][k-1],f[i][j][a][y][k-1]+f[i+1][y][a][b][1]\end{Bmatrix}$<br><code>↑这是分别考虑继续切下面的矩形还是切上面的矩形</code></p>
+</li>
+<li><p>对于竖着切：<br>$f[i][j][a][b][k]= max\begin{Bmatrix} f[i][j][x][b][1]+f[x+1][j][a][b][k-1], f[i][j][x][b][k-1]+f[x+1][j][a][b][1]\end{Bmatrix}$<br><code>↑这是分别考虑继续切右面的矩形还是切左面的矩形</code></p>
+</li>
+</ul>
+<p>然后答案就是$f[1][1][8][8][n]$，看起来十分复杂但是思路很直。</p>
+<h2 id="4-状压-DP"><a href="#4-状压-DP" class="headerlink" title="$4.$状压$DP$"></a>$4.$状压$DP$</h2><p><strong>状压DP</strong>虽然相比之前较难，但NOIP是考过的！啊？你问我哪题考过？</p>
+<p><a href="https://www.luogu.org/problem/P3959" target="_blank" rel="noopener">2017年的宝藏啊！</a>虽然暴力踩标算但他好歹是标算啊！</p>
+<p>我们这里先给出状压DP的定义：对于某集合$S$可以由其子集合$S_I$转移而来，即为状压DP。</p>
+<p>由于状压DP中维护的状态是集合，其元素的表示我们要想做到快捷而方便的转移，最好用二进制表示。如对于一排4盏灯分别为开开关开，用二进制表示即为$(1101)_ 2$，写在$f[S]$中即为$S=13$。</p>
+<p>由于二进制大小的限制，当$n=23$的时候就已经百万了，这导致状压DP的数据范围都很小。<del>这表明当你看到一题数据范围很小而且爆搜不可做时候就上状压准没错。</del></p>
+<ul>
+<li><h3 id="前置芝士：位运算"><a href="#前置芝士：位运算" class="headerlink" title="前置芝士：位运算"></a>前置芝士：位运算</h3></li>
+</ul>
+<p>首先你要知道二进制的状态集合都是通过位运算来建立关系的，就是说只有学了位运算你才能学状压。</p>
+<p>其次你应该知道位运算的时间复杂度是$O(1)$的，也就是说只有熟练运用位运算，你才能使你的程序跑的飞快，这个在其他算法的程序也常常使用。</p>
+<p>具体的有啥种类的位运算看下<a href="https://blog.csdn.net/mengzhengjie/article/details/80611422" target="_blank" rel="noopener">随便在网上找的博客</a><br>就行了，主要是给出一些常用手段，大家可以结合定义摸索：</p>
+<ul>
+<li>判断状态$A$和状态$B$是否有重合1的部分： <code>~(a^b)==0</code></li>
+<li>判断状态$A_i$和状态$B_j$在是否共为1： <code>a&amp;(1&lt;&lt;i) &amp;&amp; b&amp;(1&lt;&lt;j)</code></li>
+<li>判断状态$A$是否有相邻1：<code>a&amp;(a&gt;&gt;1) || a&amp;(a&lt;&lt;1)</code></li>
+<li>判断状态$A$是否满足全集$S$: <code>a&amp;s==a</code></li>
+<li>判断状态$A$中1的个数：<br><code>while (x) { sum++; x=x&amp;(x-1); }</code></li>
+</ul>
+<p>以上东西随着做题深入来补充，也欢迎大家提供一些。</p>
+<p>其次你要注意的是：<br> <strong>对于每一个位运算都搞一个括号括着！</strong></p>
+<p>因为位运算的优先级巨低，所以对于初学者把所有位运算都拿个括号是坠吼的，当然你要是搞懂了优先级就随你便了（或者你可以记一下，位运算优先级低于逻辑判断符<code>==</code> ， <code>&lt;</code>等）。</p>
+<ul>
+<li><h3 id="状压-DP-部分"><a href="#状压-DP-部分" class="headerlink" title="状压$DP$部分"></a>状压$DP$部分</h3></li>
+</ul>
+<p>状压DP难就难在他维护的是一个集合（状态），不是什么结构，因此出题十分灵活，没法子像区间，树上DP那样有明确模板。如果硬是要说的话，倒是像线性DP那样可以刷刷表啥的。。</p>
+<p>感觉好多题想讲啊，都提一下好了。篇幅问题就都不写题面了，请大家务必好好熟悉题目再看口胡分析啊！</p>
+<ol>
+<li><h4 id="状压入门，-K-国王问题"><a href="#状压入门，-K-国王问题" class="headerlink" title="状压入门，$K$国王问题"></a>状压入门，<a href="https://www.luogu.org/problem/P1896" target="_blank" rel="noopener">$K$国王问题</a></h4></li>
+</ol>
+<p>首先应该先确定可以被压缩的状态，但要是选了附近一圈的格子为状态就会发现很不好转移。。</p>
+<p>那我们就沿用刷表法的思想，以每行棋子摆放情况为一个状态，一行一行的刷。设$f[i][s][k]$为刷到第i行，此时的状态为S，此时已放了K个国王所满足的总方案数，那我们只要考虑自己行是否满足条件，上一行是否满足条件即可转移。</p>
+<p><strong>而且如果某限制条件只与每行自身状态有关，我们就可以先预处理出所有状态的有关信息，判断时候直接调用。</strong> 这种策略对于此题，可以解决：该状态是否存在相邻丫（<code>zr[S]</code>），又如该状态含有多少个1丫（<code>ge[S]</code>）等等，这些信息你枚举也好深搜也好都是允许的。</p>
+<p>在预处理之后就进入的DP主体部分：</p>
+<ul>
+<li>初始化：对于第一行，只要满足$zr[S]!=0,f[i][s][ge[i]]=1$</li>
+<li>转移：对于当前第$i$行的$S$，上一行是$M$，此时已用了$l$个国王。当他们的<code>zr[s]</code>均为否，且相邻处也满足条件时即可转移。</li>
+</ul>
+<p>其中满足条件为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(state[j] &amp; state[p]) continue;    //上下相邻不行</span><br><span class="line">if(state[j] &amp; (state[p]&lt;&lt;1))    continue;   //右上角</span><br><span class="line">if((state[j]&lt;&lt;1) &amp; state[p])    continue;   //左上角</span><br></pre></td></tr></table></figure></p>
+<p>最终转移方程即为：<br>$$f[i][s][k]+=f[i-1][M][l-ge[s]]$$</p>
+<p>其中<code>l-ge[i]</code>表示前$i-1$所用的国王数量。</p>
+<ol start="2">
+<li><strong>炮兵阵地，左转<a href="https://www.luogu.org/blogAdmin/article/edit/145203" target="_blank" rel="noopener">划水集（3）</a>。</strong></li>
+<li><h4 id="BangDream-的合唱站队，后面就附带详细的题解yo"><a href="#BangDream-的合唱站队，后面就附带详细的题解yo" class="headerlink" title="$BangDream$ 的合唱站队，后面就附带详细的题解yo~"></a><a href="https://www.luogu.org/problem/P3694" target="_blank" rel="noopener">$BangDream$ 的合唱站队</a>，<a href="https://www.luogu.org/blog/XTZORZ/solution-p3694" target="_blank" rel="noopener">后面就附带详细的题解yo~</a></h4></li>
+<li><h4 id="【SDOI】学校食堂也很好，但题解写不动了。。"><a href="#【SDOI】学校食堂也很好，但题解写不动了。。" class="headerlink" title="【SDOI】学校食堂也很好，但题解写不动了。。"></a><a href="https://www.luogu.org/problem/P2157" target="_blank" rel="noopener">【SDOI】学校食堂</a>也很好，但题解写不动了。。</h4></li>
+</ol>
+<p>先允许我刷刷提高训练营的题，咕一阵子。。</p>
+<h2 id="5-冷门-DP"><a href="#5-冷门-DP" class="headerlink" title="$5^*.$冷门$DP$"></a>$5^*.$冷门$DP$</h2><p>这里包含一些不常考但CSP确实可以考的模型，可能会有更多补充。</p>
+<ul>
+<li><h3 id="有向图-DP"><a href="#有向图-DP" class="headerlink" title="有向图$DP$"></a>有向图$DP$</h3></li>
+</ul>
+<p>由于有向图的无后效性所诞生出来的DP种类，常常伴随拓扑排序或记忆化搜索出现，在查找图上信息时很常用。</p>
+<p>你要问我有啥例题的话我也没做过啊，而且一时半会还找不到。只不过NOIP有道原题<a href="https://www.luogu.org/problem/P1073" target="_blank" rel="noopener">最优贸易</a>可以用DP很巧妙的做出来，<del>但和我用SPFA硬刚一点关系没有。</del></p>
+<p>于是往回翻啊翻，真的找到了一道不错的$DAG~DP$题：<a href="https://www.luogu.org/problem/P4742" target="_blank" rel="noopener">$Running ~to ~the ~Sky$</a></p>
+<p><strong>题面：</strong> 给一张有向图, 每个点都有点权,仅第一次经过该点时该点的点权有贡献，求这张图上一条任意路径的最大贡献，若有多个则选择路径覆盖点权最大的。</p>
+<p><strong>口胡分析：</strong> 首先题目的第一句话暗示有子环，那我们先缩个点，然后整个图就是个DAG了，再去由入度为0的点出发，用拓扑考虑DP啥的。</p>
+<p>基本上$DAG~DP$不会有很复杂的状态，经常都是与当前节点有关的。于是我们设$f[i]$为到第i个节点所得到的最大贡献，由于当最大贡献相同时还要考虑其路径上的最大点权，所以还需维护$p[i]$表示其最大路径上的最大点权。</p>
+<p>于是我们在缩点的时候就要也顺便维护两个信息$:s[i],mp[i]$分别表示该连通分量的总和及其最大值，可得出最终状态方程：</p>
+<ul>
+<li><p>初始化：$f[i]=s[i],p[i]=mp[i]$</p>
+</li>
+<li><p>若当前最大值需要更新：<br>$$f[i]=f[v]+s[i],mp[i]=max(p[i],mp[v])$$</p>
+</li>
+<li>若当前最大值相同，由于是不同路径，需要用mp数组比较：<br>$$mp[i]=max(mp[i],mp[v])$$</li>
+</ul>
+<p>大概就是这样，若$mp[i]$的转移方程看不懂可以去原题解页面自行琢磨。</p>
+<ul>
+<li><h3 id="有向图DP分支—-—博弈"><a href="#有向图DP分支—-—博弈" class="headerlink" title="有向图DP分支— —博弈$^*$"></a>有向图DP分支— —博弈$^*$</h3></li>
+</ul>
+<p>如果当前的图可描述为一个游戏，所衍生出来的 <strong>$sg$函数</strong> 也可通过某种公式进行DP转移从而找到规律。本来我也不会，想学了之后讲讲的，但好像发现这东西其实和DP扯太远了，于是就咕了。</p>
+<p>除了洛谷日报最近的两篇（共三篇，但第一篇博弈论就是给你讲故事的）可以参考，还可以给各位丢一个<a href="https://blog.csdn.net/A_Comme_Amour/article/details/79347291" target="_blank" rel="noopener">讲的很详细的博客</a>。</p>
+<ul>
+<li><h3 id="期望-DP"><a href="#期望-DP" class="headerlink" title="期望$DP$"></a>期望$DP$</h3></li>
+</ul>
+<p>由于数学期望的转移具有线性关系，所以和DP也沾了不少边。但期望DP也只是作为数学期望问题的手段之一，并不是唯一的解期望题的方法，这需要注意。</p>
+<ul>
+<li><h4 id="前置芝士：概率与期望"><a href="#前置芝士：概率与期望" class="headerlink" title="前置芝士：概率与期望"></a>前置芝士：<a href="https://www.luogu.org/blog/XTZORZ/gai-shuai-ji-wang" target="_blank" rel="noopener">概率与期望</a></h4></li>
+</ul>
+<p>由于篇幅过长就搞了一个分支啦~</p>
+<ul>
+<li><h4 id="期望-DP-部分"><a href="#期望-DP-部分" class="headerlink" title="期望$DP$部分"></a>期望$DP$部分</h4></li>
+</ul>
+<p>可以从最简单的一道例题，NOIP的<a href="https://www.luogu.org/problem/P1850" target="_blank" rel="noopener">换教室</a>来分析一下关于期望的知识。</p>
+<p><strong>题面：</strong>告诉你学校各个教室距离，告诉你第i时间点上课的地点和换教室后上课地点，告诉你M次换课的概率，问你期望步行？</p>
+<p><strong>口胡分析：</strong></p>
+<p>还是好好回去把题面静下心读一下吧。。</p>
+<p>不考虑图论部分的知识，假设已经知道个教室的距离$dis[i,j]$，我们设出$f[i][j][0/1]$表示到第I时间点，换了j次课，当前换不换所得到的最小期望距离，那怎么用期望进行分析得出方程呢？</p>
+<h4 id="先考虑当前不换课："><a href="#先考虑当前不换课：" class="headerlink" title="先考虑当前不换课："></a>先考虑当前不换课：</h4><ul>
+<li><p>若上次也不换，那就直接$f[i][j][0]=f[i-1][j][0]+dis[a_i][a_{i-1}]$</p>
+</li>
+<li><p>若上次换，则由定义</p>
+</li>
+</ul>
+<p>可知：</p>
+<pre><code>E(当前上课距离)=
+E(上次换了课的教室与现在教室的距离)*P(换课成功)
++E(上次没换课教室与现在教室的距离）*P(换课失败)；
+</code></pre><p>显然两个事件互相独立且构成总集，所以</p>
+<pre><code>P(换课成功)+P(换课失败)=1
+</code></pre><h4 id="若当前换课："><a href="#若当前换课：" class="headerlink" title="若当前换课："></a>若当前换课：</h4><ul>
+<li>若上次不换课，由定义</li>
+</ul>
+<p>可知：</p>
+<pre><code>E(当前上课距离)
+=E(上次没换课的教室与现在换课教室的距离)*P(当前换课成功)
++E(上次没换课教室与现在没换课教室的距离）*P(当前换课失败)；
+</code></pre><p>对于当前“上次不换课”这个事件，换课成功和失败互相独立且构成总集，所以仍有上面那个式子。</p>
+<ul>
+<li>若上次换课，继续套定义</li>
+</ul>
+<p>可知：</p>
+<pre><code>E(当前上课距离)=
+E(上次没换课教室与现在没换课教室的距离)*P(两次换课失败)
++E(上次换课教室与现在换课教室的距离）*P(两次换课成功)
++E(上次没换课的教室与现在换课教室的距离)*P(上次失败当前成功)
++E(上次换课的教室与现在没换课教室的距离)*P(上次成功当前失败)
+</code></pre><p>由概率线性性质：$P(AB)=P(A)* P(B)$，且满足$\sum P(A_i)=1$ 。于是几个概率都是可算的，本题就没了。</p>
+<h2 id="6-数位-DP"><a href="#6-数位-DP" class="headerlink" title="$6^*.$数位$DP$"></a>$6^*.$数位$DP$</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/01/动态规划水集-1-——背包十八讲/" rel="next" title="动态规划水集(1)——背包十八讲">
+                <i class="fa fa-chevron-left"></i> 动态规划水集(1)——背包十八讲
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://cdn.luogu.org/upload/usericon/15984.png" alt="TURLE">
+            
+              <p class="site-author-name" itemprop="name">TURLE</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.luogu.org/space/show?uid=15984" title="洛谷 &rarr; https://www.luogu.org/space/show?uid=15984" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>洛谷</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://user.qzone.qq.com/1597440560" title="QQZone &rarr; https://user.qzone.qq.com/1597440560" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>QQZone</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-前言"><span class="nav-text">$0.$前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-线性-DP"><span class="nav-text">$1.$线性$DP$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NOIP-对于线性DP的考察也很多，这里以传纸条为例。"><span class="nav-text">$NOIP$对于线性DP的考察也很多，这里以传纸条为例。</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#2-树形-DP"><span class="nav-text">$2.$树形$DP$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以以最近做的有线电视网为例。"><span class="nav-text">可以以最近做的有线电视网为例。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-区间-DP"><span class="nav-text">$3.$区间$DP$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较典型的有："><span class="nav-text">比较典型的有：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在李煜东书里面有道【IOI】多边形挺好的。"><span class="nav-text">在李煜东书里面有道【IOI】多边形挺好的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还有一道二维区间的棋盘分割也很考验对区间DP的理解。"><span class="nav-text">还有一道二维区间的棋盘分割也很考验对区间DP的理解。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-状压-DP"><span class="nav-text">$4.$状压$DP$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置芝士：位运算"><span class="nav-text">前置芝士：位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状压-DP-部分"><span class="nav-text">状压$DP$部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状压入门，-K-国王问题"><span class="nav-text">状压入门，$K$国王问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BangDream-的合唱站队，后面就附带详细的题解yo"><span class="nav-text">$BangDream$ 的合唱站队，后面就附带详细的题解yo~</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#【SDOI】学校食堂也很好，但题解写不动了。。"><span class="nav-text">【SDOI】学校食堂也很好，但题解写不动了。。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-冷门-DP"><span class="nav-text">$5^*.$冷门$DP$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有向图-DP"><span class="nav-text">有向图$DP$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有向图DP分支—-—博弈"><span class="nav-text">有向图DP分支— —博弈$^*$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#期望-DP"><span class="nav-text">期望$DP$</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前置芝士：概率与期望"><span class="nav-text">前置芝士：概率与期望</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#期望-DP-部分"><span class="nav-text">期望$DP$部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#先考虑当前不换课："><span class="nav-text">先考虑当前不换课：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#若当前换课："><span class="nav-text">若当前换课：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-数位-DP"><span class="nav-text">$6^*.$数位$DP$</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+		
+	
+		<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+		<div class="widget-wrap">
+			<h3 class="widget-title">Tag Cloud</h3>
+			<div id="myCanvasContainer" class="widget tagcloud">
+				<canvas width="250" height="250" id="resCanvas" style="width=100%">
+					<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分/">二分</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/优化DP/">优化DP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/动态规划/">动态规划</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图论/">图论</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/字符串/">字符串</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并查集/">并查集</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/打表/">打表</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/折半搜索/">折半搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/拓扑/">拓扑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/排序问题/">排序问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索/">搜索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构/">数据结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数论/">数论</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/最短路/">最短路</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/有感/">有感</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/期望/">期望</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形结构/">树形结构</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树的重心/">树的重心</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树链剖分/">树链剖分</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/模拟/">模拟</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/矩阵加速/">矩阵加速</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/线性DP/">线性DP</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/网络流/">网络流</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/背包问题/">背包问题</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/记忆化搜索/">记忆化搜索</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/贪心/">贪心</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高斯消元/">高斯消元</a><span class="tag-list-count">1</span></li></ul>
+				</canvas>
+			</div>
+		</div>
+	
+	
+	
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TURLE</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+</html>
